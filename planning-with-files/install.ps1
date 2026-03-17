@@ -1,0 +1,43 @@
+# Install planning-with-files skill to $env:USERPROFILE\.cursor\skills\ (global, all projects)
+# Run from PowerShell: .\install.ps1
+
+$ErrorActionPreference = "Stop"
+
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+# Find skill root (directory containing SKILL.md)
+if (Test-Path (Join-Path $ScriptDir "SKILL.md")) {
+    $SkillRoot = $ScriptDir
+} elseif (Test-Path (Join-Path (Split-Path -Parent $ScriptDir) "SKILL.md")) {
+    $SkillRoot = Split-Path -Parent $ScriptDir
+} else {
+    Write-Host "Error: Could not find SKILL.md. Run this from the planning-with-files skill directory."
+    exit 1
+}
+
+$Target = Join-Path $env:USERPROFILE ".cursor\skills\planning-with-files"
+
+Write-Host "Installing planning-with-files skill..."
+Write-Host "  From: $SkillRoot"
+Write-Host "  To:   $Target"
+
+$TargetParent = Split-Path -Parent $Target
+if (-not (Test-Path $TargetParent)) {
+    New-Item -ItemType Directory -Path $TargetParent -Force | Out-Null
+}
+
+if (Test-Path $Target) {
+    Remove-Item -Path $Target -Recurse -Force
+}
+Copy-Item -Path $SkillRoot -Destination $TargetParent -Force
+
+Write-Host ""
+Write-Host "Installation complete!"
+Write-Host ""
+Write-Host "The skill is now available in Cursor. To use:"
+Write-Host "  1. Restart Cursor (or reload the window)"
+Write-Host "  2. In Agent chat, type /planning-with-files or @planning-with-files"
+Write-Host ""
+Write-Host "To initialize planning files in a project, run from project root:"
+Write-Host "  & `"$Target\scripts\init-session.ps1`""
+Write-Host ""
