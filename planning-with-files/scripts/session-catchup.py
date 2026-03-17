@@ -168,11 +168,21 @@ def main():
     project_path = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
     project_path = str(Path(project_path).resolve())
 
-    # Check if planning files exist (indicates active task)
-    has_planning_files = any(
-        Path(project_path, f).exists() for f in PLANNING_FILES
+    # Check if planning files exist (root, named folders, or planning-with-files/<task>/)
+    project = Path(project_path)
+    has_root = any((project / f).exists() for f in PLANNING_FILES)
+    has_folders = any(
+        (d / 'task_plan.md').exists()
+        for d in project.iterdir()
+        if d.is_dir() and not d.name.startswith('.')
     )
-    if not has_planning_files:
+    # Also check planning-with-files/<task>/ structure
+    pwf = project / 'planning-with-files'
+    has_pwf = (
+        pwf.is_dir() and
+        any((d / 'task_plan.md').exists() for d in pwf.iterdir() if d.is_dir())
+    )
+    if not has_root and not has_folders and not has_pwf:
         return
 
     # Try Cursor first, then Claude
@@ -232,7 +242,7 @@ def main():
 
     print("\n--- RECOMMENDED ---")
     print("1. Run: git diff --stat")
-    print("2. Read: task_plan.md, progress.md, findings.md")
+    print("2. Read planning files (e.g. <folder>/task_plan.md, progress.md, findings.md)")
     print("3. Update planning files based on above context")
     print("4. Continue with task")
 

@@ -24,19 +24,17 @@ A step-by-step workflow for using the planning-with-files system on complex task
 
 ### 1.1 Create the planning files
 
-From your project root, run:
+From your project root, run with a **task name**:
 
 ```bash
-./.cursor/skills/planning-with-files/scripts/init-session.sh
+./.cursor/skills/planning-with-files/scripts/init-session.sh audit-logging
 ```
 
-Or manually copy the templates into your project root:
+Creates `planning-with-files/` if missing, then `planning-with-files/audit-logging/` with the three files. Names are sanitized: `"dark mode toggle"` → `dark-mode-toggle/`
 
-- `.cursor/skills/planning-with-files/templates/task_plan.md` → `task_plan.md`
-- `.cursor/skills/planning-with-files/templates/findings.md` → `findings.md`
-- `.cursor/skills/planning-with-files/templates/progress.md` → `progress.md`
+Or manually: create `planning-with-files/<task>/` and copy the templates into it.
 
-### 1.2 Fill in `task_plan.md`
+### 1.2 Fill in `task_plan.md` (in the folder)
 
 - **Goal:** One sentence describing the end state
 - **Phases:** 3–7 phases (e.g. Discovery → Plan → Implement → Test → Deliver)
@@ -46,7 +44,7 @@ Or manually copy the templates into your project root:
 
 Example prompt:
 
-> I'm starting a complex task. I've created `task_plan.md`, `findings.md`, and `progress.md` in the project root. Read them first, then we'll work through the phases. Here's what I need: [your task]
+> I'm starting a complex task. I've created `planning-with-files/audit-logging/task_plan.md`, `findings.md`, and `progress.md`. Read them first, then we'll work through the phases. Here's what I need: [your task]
 
 ---
 
@@ -60,13 +58,13 @@ Example prompt:
 
 ### 2.2 After every 2 view/browser/search actions
 
-- Update `findings.md` with what you learned
+- Update `<folder>/findings.md` with what you learned
 - Especially for images, PDFs, or browser results
 
 ### 2.3 When discovery is done
 
-- Mark Phase 1 complete in `task_plan.md`
-- Update `progress.md` with what you did
+- Mark Phase 1 complete in `<folder>/task_plan.md`
+- Update `<folder>/progress.md` with what you did
 
 ---
 
@@ -123,10 +121,10 @@ Example prompt:
 
 **If you used `/clear` or started a new chat:**
 
-1. Check if `task_plan.md` exists in your project root.
+1. Check if a task folder exists (e.g. `planning-with-files/audit-logging/task_plan.md`).
 2. If it exists, tell the AI:
 
-   > I'm resuming a task. Read `task_plan.md`, `findings.md`, and `progress.md` first, then continue from where we left off.
+   > I'm resuming a task. Read `planning-with-files/audit-logging/task_plan.md`, `findings.md`, and `progress.md` first, then continue from where we left off.
 
 3. Optional: run the catchup script to see what changed since the last planning update:
 
@@ -142,7 +140,7 @@ Example prompt:
 
 | When | Do This |
 |------|---------|
-| Starting a complex task | Init files → Fill `task_plan.md` → Tell AI to read them |
+| Starting a complex task | `init-session.sh <name>` → Fill `task_plan.md` → Tell AI to read them |
 | After 2 view/browser/search ops | Update `findings.md` |
 | Before a major decision | Re-read `task_plan.md` |
 | After an error | Log in `task_plan.md` + change approach |

@@ -1,18 +1,40 @@
 # Initialize planning files for a new session
-# Run from project root: .\.cursor\skills\planning-with-files\scripts\init-session.ps1 [project-name]
+# Run from project root: init-session.ps1 <task-name>
+# Creates planning-with-files\ if missing, then planning-with-files\<task>\ with task_plan.md, findings.md, progress.md
+#
+# Example: .\init-session.ps1 audit-logging  → planning-with-files\audit-logging\
+# Example: .\init-session.ps1 "dark mode toggle"  → planning-with-files\dark-mode-toggle\
 
 param(
-    [string]$ProjectName = "project"
+    [Parameter(Mandatory=$true)]
+    [string]$TaskName
 )
 
 $DATE = Get-Date -Format "yyyy-MM-dd"
 
-Write-Host "Initializing planning files for: $ProjectName"
+# Root container for all planning folders
+$RootDir = "planning-with-files"
+
+# Sanitize: lowercase, spaces/hyphens/underscores to single hyphen, remove special chars
+$FolderName = $TaskName.ToLower() -replace '[^a-z0-9\s\-_]', '' -replace '[\s_\-]+', '-' -replace '^-|-$', ''
+if ([string]::IsNullOrEmpty($FolderName)) { $FolderName = "plan" }
+
+# Full path: planning-with-files\<task-name>\
+$PlanDir = Join-Path $RootDir $FolderName
+
+Write-Host "Initializing planning files for: $TaskName"
+Write-Host "Root folder: $RootDir\ (created if missing)"
+Write-Host "Task folder: $PlanDir\"
+Write-Host ""
+
+if (-not (Test-Path $PlanDir)) {
+    New-Item -ItemType Directory -Path $PlanDir -Force | Out-Null
+}
 
 # Create task_plan.md if it doesn't exist
-if (-not (Test-Path "task_plan.md")) {
+if (-not (Test-Path "$PlanDir\task_plan.md")) {
     @"
-# Task Plan: [Brief Description]
+# Task Plan: $TaskName
 
 ## Goal
 [One sentence describing the end state]
@@ -55,14 +77,14 @@ Phase 1
 ## Errors Encountered
 | Error | Resolution |
 |-------|------------|
-"@ | Out-File -FilePath "task_plan.md" -Encoding UTF8
-    Write-Host "Created task_plan.md"
+"@ | Out-File -FilePath "$PlanDir\task_plan.md" -Encoding UTF8
+    Write-Host "Created $PlanDir\task_plan.md"
 } else {
-    Write-Host "task_plan.md already exists, skipping"
+    Write-Host "$PlanDir\task_plan.md already exists, skipping"
 }
 
 # Create findings.md if it doesn't exist
-if (-not (Test-Path "findings.md")) {
+if (-not (Test-Path "$PlanDir\findings.md")) {
     @"
 # Findings & Decisions
 
@@ -82,14 +104,14 @@ if (-not (Test-Path "findings.md")) {
 
 ## Resources
 -
-"@ | Out-File -FilePath "findings.md" -Encoding UTF8
-    Write-Host "Created findings.md"
+"@ | Out-File -FilePath "$PlanDir\findings.md" -Encoding UTF8
+    Write-Host "Created $PlanDir\findings.md"
 } else {
-    Write-Host "findings.md already exists, skipping"
+    Write-Host "$PlanDir\findings.md already exists, skipping"
 }
 
 # Create progress.md if it doesn't exist
-if (-not (Test-Path "progress.md")) {
+if (-not (Test-Path "$PlanDir\progress.md")) {
     @"
 # Progress Log
 
@@ -109,12 +131,15 @@ if (-not (Test-Path "progress.md")) {
 ### Errors
 | Error | Resolution |
 |-------|------------|
-"@ | Out-File -FilePath "progress.md" -Encoding UTF8
-    Write-Host "Created progress.md"
+"@ | Out-File -FilePath "$PlanDir\progress.md" -Encoding UTF8
+    Write-Host "Created $PlanDir\progress.md"
 } else {
-    Write-Host "progress.md already exists, skipping"
+    Write-Host "$PlanDir\progress.md already exists, skipping"
 }
 
 Write-Host ""
 Write-Host "Planning files initialized!"
+Write-Host "Folder: $PlanDir\"
 Write-Host "Files: task_plan.md, findings.md, progress.md"
+Write-Host ""
+Write-Host "Tell the AI: Read $PlanDir\task_plan.md, $PlanDir\findings.md, and $PlanDir\progress.md first."

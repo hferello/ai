@@ -67,24 +67,26 @@ In Cursor Agent chat, type:
 
 ### 2. Initialize planning files (for a new complex task)
 
-From your **project root**:
+From your **project root**, run with a **task name**:
 
 ```bash
-# If installed globally
-~/.cursor/skills/planning-with-files/scripts/init-session.sh
+# If installed globally (replace "audit-logging" with your task name)
+~/.cursor/skills/planning-with-files/scripts/init-session.sh audit-logging
 
 # If in project .cursor/skills/
-./.cursor/skills/planning-with-files/scripts/init-session.sh
+./.cursor/skills/planning-with-files/scripts/init-session.sh "dark mode toggle"
 ```
+
+Creates `planning-with-files/` if missing, then `planning-with-files/<task>/`. Names are sanitized: `"dark mode toggle"` → `dark-mode-toggle/`
 
 **Windows:**
 ```powershell
-& "$env:USERPROFILE\.cursor\skills\planning-with-files\scripts\init-session.ps1"
+& "$env:USERPROFILE\.cursor\skills\planning-with-files\scripts\init-session.ps1" "audit-logging"
 ```
 
 ### 3. Tell the AI
 
-> I'm starting a complex task. I've created `task_plan.md`, `findings.md`, and `progress.md` in the project root. Read them first, then we'll work through the phases. Here's what I need: [your task]
+> I'm starting a complex task. I've created `planning-with-files/audit-logging/task_plan.md`, `findings.md`, and `progress.md`. Read them first, then we'll work through the phases. Here's what I need: [your task]
 
 ---
 
@@ -92,12 +94,12 @@ From your **project root**:
 
 | When | Do This |
 |------|---------|
-| Starting a complex task | Init files → Fill `task_plan.md` → Tell AI to read them |
+| Starting a complex task | `init-session.sh <name>` → Fill `task_plan.md` → Tell AI to read them |
 | After 2 view/browser/search ops | Update `findings.md` |
 | Before a major decision | Re-read `task_plan.md` |
 | After an error | Log in `task_plan.md` + change approach |
 | After completing a phase | Update status in `task_plan.md` and `progress.md` |
-| Resuming after `/clear` | Tell AI to read all three files first |
+| Resuming after `/clear` | Tell AI to read all three files in the task folder first |
 
 ---
 
@@ -105,11 +107,11 @@ From your **project root**:
 
 | File | Purpose |
 |------|---------|
-| `task_plan.md` | Goal, phases, decisions, errors |
-| `findings.md` | Research, discoveries, technical choices |
-| `progress.md` | Session log, actions, test results |
+| `planning-with-files/<task>/task_plan.md` | Goal, phases, decisions, errors |
+| `planning-with-files/<task>/findings.md` | Research, discoveries, technical choices |
+| `planning-with-files/<task>/progress.md` | Session log, actions, test results |
 
-All three go in your **project root**, not the skill folder.
+A root folder `planning-with-files/` is created if missing. Each task gets its own subfolder (e.g. `planning-with-files/audit-logging/`).
 
 ---
 
