@@ -132,18 +132,23 @@ rm -rf ~/.cursor/skills/planning-with-files
 
 ---
 
-## For maintainers: creating a distributable package
+## For maintainers
 
-To create a zip for sharing:
-
+**Create a zip for sharing:**
 ```bash
 ./scripts/package.sh
 ```
 
-Output: `planning-with-files-cursor-skill.zip` in the parent directory. Share this file or publish the folder to GitHub.
+**Publish updates to GitHub ([hferello/ai](https://github.com/hferello/ai)):**
+```bash
+./scripts/publish-to-github.sh
+# Then: cd /tmp/ai-repo-publish-* && git push origin main
+```
 
 ---
 
 ## License
 
 Same as the parent project.
+
+Original: https://github.com/OthmanAdi/planning-with-files/releases/tag/v2.23.1
