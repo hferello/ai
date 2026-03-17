@@ -50,6 +50,19 @@ Keep the skill in your project's `.cursor/skills/planning-with-files/`. It will 
 
 ---
 
+## Hooks
+
+If `~/.cursor/hooks.json` already exists, install adds planning hooks to it (without overwriting existing hooks). If it doesn't exist, nothing is created.
+
+| Hook | Purpose |
+|------|---------|
+| `beforeShellExecution` / `beforeMCPExecution` | If planning is active, injects a short reminder: *"Planning active: update progress.md and task_plan.md when you finish a phase."* |
+| `stop` | Runs `check-complete` for each active task; output appears in the Hooks panel |
+
+Messages are kept short to avoid token bloat. Hooks only run when `planning-with-files/<task>/task_plan.md` exists. On Windows, hooks require a Unix-like shell (Git Bash or WSL).
+
+---
+
 ## After Installation
 
 1. **Restart Cursor** (or reload window: Cmd+Shift+P → "Developer: Reload Window")

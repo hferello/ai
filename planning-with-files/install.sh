@@ -34,6 +34,32 @@ cp -R "$SKILL_ROOT" "$(dirname "$TARGET")"
 
 # Ensure scripts are executable
 chmod +x "$TARGET"/scripts/*.sh 2>/dev/null || true
+chmod +x "$TARGET"/hooks/*.sh 2>/dev/null || true
+
+# Add hooks only if ~/.cursor/hooks.json already exists (never create it)
+CURSOR_HOOKS="$HOME/.cursor/hooks.json"
+HOOKS_TEMPLATE="$TARGET/hooks/hooks.json"
+if [[ -f "$CURSOR_HOOKS" ]] && [[ -f "$HOOKS_TEMPLATE" ]]; then
+  if command -v python3 >/dev/null 2>&1; then
+    python3 -c "
+import json
+with open(\"$CURSOR_HOOKS\") as f:
+    existing = json.load(f)
+with open(\"$HOOKS_TEMPLATE\") as f:
+    template = json.load(f)
+hooks = existing.get('hooks', {})
+for k, v in template.get('hooks', {}).items():
+    if k not in hooks:
+        hooks[k] = v
+existing['hooks'] = hooks
+with open(\"$CURSOR_HOOKS\", 'w') as f:
+    json.dump(existing, f, indent=2)
+"
+    echo "Hooks merged into $CURSOR_HOOKS (existing hooks preserved)"
+  else
+    echo "Python3 required to merge hooks. Copy manually from $HOOKS_TEMPLATE"
+  fi
+fi
 
 echo ""
 echo "Installation complete!"

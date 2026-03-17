@@ -31,6 +31,24 @@ if (Test-Path $Target) {
 }
 Copy-Item -Path $SkillRoot -Destination $TargetParent -Force
 
+# Add hooks only if ~/.cursor/hooks.json already exists (never create it)
+$CursorHooks = Join-Path $env:USERPROFILE ".cursor\hooks.json"
+$HooksTemplate = Join-Path $Target "hooks\hooks.json"
+if ((Test-Path $CursorHooks) -and (Test-Path $HooksTemplate)) {
+    $mergedHooks = @{}
+    $existing = Get-Content $CursorHooks -Raw | ConvertFrom-Json
+    if ($existing.hooks) {
+        $existing.hooks.PSObject.Properties | ForEach-Object { $mergedHooks[$_.Name] = $_.Value }
+    }
+    $template = Get-Content $HooksTemplate -Raw | ConvertFrom-Json
+    $template.hooks.PSObject.Properties | ForEach-Object {
+        if (-not $mergedHooks.ContainsKey($_.Name)) { $mergedHooks[$_.Name] = $_.Value }
+    }
+    $output = @{ hooks = $mergedHooks }
+    $output | ConvertTo-Json -Depth 10 | Set-Content $CursorHooks -Encoding UTF8
+    Write-Host "Hooks merged into $CursorHooks (existing hooks preserved)"
+}
+
 Write-Host ""
 Write-Host "Installation complete!"
 Write-Host ""
@@ -39,5 +57,5 @@ Write-Host "  1. Restart Cursor (or reload the window)"
 Write-Host "  2. In Agent chat, type /planning-with-files or @planning-with-files"
 Write-Host ""
 Write-Host "To initialize planning files in a project, run from project root:"
-Write-Host "  & `"$Target\scripts\init-session.ps1`""
+Write-Host "  & `"$Target\scripts\init-session.ps1`" <task-name>"
 Write-Host ""

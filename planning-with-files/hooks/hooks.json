@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "beforeShellExecution": {
+      "command": "skills/planning-with-files/hooks/planning-reminder.sh",
+      "args": []
+    },
+    "beforeMCPExecution": {
+      "command": "skills/planning-with-files/hooks/planning-reminder.sh",
+      "args": []
+    },
+    "stop": {
+      "command": "skills/planning-with-files/hooks/planning-check-complete.sh",
+      "args": []
+    }
+  }
+}
