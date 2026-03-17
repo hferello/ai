@@ -1,6 +1,6 @@
 # Planning with Files — Cursor Skill
 
-Manus-style file-based planning for complex AI agent tasks. Creates `task_plan.md`, `findings.md`, and `progress.md` to keep goals in focus across long sessions.
+Manus-style file-based planning for complex AI agent tasks. Creates `task_plan.md`, `findings.md`, `progress.md`, and `documentation.md` to keep goals in focus across long sessions.
 
 **Use for:** Multi-step tasks, research, building projects, anything spanning many tool calls.
 
@@ -99,7 +99,7 @@ Creates `planning-with-files/` if missing, then `planning-with-files/<task>/`. N
 
 ### 3. Tell the AI
 
-> I'm starting a complex task. I've created `planning-with-files/audit-logging/task_plan.md`, `findings.md`, and `progress.md`. Read them first, then we'll work through the phases. Here's what I need: [your task]
+> I'm starting a complex task. I've created `planning-with-files/audit-logging/task_plan.md`, `findings.md`, `progress.md`, and `documentation.md`. Read them first, then we'll work through the phases. Here's what I need: [your task]
 
 ---
 
@@ -112,7 +112,7 @@ Creates `planning-with-files/` if missing, then `planning-with-files/<task>/`. N
 | Before a major decision | Re-read `task_plan.md` |
 | After an error | Log in `task_plan.md` + change approach |
 | After completing a phase | Update status in `task_plan.md` and `progress.md` |
-| Resuming after `/clear` | Tell AI to read all three files in the task folder first |
+| Resuming after `/clear` | Tell AI to read all four files in the task folder first |
 
 ---
 
@@ -123,6 +123,7 @@ Creates `planning-with-files/` if missing, then `planning-with-files/<task>/`. N
 | `planning-with-files/<task>/task_plan.md` | Goal, phases, decisions, errors |
 | `planning-with-files/<task>/findings.md` | Research, discoveries, technical choices |
 | `planning-with-files/<task>/progress.md` | Session log, actions, test results |
+| `planning-with-files/<task>/documentation.md` | What was built, how it works |
 
 A root folder `planning-with-files/` is created if missing. Each task gets its own subfolder (e.g. `planning-with-files/audit-logging/`).
 

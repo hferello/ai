@@ -1,6 +1,6 @@
 # Initialize planning files for a new session
 # Run from project root: init-session.ps1 <task-name>
-# Creates planning-with-files\ if missing, then planning-with-files\<task>\ with task_plan.md, findings.md, progress.md
+# Creates planning-with-files\ if missing, then planning-with-files\<task>\ with task_plan.md, findings.md, progress.md, documentation.md
 #
 # Example: .\init-session.ps1 audit-logging  → planning-with-files\audit-logging\
 # Example: .\init-session.ps1 "dark mode toggle"  → planning-with-files\dark-mode-toggle\
@@ -110,6 +110,31 @@ if (-not (Test-Path "$PlanDir\findings.md")) {
     Write-Host "$PlanDir\findings.md already exists, skipping"
 }
 
+# Create documentation.md if it doesn't exist
+if (-not (Test-Path "$PlanDir\documentation.md")) {
+    @"
+# Documentation: $TaskName
+
+## Overview
+-
+
+## What Was Built
+-
+
+## How It Works
+-
+
+## Usage
+-
+
+## Notes
+-
+"@ | Out-File -FilePath "$PlanDir\documentation.md" -Encoding UTF8
+    Write-Host "Created $PlanDir\documentation.md"
+} else {
+    Write-Host "$PlanDir\documentation.md already exists, skipping"
+}
+
 # Create progress.md if it doesn't exist
 if (-not (Test-Path "$PlanDir\progress.md")) {
     @"
@@ -140,6 +165,6 @@ if (-not (Test-Path "$PlanDir\progress.md")) {
 Write-Host ""
 Write-Host "Planning files initialized!"
 Write-Host "Folder: $PlanDir\"
-Write-Host "Files: task_plan.md, findings.md, progress.md"
+Write-Host "Files: task_plan.md, findings.md, progress.md, documentation.md"
 Write-Host ""
-Write-Host "Tell the AI: Read $PlanDir\task_plan.md, $PlanDir\findings.md, and $PlanDir\progress.md first."
+Write-Host "Tell the AI: Read $PlanDir\task_plan.md, $PlanDir\findings.md, $PlanDir\progress.md, and $PlanDir\documentation.md first."

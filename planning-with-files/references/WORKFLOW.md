@@ -30,7 +30,7 @@ From your project root, run with a **task name**:
 ./.cursor/skills/planning-with-files/scripts/init-session.sh audit-logging
 ```
 
-Creates `planning-with-files/` if missing, then `planning-with-files/audit-logging/` with the three files. Names are sanitized: `"dark mode toggle"` → `dark-mode-toggle/`
+Creates `planning-with-files/` if missing, then `planning-with-files/audit-logging/` with the four files. Names are sanitized: `"dark mode toggle"` → `dark-mode-toggle/`
 
 Or manually: create `planning-with-files/<task>/` and copy the templates into it.
 
@@ -44,7 +44,7 @@ Or manually: create `planning-with-files/<task>/` and copy the templates into it
 
 Example prompt:
 
-> I'm starting a complex task. I've created `planning-with-files/audit-logging/task_plan.md`, `findings.md`, and `progress.md`. Read them first, then we'll work through the phases. Here's what I need: [your task]
+> I'm starting a complex task. I've created `planning-with-files/audit-logging/task_plan.md`, `findings.md`, `progress.md`, and `documentation.md`. Read them first, then we'll work through the phases. Here's what I need: [your task]
 
 ---
 
@@ -114,6 +114,7 @@ Example prompt:
 
 - Mark all phases complete in `task_plan.md`
 - Do a final update in `progress.md`
+- Update `documentation.md` with what was built and how it works
 
 ---
 
@@ -124,7 +125,7 @@ Example prompt:
 1. Check if a task folder exists (e.g. `planning-with-files/audit-logging/task_plan.md`).
 2. If it exists, tell the AI:
 
-   > I'm resuming a task. Read `planning-with-files/audit-logging/task_plan.md`, `findings.md`, and `progress.md` first, then continue from where we left off.
+   > I'm resuming a task. Read `planning-with-files/audit-logging/task_plan.md`, `findings.md`, `progress.md`, and `documentation.md` first, then continue from where we left off.
 
 3. Optional: run the catchup script to see what changed since the last planning update:
 
@@ -145,7 +146,7 @@ Example prompt:
 | Before a major decision | Re-read `task_plan.md` |
 | After an error | Log in `task_plan.md` + change approach |
 | After completing a phase | Update status in `task_plan.md` and `progress.md` |
-| Resuming after `/clear` | Tell AI to read all three files first |
+| Resuming after `/clear` | Tell AI to read all four files first |
 
 ---
 

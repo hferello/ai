@@ -1,7 +1,7 @@
 #!/bin/bash
 # Initialize planning files for a new session
 # Run from project root: init-session.sh <task-name>
-# Creates planning-with-files/ if missing, then planning-with-files/<task>/ with task_plan.md, findings.md, progress.md
+# Creates planning-with-files/ if missing, then planning-with-files/<task>/ with task_plan.md, findings.md, progress.md, documentation.md
 #
 # Example: init-session.sh audit-logging  → planning-with-files/audit-logging/
 # Example: init-session.sh "dark mode toggle"  → planning-with-files/dark-mode-toggle/
@@ -108,6 +108,31 @@ else
     echo "$PLAN_DIR/findings.md already exists, skipping"
 fi
 
+# Create documentation.md if it doesn't exist
+if [ ! -f "$PLAN_DIR/documentation.md" ]; then
+    cat > "$PLAN_DIR/documentation.md" << EOF
+# Documentation: $TASK_NAME
+
+## Overview
+-
+
+## What Was Built
+-
+
+## How It Works
+-
+
+## Usage
+-
+
+## Notes
+-
+EOF
+    echo "Created $PLAN_DIR/documentation.md"
+else
+    echo "$PLAN_DIR/documentation.md already exists, skipping"
+fi
+
 # Create progress.md if it doesn't exist
 if [ ! -f "$PLAN_DIR/progress.md" ]; then
     cat > "$PLAN_DIR/progress.md" << EOF
@@ -138,6 +163,6 @@ fi
 echo ""
 echo "Planning files initialized!"
 echo "Path: $PLAN_DIR/"
-echo "Files: task_plan.md, findings.md, progress.md"
+echo "Files: task_plan.md, findings.md, progress.md, documentation.md"
 echo ""
-echo "Tell the AI: Read $PLAN_DIR/task_plan.md, $PLAN_DIR/findings.md, and $PLAN_DIR/progress.md first."
+echo "Tell the AI: Read $PLAN_DIR/task_plan.md, $PLAN_DIR/findings.md, $PLAN_DIR/progress.md, and $PLAN_DIR/documentation.md first."

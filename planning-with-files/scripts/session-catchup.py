@@ -14,7 +14,7 @@ import os
 from pathlib import Path
 from typing import List, Dict, Optional, Tuple
 
-PLANNING_FILES = ['task_plan.md', 'progress.md', 'findings.md']
+PLANNING_FILES = ['task_plan.md', 'progress.md', 'findings.md', 'documentation.md']
 
 
 def get_cursor_project_dir(project_path: str) -> Path:
