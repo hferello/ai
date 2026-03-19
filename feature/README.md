@@ -1,12 +1,12 @@
 # /feature
 
-Designing features, multi-step tasks, research, building projects, anything spanning many tool calls. Helps Cursor plan bigger pieces of work: it asks a few questions up front, then keeps a simple folder of notes—`task_plan`, `findings`, `progress`, `documentation`, and a **PRD** (`prd.md`)—so nothing gets lost.
+A skill for Cursor that helps you think before you build. Whether you're designing a feature, researching a problem, or kicking off a multi-step project, `/feature` asks the right questions first and keeps your work organized in a small set of living docs — a task plan, findings, progress log, documentation, and a **PRD**.
 
 **Demo:**
 
 ![/feature demo](demo.gif)
 
-**Install:** In Cursor, open **Terminal → New Terminal**, paste the line below, press Enter, then **fully quit and reopen Cursor**.
+**Install:** Open a terminal in Cursor, paste this, hit Enter, then fully quit and reopen Cursor.
 
 ```bash
 git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-feature-skill && bash /tmp/cursor-feature-skill/feature/install.sh && rm -rf /tmp/cursor-feature-skill
@@ -14,24 +14,22 @@ git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-feature-skill
 
 ---
 
-## How to invoke `/feature`
+## Using `/feature`
 
-Send **one Agent message** that has two parts: the **command line**, then everything the agent needs to understand the work.
+### 1. Give it a name
 
-### 1. First line: task name
-
-Use a **short slug in quotes** right after `/feature`. Cursor uses it as the human-readable name for the work; it also lines up with the folder under `features/` (e.g. `checkout flow`) once planning files exist.
+Start with `/feature` followed by a short name in quotes. This becomes the label for the work and maps to a folder under `features/`.
 
 ```text
-/feature "feature name"
+/feature "checkout flow"
 ```
 
-Use lowercase words, hyphens if you need them (`"checkout flow"` → often `checkout-flow` on disk). The agent will still understand; the init script sanitizes names when you use scripts.
+Lowercase, hyphens are fine. The name doesn't need to be perfect — the init script tidies it up.
 
-### 2. What happens next
+### 2. Answer a few questions, then go
 
-The agent runs **Phase 0** (clarifying questions) unless you skip that flow, then creates **`features/<task>/`** with `task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, and **`prd.md`**. You iterate from there.
+The agent kicks off with a round of clarifying questions (you can skip this if you already know what you want), then scaffolds `features/<your-task>/` with everything it needs to track the work: `task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, and `prd.md`. From there, you iterate.
 
 ---
 
-For step-by-step workflow, hooks, Windows install, or uninstall, see [references/more.md](references/more.md).
+For the full workflow, hooks, Windows install, or uninstall instructions, see [references/more.md](references/more.md).
