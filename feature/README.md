@@ -6,8 +6,6 @@ Designing features, multi-step tasks, research, building projects, anything span
 
 ![/feature demo](demo.gif)
 
-*[Full-quality recording: demo.mov](demo.mov)*
-
 **Install:** In Cursor, open **Terminal → New Terminal**, paste the line below, press Enter, then **fully quit and reopen Cursor**.
 
 ```bash
