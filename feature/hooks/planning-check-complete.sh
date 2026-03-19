@@ -9,7 +9,7 @@ HOOK_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CHECK_SCRIPT="$HOOK_DIR/../scripts/check-complete.sh"
 
 if [ ! -x "$CHECK_SCRIPT" ]; then
-  echo "[planning-with-files] check-complete.sh not found or not executable."
+  echo "[feature] check-complete.sh not found or not executable."
   exit 0
 fi
 
@@ -28,7 +28,7 @@ try:
     roots = data.get('workspace_roots', [])
     check_script = os.environ.get('PLANNING_CHECK_SCRIPT', '')
     for root in roots:
-        pwf = os.path.join(root, 'planning-with-files')
+        pwf = os.path.join(root, 'features')
         if os.path.isdir(pwf):
             for name in sorted(os.listdir(pwf)):
                 task_dir = os.path.join(pwf, name)
@@ -36,11 +36,11 @@ try:
                 if os.path.isfile(plan_file):
                     subprocess.run([check_script, plan_file], cwd=root)
 except Exception as e:
-    print(f'[planning-with-files] Hook error: {e}', file=sys.stderr)
+    print(f'[feature] Hook error: {e}', file=sys.stderr)
 " 2>/dev/null
 else
   # Fallback: check common project root (current dir when Cursor runs hooks)
-  for plan in planning-with-files/*/task_plan.md; do
+  for plan in features/*/task_plan.md; do
     [ -f "$plan" ] && "$CHECK_SCRIPT" "$plan" || true
   done
 fi

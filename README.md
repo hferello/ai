@@ -2,15 +2,15 @@
 
 A collection of AI-related tools and Cursor skills.
 
-## Planning with Files (Cursor Skill)
+## Feature (Cursor Skill)
 
-Manus-style file-based planning for complex AI agent tasks. Keeps goals in focus across long Cursor sessions.
+Feature design workflow. Asks clarifying questions first, then creates planning files in `features/<task>/`. Trigger with `/feature`.
 
 **Install:**
 ```bash
 git clone https://github.com/hferello/ai.git
-cd ai/planning-with-files
+cd ai/feature
 ./install.sh
 ```
 
-See [planning-with-files/README.md](planning-with-files/README.md) for full documentation.
+See [feature/README.md](feature/README.md) for full documentation.

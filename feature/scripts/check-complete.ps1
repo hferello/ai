@@ -1,12 +1,12 @@
 # Check if all phases in task_plan.md are complete
-# Run from project root: .\.cursor\skills\planning-with-files\scripts\check-complete.ps1
+# Run from project root: .\.cursor\skills\feature\scripts\check-complete.ps1
 
 param(
     [string]$PlanFile = "task_plan.md"
 )
 
 if (-not (Test-Path $PlanFile)) {
-    Write-Host '[planning-with-files] No task_plan.md found -- no active planning session.'
+    Write-Host '[feature] No task_plan.md found -- no active planning session.'
     exit 0
 }
 
@@ -30,14 +30,14 @@ if ($COMPLETE -eq 0 -and $IN_PROGRESS -eq 0 -and $PENDING -eq 0) {
 
 # Report status -- always exit 0, incomplete task is a normal state
 if ($COMPLETE -eq $TOTAL -and $TOTAL -gt 0) {
-    Write-Host ('[planning-with-files] ALL PHASES COMPLETE (' + $COMPLETE + '/' + $TOTAL + '). If the user has additional work, add new phases to task_plan.md before starting.')
+    Write-Host ('[feature] ALL PHASES COMPLETE (' + $COMPLETE + '/' + $TOTAL + '). If the user has additional work, add new phases to task_plan.md before starting.')
 } else {
-    Write-Host ('[planning-with-files] Task in progress (' + $COMPLETE + '/' + $TOTAL + ' phases complete). Update progress.md before stopping.')
+    Write-Host ('[feature] Task in progress (' + $COMPLETE + '/' + $TOTAL + ' phases complete). Update progress.md before stopping.')
     if ($IN_PROGRESS -gt 0) {
-        Write-Host ('[planning-with-files] ' + $IN_PROGRESS + ' phase(s) still in progress.')
+        Write-Host ('[feature] ' + $IN_PROGRESS + ' phase(s) still in progress.')
     }
     if ($PENDING -gt 0) {
-        Write-Host ('[planning-with-files] ' + $PENDING + ' phase(s) pending.')
+        Write-Host ('[feature] ' + $PENDING + ' phase(s) pending.')
     }
 }
 exit 0

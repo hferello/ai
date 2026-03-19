@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Session Catchup Script for planning-with-files (Cursor-compatible)
+Session Catchup Script for feature skill (features/ folder) (Cursor-compatible)
 
 Analyzes the previous session to find unsynced context after the last
 planning file update. Supports both Cursor and Claude storage formats.
@@ -168,7 +168,7 @@ def main():
     project_path = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
     project_path = str(Path(project_path).resolve())
 
-    # Check if planning files exist (root, named folders, or planning-with-files/<task>/)
+    # Check if planning files exist (root, named folders, or features/<task>/)
     project = Path(project_path)
     has_root = any((project / f).exists() for f in PLANNING_FILES)
     has_folders = any(
@@ -176,8 +176,8 @@ def main():
         for d in project.iterdir()
         if d.is_dir() and not d.name.startswith('.')
     )
-    # Also check planning-with-files/<task>/ structure
-    pwf = project / 'planning-with-files'
+    # Also check features/<task>/ structure
+    pwf = project / 'features'
     has_pwf = (
         pwf.is_dir() and
         any((d / 'task_plan.md').exists() for d in pwf.iterdir() if d.is_dir())
@@ -224,7 +224,7 @@ def main():
 
     # Output catchup report
     agent_name = "Agent" if use_cursor else "Claude"
-    print("\n[planning-with-files] SESSION CATCHUP DETECTED")
+    print("\n[feature] SESSION CATCHUP DETECTED")
     print(f"Previous session: {target_session.stem}")
 
     print(f"Last planning update: {last_update_file} at message #{last_update_line}")

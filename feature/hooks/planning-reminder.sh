@@ -1,6 +1,6 @@
 #!/bin/bash
 # Hook: beforeShellExecution / beforeMCPExecution
-# If planning-with-files is active, inject a short agent reminder (no re-read).
+# If features is active, inject a short agent reminder (no re-read).
 # Keeps messages minimal to avoid token bloat.
 
 set -e
@@ -20,7 +20,7 @@ try:
     data = json.load(sys.stdin)
     roots = data.get('workspace_roots', [])
     for root in roots:
-        pwf = os.path.join(root, 'planning-with-files')
+        pwf = os.path.join(root, 'features')
         if os.path.isdir(pwf):
             for name in os.listdir(pwf):
                 task_dir = os.path.join(pwf, name)

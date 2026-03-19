@@ -1,25 +1,43 @@
 # Initialize planning files for a new session
-# Run from project root: init-session.ps1 <task-name>
-# Creates planning-with-files\ if missing, then planning-with-files\<task>\ with task_plan.md, findings.md, progress.md, documentation.md
+# Run from project root: init-session.ps1 [task-name]
+# Creates features\ if missing, then features\<task>\ with task_plan.md, findings.md, progress.md, documentation.md
 #
-# Example: .\init-session.ps1 audit-logging  → planning-with-files\audit-logging\
-# Example: .\init-session.ps1 "dark mode toggle"  → planning-with-files\dark-mode-toggle\
+# Example: .\init-session.ps1 audit-logging  → features\audit-logging\
+# Example: .\init-session.ps1 "dark mode toggle"  → features\dark-mode-toggle\
+# Example: .\init-session.ps1  → features\2025-03-19-task-1\ (auto-increments per day)
 
 param(
-    [Parameter(Mandatory=$true)]
+    [Parameter(Mandatory=$false)]
     [string]$TaskName
 )
 
 $DATE = Get-Date -Format "yyyy-MM-dd"
 
 # Root container for all planning folders
-$RootDir = "planning-with-files"
+$RootDir = "features"
 
-# Sanitize: lowercase, spaces/hyphens/underscores to single hyphen, remove special chars
-$FolderName = $TaskName.ToLower() -replace '[^a-z0-9\s\-_]', '' -replace '[\s_\-]+', '-' -replace '^-|-$', ''
-if ([string]::IsNullOrEmpty($FolderName)) { $FolderName = "plan" }
+# If no task name given, use {yyyy}-{mm}-{dd}-task-{N} with auto-increment
+if ([string]::IsNullOrEmpty($TaskName)) {
+  $DatePrefix = $DATE
+  $MaxNum = 0
+  if (Test-Path $RootDir) {
+    $Pattern = "^$([regex]::Escape($DatePrefix))-task-(\d+)$"
+    Get-ChildItem -Path $RootDir -Directory | ForEach-Object {
+      if ($_.Name -match $Pattern) {
+        $n = [int]$Matches[1]
+        if ($n -gt $MaxNum) { $MaxNum = $n }
+      }
+    }
+  }
+  $FolderName = "$DatePrefix-task-$($MaxNum + 1)"
+  $TaskName = $FolderName
+} else {
+  # Sanitize: lowercase, spaces/hyphens/underscores to single hyphen, remove special chars
+  $FolderName = $TaskName.ToLower() -replace '[^a-z0-9\s\-_]', '' -replace '[\s_\-]+', '-' -replace '^-|-$', ''
+  if ([string]::IsNullOrEmpty($FolderName)) { $FolderName = "plan" }
+}
 
-# Full path: planning-with-files\<task-name>\
+# Full path: features\<task-name>\
 $PlanDir = Join-Path $RootDir $FolderName
 
 Write-Host "Initializing planning files for: $TaskName"
@@ -162,9 +180,46 @@ if (-not (Test-Path "$PlanDir\progress.md")) {
     Write-Host "$PlanDir\progress.md already exists, skipping"
 }
 
+# Create prd.md if it doesn't exist (Product Requirements Document)
+if (-not (Test-Path "$PlanDir\prd.md")) {
+    @"
+# Product Requirements Document: $TaskName
+
+## 1. Introduction/Overview
+-
+
+## 2. Goals
+-
+
+## 3. User Stories
+-
+
+## 4. Functional Requirements
+-
+
+## 5. Non-Goals (Out of Scope)
+-
+
+## 6. Design Considerations (Optional)
+-
+
+## 7. Technical Considerations (Optional)
+-
+
+## 8. Success Metrics
+-
+
+## 9. Open Questions
+-
+"@ | Out-File -FilePath "$PlanDir\prd.md" -Encoding UTF8
+    Write-Host "Created $PlanDir\prd.md"
+} else {
+    Write-Host "$PlanDir\prd.md already exists, skipping"
+}
+
 Write-Host ""
 Write-Host "Planning files initialized!"
 Write-Host "Folder: $PlanDir\"
-Write-Host "Files: task_plan.md, findings.md, progress.md, documentation.md"
+Write-Host "Files: task_plan.md, findings.md, progress.md, documentation.md, prd.md"
 Write-Host ""
-Write-Host "Tell the AI: Read $PlanDir\task_plan.md, $PlanDir\findings.md, $PlanDir\progress.md, and $PlanDir\documentation.md first."
+Write-Host "Tell the AI: Read $PlanDir\task_plan.md, $PlanDir\findings.md, $PlanDir\progress.md, $PlanDir\documentation.md, and $PlanDir\prd.md first."

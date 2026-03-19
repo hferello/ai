@@ -1,6 +1,6 @@
-# Planning with Files — Workflow
+# Feature — Workflow
 
-A step-by-step workflow for using the planning-with-files system on complex tasks.
+A step-by-step workflow for using the feature skill on complex tasks.
 
 ## When to Use This
 
@@ -27,12 +27,12 @@ A step-by-step workflow for using the planning-with-files system on complex task
 From your project root, run with a **task name**:
 
 ```bash
-./.cursor/skills/planning-with-files/scripts/init-session.sh audit-logging
+./.cursor/skills/feature/scripts/init-session.sh audit-logging
 ```
 
-Creates `planning-with-files/` if missing, then `planning-with-files/audit-logging/` with the four files. Names are sanitized: `"dark mode toggle"` → `dark-mode-toggle/`
+Creates `features/` if missing, then `features/audit-logging/` with the four files. Names are sanitized: `"dark mode toggle"` → `dark-mode-toggle/`
 
-Or manually: create `planning-with-files/<task>/` and copy the templates into it.
+Or manually: create `features/<task>/` and copy the templates into it.
 
 ### 1.2 Fill in `task_plan.md` (in the folder)
 
@@ -44,7 +44,7 @@ Or manually: create `planning-with-files/<task>/` and copy the templates into it
 
 Example prompt:
 
-> I'm starting a complex task. I've created `planning-with-files/audit-logging/task_plan.md`, `findings.md`, `progress.md`, and `documentation.md`. Read them first, then we'll work through the phases. Here's what I need: [your task]
+> I'm starting a complex task. I've created `features/audit-logging/task_plan.md`, `findings.md`, `progress.md`, and `documentation.md`. Read them first, then we'll work through the phases. Here's what I need: [your task]
 
 ---
 
@@ -122,15 +122,15 @@ Example prompt:
 
 **If you used `/clear` or started a new chat:**
 
-1. Check if a task folder exists (e.g. `planning-with-files/audit-logging/task_plan.md`).
+1. Check if a task folder exists (e.g. `features/audit-logging/task_plan.md`).
 2. If it exists, tell the AI:
 
-   > I'm resuming a task. Read `planning-with-files/audit-logging/task_plan.md`, `findings.md`, `progress.md`, and `documentation.md` first, then continue from where we left off.
+   > I'm resuming a task. Read `features/audit-logging/task_plan.md`, `findings.md`, `progress.md`, and `documentation.md` first, then continue from where we left off.
 
 3. Optional: run the catchup script to see what changed since the last planning update:
 
    ```bash
-   python3 .cursor/skills/planning-with-files/scripts/session-catchup.py "$(pwd)"
+   python3 ~/.cursor/skills/feature/scripts/session-catchup.py "$(pwd)"
    ```
 
 4. If the catchup shows unsynced context, run `git diff --stat` and update the planning files based on what actually changed.

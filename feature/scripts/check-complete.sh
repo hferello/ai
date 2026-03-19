@@ -1,11 +1,11 @@
 #!/bin/bash
 # Check if all phases in task_plan.md are complete
-# Run from project root: ./.cursor/skills/planning-with-files/scripts/check-complete.sh
+# Run from project root: ./.cursor/skills/feature/scripts/check-complete.sh
 
 PLAN_FILE="${1:-task_plan.md}"
 
 if [ ! -f "$PLAN_FILE" ]; then
-    echo "[planning-with-files] No task_plan.md found — no active planning session."
+    echo "[feature] No task_plan.md found — no active planning session."
     exit 0
 fi
 
@@ -32,14 +32,14 @@ fi
 
 # Report status (always exit 0 — incomplete task is a normal state)
 if [ "$COMPLETE" -eq "$TOTAL" ] && [ "$TOTAL" -gt 0 ]; then
-    echo "[planning-with-files] ALL PHASES COMPLETE ($COMPLETE/$TOTAL). If the user has additional work, add new phases to task_plan.md before starting."
+    echo "[feature] ALL PHASES COMPLETE ($COMPLETE/$TOTAL). If the user has additional work, add new phases to task_plan.md before starting."
 else
-    echo "[planning-with-files] Task in progress ($COMPLETE/$TOTAL phases complete). Update progress.md before stopping."
+    echo "[feature] Task in progress ($COMPLETE/$TOTAL phases complete). Update progress.md before stopping."
     if [ "$IN_PROGRESS" -gt 0 ]; then
-        echo "[planning-with-files] $IN_PROGRESS phase(s) still in progress."
+        echo "[feature] $IN_PROGRESS phase(s) still in progress."
     fi
     if [ "$PENDING" -gt 0 ]; then
-        echo "[planning-with-files] $PENDING phase(s) pending."
+        echo "[feature] $PENDING phase(s) pending."
     fi
 fi
 exit 0
