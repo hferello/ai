@@ -18,6 +18,10 @@ Filesystem = Disk (persistent, unlimited)
 
 One paste-in command: [README.md](README.md). Extra detail (Windows, hooks, uninstall): [references/more.md](references/more.md).
 
+## When the user runs `/feature`
+
+They should send **`/feature "task slug"`** and, in the **same message**, a detailed brief: goal, **`@`** files/folders/docs for context, any external systems (e.g. Twilio), pointers to existing patterns, and hard constraints (e.g. “SMS must use a different webhook than email”). If they only send a slug, ask what to attach before heavy planning. Full pattern and copy-paste example: [README.md](README.md) (section *How to invoke `/feature` (detailed)*).
+
 ## CRITICAL: Manual Discipline (No Hooks in Cursor)
 
 Cursor does not support automatic hooks. You must **manually** follow these rules:
