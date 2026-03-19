@@ -32,4 +32,10 @@ The agent kicks off with a round of clarifying questions (you can skip this if y
 
 ---
 
+## Inspiration
+
+The workflow and “plan with living docs” idea for this skill take their cue from [planning-with-files](https://github.com/OthmanAdi/planning-with-files) (Othman Adi), which was used as the starting point for how `/feature` structures task plans, findings, and related files.
+
+---
+
 For the full workflow, hooks, Windows install, or uninstall instructions, see [references/more.md](references/more.md).

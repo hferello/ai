@@ -1,17 +1,17 @@
 ---
-name: architecture-flow
+name: arch-flow
 description: >-
-  Drafts architecture documentation with ASCII box diagrams and pseudocode (no raw SQL or implementation syntax).
-  Use when the user asks for architecture diagrams, flow documentation, ARCHITECTURE.md, or documents cron, API, or feature flows.
+   Drafts architecture documentation with ASCII box diagrams and pseudocode (no raw SQL or implementation syntax).
+   Use when the user asks for architecture diagrams, flow documentation, architecture-flow.md, or documents cron, API, or feature flows.
 ---
 
-# Architecture flow documentation
+# Arch flow documentation
 
 ## Quick start
 
 When producing architecture or flow docs:
 
-1. **Output**: Default to `ARCHITECTURE.md` beside the feature unless the user specifies another path.
+1. **Output**: Create `architecture-flow.md` beside the feature (same directory as the code being documented) unless the user specifies another path.
 2. **Content**: Pseudocode for queries and control flow; ASCII boxes for flows per **Format rules** below.
 3. **Structure**: Choose sections from **Section structure** that fit the feature; use **Data flow step template** for per-step flows.
 4. **Before finishing**: Apply **Checklist before completing**.
@@ -138,3 +138,4 @@ For each logical step in the flow:
 - [ ] ASCII box diagrams use ┌─┐│└┘┬┴├┤▼
 - [ ] Box alignment: every line in a box has same character count; │ align vertically; ┌┐└┘ share left/right columns
 - [ ] Sections match feature type (cron vs API vs generic)
+- [ ] `architecture-flow.md` exists at the chosen path with the full doc content
