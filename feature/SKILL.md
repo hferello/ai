@@ -1,6 +1,6 @@
 ---
 name: feature
-description: Feature design workflow. Creates a named folder with task_plan.md, findings.md, progress.md, prd.md. Use when designing features—asks clarifying questions first, then creates the plan. Trigger with /feature.
+description: Feature design workflow. Use when designing features—asks clarifying questions first, then creates the plan. Trigger with /feature.
 disable-model-invocation: false
 ---
 
@@ -26,28 +26,40 @@ Cursor does not support automatic hooks. You must **manually** follow these rule
 
 ## Where Files Go
 
-| Location | What Goes There |
-|----------|-----------------|
-| Skill directory | Templates, scripts, reference docs |
+| Location              | What Goes There                                                                                                                                                  |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Skill directory       | Templates, scripts, reference docs                                                                                                                               |
 | **Your project root** | `features/` (created if missing) containing task folders (e.g. `audit-logging/`) with `task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, `prd.md` |
 
 ## Phase 0: Discovery Questions (BEFORE Creating Files)
 
 **When the skill is invoked for a new task, run Phase 0 first.** Do not create any planning files until the user has answered (or skipped) the clarifying questions. The user may skip any question—proceed with whatever answers they provide.
 
-### 0.1 Ask clarifying questions
+### 0.1 Ask clarifying questions (one at a time)
 
-Ask these questions one at a time or in small groups. The user may skip any question—treat "skip" or no answer as valid and proceed.
+**Ask exactly one question per turn.** Wait for the user's response before asking the next. Do not list all questions at once.
 
-- **Problem/Goal:** "What problem does this feature solve for the user?" or "What is the main goal we want to achieve with this feature?"
-- **Target User:** "Who is the primary user of this feature?"
-- **Core Functionality:** "Can you describe the key actions a user should be able to perform with this feature?"
-- **User Stories:** "Could you provide a few user stories? (e.g., As a [type of user], I want to [perform an action] so that [benefit].)"
-- **Acceptance Criteria:** "How will we know when this feature is successfully implemented? What are the key success criteria?"
-- **Scope/Boundaries:** "Are there any specific things this feature _should not_ do (non-goals)?"
-- **Data Requirements:** "What kind of data does this feature need to display or manipulate?"
-- **Design/UI:** "Are there any existing design mockups or UI guidelines to follow?" or "Can you describe the desired look and feel?"
-- **Edge Cases:** "Are there any potential edge cases or error conditions we should consider?"
+**Flow:**
+
+1. Ask the first question.
+2. User responds in one of three ways:
+   - **Answer** — Record it and move to the next question.
+   - **Skip** — Treat "skip", "next", "pass", or blank as valid; move to the next question.
+   - **Question the question** — User asks for clarification (e.g., "What do you mean by that?", "Why does that matter?"). Briefly clarify, then move to the next question.
+3. Repeat until all questions are done.
+4. Only then create the plan (0.2).
+
+**Question order (ask in this sequence):**
+
+1. **Problem/Goal:** "What problem does this feature solve for the user?" or "What is the main goal we want to achieve with this feature?"
+2. **Target User:** "Who is the primary user of this feature?"
+3. **Core Functionality:** "Can you describe the key actions a user should be able to perform with this feature?"
+4. **User Stories:** "Could you provide a few user stories? (e.g., As a [type of user], I want to [perform an action] so that [benefit].)"
+5. **Acceptance Criteria:** "How will we know when this feature is successfully implemented? What are the key success criteria?"
+6. **Scope/Boundaries:** "Are there any specific things this feature _should not_ do (non-goals)?"
+7. **Data Requirements:** "What kind of data does this feature need to display or manipulate?"
+8. **Design/UI:** "Are there any existing design mockups or UI guidelines to follow?" or "Can you describe the desired look and feel?"
+9. **Edge Cases:** "Are there any potential edge cases or error conditions we should consider?"
 
 ### 0.2 Create the plan (only after questions)
 
@@ -102,13 +114,22 @@ If the user prefers to create files first without discovery questions, they can 
 
 ## File Purposes
 
-| File | Purpose | When to Update |
-|------|---------|----------------|
-| `<folder>/task_plan.md` | Phases, progress, decisions | After each phase |
-| `<folder>/findings.md` | Research, discoveries | After ANY discovery |
-| `<folder>/progress.md` | Session log, test results | Throughout session |
-| `<folder>/documentation.md` | What was built, how it works | During delivery or as you implement |
-| `<folder>/prd.md` | Product requirements (goals, user stories, acceptance criteria) | Populated from Phase 0 answers |
+| File                        | Purpose                                                         | When to Update                      |
+| --------------------------- | --------------------------------------------------------------- | ----------------------------------- |
+| `<folder>/task_plan.md`     | Phases, progress, decisions                                     | After each phase                    |
+| `<folder>/findings.md`      | Research, discoveries                                           | After ANY discovery                 |
+| `<folder>/progress.md`      | Session log, test results                                       | Throughout session                  |
+| `<folder>/documentation.md` | What was built, how it works                                    | During delivery or as you implement |
+| `<folder>/prd.md`           | Product requirements (goals, user stories, acceptance criteria) | Populated from Phase 0 answers      |
+
+## Code Standards (When Implementing)
+
+**When creating or modifying code**, especially backend/server code, follow the project's standards.
+
+**Summary (from typical project standards):**
+
+- **Console logging:** `console.log("[functionName] started", { key_params })` at start; `console.log("[functionName] completed", { result_summary })` at end; `console.error("[functionName] error_context", error)` on all error paths
+- **Comments:** Top-of-file (purpose, context); above functions (intent, role); inline (tricky logic, RLS, data flow); step-by-step in server actions
 
 ## Critical Rules
 
@@ -131,3 +152,4 @@ If the user prefers to create files first without discovery questions, they can 
 - **Workflow:** [references/WORKFLOW.md](references/WORKFLOW.md)
 - **Manus principles:** [references/reference.md](references/reference.md)
 - **Examples:** [references/examples.md](references/examples.md)
+- **Project code standards:** If the project has `docs/comments and debugging.md`, read it before implementing backend code.
