@@ -14,6 +14,10 @@ Filesystem = Disk (persistent, unlimited)
 → Anything important gets written to disk.
 ```
 
+## Installation (humans)
+
+One paste-in command: [README.md](README.md). Extra detail (Windows, hooks, uninstall): [references/more.md](references/more.md).
+
 ## CRITICAL: Manual Discipline (No Hooks in Cursor)
 
 Cursor does not support automatic hooks. You must **manually** follow these rules:
