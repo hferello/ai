@@ -2,6 +2,8 @@
 
 Designing features, multi-step tasks, research, building projects, anything spanning many tool calls. Helps Cursor plan bigger pieces of work: it asks a few questions up front, then keeps a simple folder of notes—`task_plan`, `findings`, `progress`, `documentation`, and a **PRD** (`prd.md`)—so nothing gets lost. In chat, use **`/feature`**.
 
+**Demo:** [demo.mov](demo.mov) — short screen recording of the workflow (open the file locally or from the repo on GitHub).
+
 **Install:** In Cursor, open **Terminal → New Terminal**, paste the line below, press Enter, then **fully quit and reopen Cursor**.
 
 ```bash
