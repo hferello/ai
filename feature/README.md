@@ -1,4 +1,4 @@
-# feature
+# /feature
 
 Designing features, multi-step tasks, research, building projects, anything spanning many tool calls. Helps Cursor plan bigger pieces of work: it asks a few questions up front, then keeps a simple folder of notes—`task_plan`, `findings`, `progress`, `documentation`, and a **PRD** (`prd.md`)—so nothing gets lost. In chat, use **`/feature`**.
 

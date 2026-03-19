@@ -1,4 +1,4 @@
-# architecture-flow
+# /architecture-flow
 
 Helps Cursor write architecture notes with simple diagrams and plain language (not raw code).
 
