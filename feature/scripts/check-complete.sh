@@ -9,8 +9,8 @@ if [ ! -f "$PLAN_FILE" ]; then
     exit 0
 fi
 
-# Count total phases
-TOTAL=$(grep -c "### Phase" "$PLAN_FILE" || true)
+# Count total phases/groups (any ### heading with **Status:** below it)
+TOTAL=$(grep -cE "^\*\*Status:\*\*" "$PLAN_FILE" || true)
 
 # Check for **Status:** format first
 COMPLETE=$(grep -cF "**Status:** complete" "$PLAN_FILE" || true)
@@ -32,14 +32,14 @@ fi
 
 # Report status (always exit 0 — incomplete task is a normal state)
 if [ "$COMPLETE" -eq "$TOTAL" ] && [ "$TOTAL" -gt 0 ]; then
-    echo "[feature] ALL PHASES COMPLETE ($COMPLETE/$TOTAL). If the user has additional work, add new phases to task_plan.md before starting."
+    echo "[feature] ALL TASK GROUPS COMPLETE ($COMPLETE/$TOTAL). If the user has additional work, add new tasks to task_plan.md before starting."
 else
-    echo "[feature] Task in progress ($COMPLETE/$TOTAL phases complete). Update progress.md before stopping."
+    echo "[feature] Task in progress ($COMPLETE/$TOTAL groups complete). Update progress.md before stopping."
     if [ "$IN_PROGRESS" -gt 0 ]; then
-        echo "[feature] $IN_PROGRESS phase(s) still in progress."
+        echo "[feature] $IN_PROGRESS group(s) still in progress."
     fi
     if [ "$PENDING" -gt 0 ]; then
-        echo "[feature] $PENDING phase(s) pending."
+        echo "[feature] $PENDING group(s) pending."
     fi
 fi
 exit 0

@@ -13,8 +13,8 @@ if (-not (Test-Path $PlanFile)) {
 # Read file content
 $content = Get-Content $PlanFile -Raw
 
-# Count total phases
-$TOTAL = ([regex]::Matches($content, "### Phase")).Count
+# Count total phases/groups (any **Status:** line)
+$TOTAL = ([regex]::Matches($content, "\*\*Status:\*\*")).Count
 
 # Check for **Status:** format first
 $COMPLETE = ([regex]::Matches($content, "\*\*Status:\*\* complete")).Count
@@ -30,14 +30,14 @@ if ($COMPLETE -eq 0 -and $IN_PROGRESS -eq 0 -and $PENDING -eq 0) {
 
 # Report status -- always exit 0, incomplete task is a normal state
 if ($COMPLETE -eq $TOTAL -and $TOTAL -gt 0) {
-    Write-Host ('[feature] ALL PHASES COMPLETE (' + $COMPLETE + '/' + $TOTAL + '). If the user has additional work, add new phases to task_plan.md before starting.')
+    Write-Host ('[feature] ALL TASK GROUPS COMPLETE (' + $COMPLETE + '/' + $TOTAL + '). If the user has additional work, add new tasks to task_plan.md before starting.')
 } else {
-    Write-Host ('[feature] Task in progress (' + $COMPLETE + '/' + $TOTAL + ' phases complete). Update progress.md before stopping.')
+    Write-Host ('[feature] Task in progress (' + $COMPLETE + '/' + $TOTAL + ' groups complete). Update progress.md before stopping.')
     if ($IN_PROGRESS -gt 0) {
-        Write-Host ('[feature] ' + $IN_PROGRESS + ' phase(s) still in progress.')
+        Write-Host ('[feature] ' + $IN_PROGRESS + ' group(s) still in progress.')
     }
     if ($PENDING -gt 0) {
-        Write-Host ('[feature] ' + $PENDING + ' phase(s) pending.')
+        Write-Host ('[feature] ' + $PENDING + ' group(s) pending.')
     }
 }
 exit 0

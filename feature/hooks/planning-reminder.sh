@@ -35,7 +35,7 @@ fi
 
 if [ "$HAS_PLANNING" = "1" ]; then
   # Short reminder; avoid 're-read' wording to limit token use
-  OUTPUT='{"continue":true,"permission":"allow","agentMessage":"Planning active: update progress.md and task_plan.md when you finish a phase."}'
+  OUTPUT='{"continue":true,"permission":"allow","agentMessage":"Planning active: update progress.md and task_plan.md when you finish a task group."}'
 fi
 
 echo "$OUTPUT"

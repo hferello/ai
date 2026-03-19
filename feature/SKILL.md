@@ -21,7 +21,7 @@ Cursor does not support automatic hooks. You must **manually** follow these rule
 1. **Before starting:** If a task folder exists (e.g. `features/audit-logging/task_plan.md`), read `task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, and `prd.md` first.
 2. **Before major decisions:** Re-read `task_plan.md` to refresh goals in your attention window.
 3. **After every 2 view/browser/search operations:** Update `findings.md` immediately (2-Action Rule).
-4. **After completing a phase:** Update phase status in `task_plan.md` and log actions in `progress.md`.
+4. **After completing a task group:** Update group status in `task_plan.md` and log actions in `progress.md`.
 5. **After any error:** Log in `task_plan.md` and change your approach—never repeat the same failing action.
 
 ## Where Files Go
@@ -67,7 +67,7 @@ Once the user has answered (or skipped all), create the task folder and files:
 
 1. **Determine task name:** Use the name the user provided, or run `init-session.sh` with no args to get an auto-generated name (e.g. `2025-03-19-task-1`).
 2. **Create** `features/<task>/` with:
-   - `task_plan.md` — populated with Goal, Phases, Key Questions from answers
+   - `task_plan.md` — populated with Goal, phases/task groups (agent decides which: Foundation, Backend, Frontend, Tests, or custom), Key Questions from answers
    - `findings.md` — Requirements, Research Findings from answers
    - `progress.md` — Session log template
    - `documentation.md` — Overview, What Was Built from answers
@@ -105,18 +105,31 @@ If the user prefers to create files first without discovery questions, they can 
 ### 2. Fill in task_plan.md (in the task folder)
 
 - **Goal:** One sentence describing the end state
-- **Phases:** 3–7 phases (Discovery → Plan → Implement → Test → Deliver)
+- **Phases/task groups:** Agent decides based on feature (e.g. Foundation, Backend, Frontend, Tests, or custom)
 - **Key questions:** What you need to clarify
+
+### Phases / task groups (agent decides)
+
+**The agent decides which phases or task groups to include** based on the feature. Common options:
+
+| Group | What goes here |
+|-------|----------------|
+| **Foundation** | Schema, migrations, config, types, validation, shared utilities |
+| **Backend** | API routes, server logic, queries, server actions |
+| **Frontend** | UI components, pages, client-side logic, styling |
+| **Tests** | Creating or running unit, integration, or e2e tests |
+
+Use only the groups that apply (e.g. backend-only feature → Backend + Tests). Each group has **Status:** (pending / in_progress / complete) and checkboxes for tasks.
 
 ### 3. Tell the user
 
-"I've created `features/audit-logging/task_plan.md`, `findings.md`, and `progress.md`. Read them first, then we'll work through the phases."
+"I've created `features/audit-logging/task_plan.md`, `findings.md`, and `progress.md`. Read them first, then we'll work through the task groups."
 
 ## File Purposes
 
 | File                        | Purpose                                                         | When to Update                      |
 | --------------------------- | --------------------------------------------------------------- | ----------------------------------- |
-| `<folder>/task_plan.md`     | Phases, progress, decisions                                     | After each phase                    |
+| `<folder>/task_plan.md`     | Task groups, progress, decisions                                 | After each task group               |
 | `<folder>/findings.md`      | Research, discoveries                                           | After ANY discovery                 |
 | `<folder>/progress.md`      | Session log, test results                                       | Throughout session                  |
 | `<folder>/documentation.md` | What was built, how it works                                    | During delivery or as you implement |

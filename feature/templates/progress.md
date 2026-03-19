@@ -2,7 +2,7 @@
 <!-- 
   WHAT: Your session log - a chronological record of what you did, when, and what happened.
   WHY: Answers "What have I done?" in the 5-Question Reboot Test. Helps you resume after breaks.
-  WHEN: Update after completing each phase or encountering errors. More detailed than task_plan.md.
+  WHEN: Update after completing each task group or encountering errors. More detailed than task_plan.md.
 -->
 
 ## Session: [DATE]
@@ -12,43 +12,16 @@
   EXAMPLE: 2026-01-15
 -->
 
-### Phase 1: [Title]
-<!-- 
-  WHAT: Detailed log of actions taken during this phase.
-  WHY: Provides context for what was done, making it easier to resume or debug.
-  WHEN: Update as you work through the phase, or at least when you complete it.
--->
+### [Phase/Group 1]
+<!-- Agent adds sections to match task_plan.md phases -->
 - **Status:** in_progress
 - **Started:** [timestamp]
-<!-- 
-  STATUS: Same as task_plan.md (pending, in_progress, complete)
-  TIMESTAMP: When you started this phase (e.g., "2026-01-15 10:00")
--->
 - Actions taken:
-  <!-- 
-    WHAT: List of specific actions you performed.
-    EXAMPLE:
-      - Created todo.py with basic structure
-      - Implemented add functionality
-      - Fixed FileNotFoundError
-  -->
   -
 - Files created/modified:
-  <!-- 
-    WHAT: Which files you created or changed.
-    WHY: Quick reference for what was touched. Helps with debugging and review.
-    EXAMPLE:
-      - todo.py (created)
-      - todos.json (created by app)
-      - task_plan.md (updated)
-  -->
   -
 
-### Phase 2: [Title]
-<!-- 
-  WHAT: Same structure as Phase 1, for the next phase.
-  WHY: Keep a separate log entry for each phase to track progress clearly.
--->
+### [Phase/Group 2]
 - **Status:** pending
 - Actions taken:
   -
@@ -59,7 +32,7 @@
 <!-- 
   WHAT: Table of tests you ran, what you expected, what actually happened.
   WHY: Documents verification of functionality. Helps catch regressions.
-  WHEN: Update as you test features, especially during Phase 4 (Testing & Verification).
+  WHEN: Update as you test features, especially during the Tests task group.
   EXAMPLE:
     | Add task | python todo.py add "Buy milk" | Task added | Task added successfully | ✓ |
     | List tasks | python todo.py list | Shows all tasks | Shows all tasks | ✓ |
@@ -89,8 +62,8 @@
   WHEN: Update periodically, especially when resuming after a break or context reset.
   
   THE 5 QUESTIONS:
-  1. Where am I? → Current phase in task_plan.md
-  2. Where am I going? → Remaining phases
+  1. Where am I? → Current task group in task_plan.md
+  2. Where am I going? → Remaining task groups
   3. What's the goal? → Goal statement in task_plan.md
   4. What have I learned? → See findings.md
   5. What have I done? → See progress.md (this file)
@@ -98,8 +71,8 @@
 <!-- If you can answer these, context is solid -->
 | Question | Answer |
 |----------|--------|
-| Where am I? | Phase X |
-| Where am I going? | Remaining phases |
+| Where am I? | [Current group] |
+| Where am I going? | Remaining groups |
 | What's the goal? | [goal statement] |
 | What have I learned? | See findings.md |
 | What have I done? | See above |
@@ -107,8 +80,8 @@
 ---
 <!-- 
   REMINDER: 
-  - Update after completing each phase or encountering errors
+  - Update after completing each task group or encountering errors
   - Be detailed - this is your "what happened" log
   - Include timestamps for errors to track when issues occurred
 -->
-*Update after completing each phase or encountering errors*
+*Update after completing each task group or encountering errors*
