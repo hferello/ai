@@ -1,6 +1,6 @@
 # /feature
 
-![image of /feature logo](poster.png)
+![image of /feature logo](header.png)
 
 A skill for Cursor that helps you think before you build. Whether you're designing a feature, researching a problem, or kicking off a multi-step project, `/feature` asks the right questions first and keeps your work organized in a small set of living docs — a task plan, findings, progress log, documentation, and a **PRD**.
 
