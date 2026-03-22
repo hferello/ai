@@ -25,6 +25,17 @@ User runs `/spec "project-name"` with a brief description of the idea.
 3. Create `docs/prds/<slug>.md` with the PRD template (bottom of this file).
 4. Begin the question flow.
 
+## Resuming a Session
+
+If the user says `/spec` and a partially-filled PRD already exists in `docs/prds/`:
+
+1. Read the PRD file from disk.
+2. Identify which sections are filled and which are still placeholder text (e.g. `[filled after Q2]`).
+3. Tell the user what you found: "Looks like we got through [last completed section]. Picking up from there."
+4. Resume the question flow at the next unfilled section — don't re-ask questions that already have real content.
+5. If the PRD is fully filled but has no red team review, jump straight to the Red Team step.
+6. If everything is done, say: "This PRD looks complete. Want to revise anything, or start a new one?"
+
 ## The Question Flow
 
 Ask in this order, one per turn. Update the PRD file after each answer.
@@ -181,6 +192,10 @@ When the user says "you tell me," "go find this," "you figure it out," or simila
 3. Present findings and ask: "Does this look right, or should I dig deeper?"
 
 Never guess silently. Always show your work and confirm.
+
+## Quality Reference
+
+Two example PRDs live in `references/` alongside this skill. Read them to calibrate what a finished PRD should look like — tight one-liners, concrete must-haves (not vague wishes), specific out-of-scope boundaries, and success criteria you could actually measure.
 
 ## PRD Template
 

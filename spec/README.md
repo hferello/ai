@@ -30,6 +30,14 @@ git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-spec-skill &&
 
 The agent asks 9 questions, one per turn. You can answer, skip, or say "you tell me" to let the agent research it. After each answer the PRD file is updated on disk — nothing is lost if the session breaks.
 
-### 3. Review the PRD
+### 3. Resume if interrupted
+
+If a session dies mid-flow, just run `/spec` again. The agent reads the existing PRD, finds the last filled section, and picks up from there.
+
+### 4. Review the PRD
 
 After the last question, the agent reads back the full PRD and asks for final edits. The finished doc lives at `docs/prds/<slug>.md` where any future agent session can reference it.
+
+## Example PRDs
+
+Two finished examples live in `references/` to show what a tight PRD looks like — one consumer app, one developer tool.

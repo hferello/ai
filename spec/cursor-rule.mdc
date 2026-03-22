@@ -3,4 +3,4 @@ description: docs/prds PRDs are the product spec; honor must-haves and out-of-sc
 alwaysApply: true
 ---
 
-If `docs/prds/*.md` exists: use the relevant PRD for non-trivial work; ship must-haves; don’t build out-of-scope without explicit OK; flag conflicts with the PRD. If none and work is large/ambiguous, suggest `/spec` first. Skip for tiny fixes or when the user opts out.
+If `docs/prds/*.md` exists: read the relevant PRD before non-trivial work. Ship must-haves. Refuse out-of-scope unless the user explicitly overrides (then update the PRD). If what the user asks contradicts the PRD, surface it: "The PRD says X, but you're asking for Y — which wins?" Cite the PRD section when it drives a decision. If no PRDs exist and the work is large/ambiguous, suggest `/spec` first. Skip for tiny fixes or when the user opts out.
