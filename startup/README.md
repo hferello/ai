@@ -4,6 +4,10 @@ A Cursor skill that turns a raw idea into a buildable PRD. Ask `/startup "projec
 
 Not sure about an answer? Say "you tell me" and the agent will research it for you.
 
+**Demo:**
+
+![/startup demo](../assets/startup-demo.gif)
+
 **Install:** Open a terminal in Cursor, paste this, hit Enter, then fully quit and reopen Cursor.
 
 ```bash

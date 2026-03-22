@@ -106,9 +106,49 @@ If they say "nothing," gently push: "Every project has one. Timeline? A dependen
 ## After the Last Question
 
 1. Read back the complete PRD to the user inline.
-2. Ask: "Anything to add, change, or cut before we lock this in?"
-3. Apply any final edits.
-4. Close: "PRD saved at `docs/prds/<slug>.md`. Any agent or session working in this project can reference it."
+2. Ask: "Anything to add, change, or cut?"
+3. Apply any edits the user requests.
+4. Run the Red Team step (below).
+
+## Red Team: Adversarial Review
+
+**Shift from creator to critic.** Re-read the entire PRD with the goal of finding problems — not confirming it's good.
+
+### What to look for
+
+| Lens | Questions to ask the PRD |
+|------|--------------------------|
+| **Contradictions** | Do must-haves conflict with out-of-scope? Does the journey imply features not in the must-haves? |
+| **Hidden complexity** | Is any "must-have" actually 3 features in a trenchcoat? Does the journey gloss over a hard step? |
+| **Missing unhappy paths** | What happens when things go wrong? Empty states, errors, permission denied, no network? |
+| **User blind spots** | Accessibility gaps? Does it assume a specific device, skill level, or context? |
+| **Feasibility flags** | Anything technically unrealistic? Dependencies on things that don't exist yet? |
+| **Scope creep** | Did the conversation drift beyond the original pitch? Would the one-liner still describe what's in here? |
+
+### How to execute
+
+1. Re-read the PRD file from disk (not from memory — re-read it).
+2. For each issue found, categorize as **"obvious fix"** or **"needs your input"**.
+3. **Obvious fixes** — update the PRD directly (e.g., add a missing edge case to risks, tighten a vague must-have).
+4. **Needs input** — present to the user with context and a recommendation. Wait before editing.
+
+### Output format
+
+> **Red team review complete** for [project-name].
+>
+> **Fixed (N items):**
+> - [What was tightened/added and why]
+>
+> **Needs your input (N items):**
+> - [Issue + recommendation]
+
+If nothing was found, say so briefly. Do not invent problems to appear thorough.
+
+### After the review
+
+Once the user has resolved any flagged items, close:
+
+"PRD locked in at `docs/prds/<slug>.md`. Any agent or session working in this project can reference it."
 
 ## Handling "You Tell Me"
 
