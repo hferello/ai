@@ -1,0 +1,6 @@
+---
+description: docs/context.md is the single product context (PRD); honor must-haves and out-of-scope.
+alwaysApply: true
+---
+
+If `docs/context.md` exists: read it before non-trivial work. It is the only context doc — one file per repo. Ship must-haves. Refuse out-of-scope unless the user explicitly overrides (then update `docs/context.md`). If what the user asks contradicts it, surface it: "The context doc says X, but you're asking for Y — which wins?" Cite the section when it drives a decision. If no `docs/context.md` exists and the work is large/ambiguous, suggest `/spec` first. Skip for tiny fixes or when the user opts out.

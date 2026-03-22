@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install spec skill to ~/.cursor/skills/ and always-on rule to ~/.cursor/rules/
+# Install context skill (PRD discovery; trigger /spec) to ~/.cursor/skills/ and always-on rule to ~/.cursor/rules/
 # Run from anywhere: bash install.sh
 
 set -e
@@ -15,13 +15,13 @@ if [[ -f "$SCRIPT_DIR/SKILL.md" ]]; then
 elif [[ -f "$SCRIPT_DIR/../SKILL.md" ]]; then
   SKILL_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 else
-  echo "Error: Could not find SKILL.md. Run this from the spec skill directory."
+  echo "Error: Could not find SKILL.md. Run this from the context skill directory."
   exit 1
 fi
 
 TARGET="$HOME/.cursor/skills/spec"
 
-echo "Installing spec skill..."
+echo "Installing context skill (invoked as /spec)..."
 echo "  From: $SKILL_ROOT"
 echo "  To:   $TARGET"
 

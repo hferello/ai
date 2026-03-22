@@ -2,17 +2,17 @@
 
 A collection of AI-related tools and Cursor skills.
 
-## Spec (Cursor Skill)
+## Context (Cursor skill — `/spec`)
 
-Turn a raw idea into a PRD so agents stay aligned with what to build. Asks 9 focused questions — one at a time — and writes a lightweight PRD to `docs/prds/`. Say "you tell me" on any question and the agent researches it for you. Trigger with `/spec`. An always-on Cursor rule (`spec.mdc`) reminds agents to treat those PRDs as the spec; install copies it to `~/.cursor/rules/`.
+Turn a raw idea into a PRD so agents stay in the right **context** for what to build. Asks 9 focused questions — one at a time — and writes **one** file, `docs/context.md` (PRD content as product context). Say "you tell me" on any question and the agent researches it for you. Trigger with `/spec`. An always-on Cursor rule (`spec.mdc`) points agents at that file; install copies it to `~/.cursor/rules/`.
 
 **Install:**
 
 ```bash
-git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-spec-skill && bash /tmp/cursor-spec-skill/spec/install.sh && rm -rf /tmp/cursor-spec-skill
+git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-skill && bash /tmp/cursor-skill/context/install.sh && rm -rf /tmp/cursor-skill
 ```
 
-See [spec/README.md](spec/README.md) for full documentation.
+See [context/README.md](context/README.md) for full documentation.
 
 ## Feature (Cursor Skill)
 

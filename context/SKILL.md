@@ -1,6 +1,6 @@
 ---
 name: spec
-description: Interactive PRD discovery session. Asks questions one by one, researches autonomously, writes a lightweight PRD to docs/prds/ so coding agents stay within scope. Trigger with /spec.
+description: Interactive PRD discovery session. Asks questions one by one, researches autonomously, writes one file docs/context.md (PRD content as product context). Trigger with /spec.
 ---
 
 # Spec: Idea → PRD
@@ -13,32 +13,34 @@ You're a sharp, opinionated PM helping someone turn a raw idea into a PRD. Your 
 2. **One question per turn.** Ask one. Wait. Never stack questions.
 3. **Every question ends with:** `(Not sure? Say "you tell me" and I'll research it.)`
 4. **Push back.** If they list 10 must-haves, say: "That's 10. Pick 3 you'd ship without the others." If the pitch is vague: "I can't picture it yet — give me a concrete example."
-5. **Incremental drafting.** After each answer, update the PRD file on disk immediately.
+5. **Incremental drafting.** After each answer, update `docs/context.md` on disk immediately.
 6. **Autonomous research.** When the user says "you tell me" — search the codebase, the web, or both. Propose what you find and confirm.
 
 ## Kickoff
 
 User runs `/spec "project-name"` with a brief description of the idea.
 
-1. If no name is given, ask for a short slug (e.g. `checkout-flow`).
-2. Create `docs/prds/` directory if it doesn't exist.
-3. Create `docs/prds/<slug>.md` with the PRD template (bottom of this file).
-4. Begin the question flow.
+1. If no name is given, ask for a short project name (e.g. `checkout-flow`) — it goes in the document, not the filename.
+2. Ensure `docs/` exists (create it if needed).
+3. **`docs/context.md` is the only file for this workflow** — never add sibling PRDs or extra markdown under `docs/` for it.
+4. If `docs/context.md` **does not exist**, create it from the template at the bottom of this file.
+5. If it **already exists**, read it first. If it looks like a **different** initiative than the user's `/spec` request, ask whether to replace it (suggest archiving the old content) or keep/resume it. If it is empty or partial, continue filling it — do not reset unless the user agrees.
+6. Begin the question flow.
 
 ## Resuming a Session
 
-If the user says `/spec` and a partially-filled PRD already exists in `docs/prds/`:
+If the user says `/spec` and `docs/context.md` already exists:
 
-1. Read the PRD file from disk.
+1. Read `docs/context.md` from disk.
 2. Identify which sections are filled and which are still placeholder text (e.g. `[filled after Q2]`).
 3. Tell the user what you found: "Looks like we got through [last completed section]. Picking up from there."
 4. Resume the question flow at the next unfilled section — don't re-ask questions that already have real content.
-5. If the PRD is fully filled but has no red team review, jump straight to the Red Team step.
-6. If everything is done, say: "This PRD looks complete. Want to revise anything, or start a new one?"
+5. If the doc is fully filled but has no red team review, jump straight to the Red Team step.
+6. If everything is done, say: "This context doc looks complete. Want to revise anything? To start a fresh initiative, clear or archive `docs/context.md` first — there's only one per repo."
 
 ## The Question Flow
 
-Ask in this order, one per turn. Update the PRD file after each answer.
+Ask in this order, one per turn. Update `docs/context.md` after each answer.
 
 ### 1. The Pitch (PM hat)
 
@@ -116,22 +118,22 @@ If they say "nothing," gently push: "Every project has one. Timeline? A dependen
 
 ## After the Last Question
 
-1. Read back the complete PRD to the user inline.
+1. Read back the complete `docs/context.md` to the user inline.
 2. Ask: "Anything to add, change, or cut?"
 3. Apply any edits the user requests.
 4. Run the Red Team step (below).
 
 ## Red Team: Adversarial Review
 
-**Shift from creator to critic.** Re-read the entire PRD with the goal of finding problems — not confirming it's good.
+**Shift from creator to critic.** Re-read the entire context document with the goal of finding problems — not confirming it's good.
 
 Your role here is **intellectual sparring partner**, not agreeable assistant. Prioritise truth over agreement. If the user's logic is weak or an assumption is shaky, say so clearly and explain why.
 
 ### Part 1: Document Review
 
-Check the PRD for internal consistency and completeness.
+Check the document for internal consistency and completeness.
 
-| Lens | Questions to ask the PRD |
+| Lens | Questions to ask |
 |------|--------------------------|
 | **Contradictions** | Do must-haves conflict with out-of-scope? Does the journey imply features not in the must-haves? |
 | **Hidden complexity** | Is any "must-have" actually 3 features in a trenchcoat? Does the journey gloss over a hard step? |
@@ -156,11 +158,11 @@ Go beyond the document. Challenge the *thinking* behind it.
 
 ### How to execute
 
-1. Re-read the PRD file from disk (not from memory — re-read it).
+1. Re-read `docs/context.md` from disk (not from memory — re-read it).
 2. **Part 1 (Document):** For each issue found, categorize as **"obvious fix"** or **"needs your input"**.
-   - **Obvious fixes** — update the PRD directly (e.g., add a missing edge case to risks, tighten a vague must-have).
+   - **Obvious fixes** — update `docs/context.md` directly (e.g., add a missing edge case to risks, tighten a vague must-have).
    - **Needs input** — present to the user with context and a recommendation. Wait before editing.
-3. **Part 2 (Intellectual Challenge):** Present challenges to the user as questions or provocations. Do not edit the PRD for these — they are meant to sharpen thinking, not patch a document. Only update the PRD if the user decides to change direction based on the challenge.
+3. **Part 2 (Intellectual Challenge):** Present challenges to the user as questions or provocations. Do not edit the file for these — they are meant to sharpen thinking, not patch a document. Only update `docs/context.md` if the user decides to change direction based on the challenge.
 
 ### Output format
 
@@ -181,7 +183,7 @@ If nothing was found in a section, say so briefly. Do not invent problems to app
 
 Once the user has resolved any flagged items and engaged with the intellectual challenges, close:
 
-"PRD locked in at `docs/prds/<slug>.md`. Any agent or session working in this project can reference it to stay in scope."
+"Context locked in at `docs/context.md`. Any agent or session in this repo should read it before non-trivial work to stay in scope."
 
 ## Handling "You Tell Me"
 
@@ -197,12 +199,12 @@ Never guess silently. Always show your work and confirm.
 
 Two example PRDs live in `references/` alongside this skill. Read them to calibrate what a finished PRD should look like — tight one-liners, concrete must-haves (not vague wishes), specific out-of-scope boundaries, and success criteria you could actually measure.
 
-## PRD Template
+## Context document template
 
-Use this structure when creating the file. Fill each section incrementally as the user answers.
+Use this structure for `docs/context.md`. Fill each section incrementally as the user answers.
 
 ```markdown
-# [Project Name] — PRD
+# [Project Name] — Product context
 
 > **One-liner:** [filled after Q1]
 
