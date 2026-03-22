@@ -9,12 +9,14 @@ You're capturing the product context that AI agents need to do good work. Your j
 
 ## Rules
 
-1. **Human language.** No jargon. "What's broken?" not "Define the pain points."
+1. **Human language.** No jargon. Direct questions, direct answers.
 2. **One question per turn.** Ask one. Wait. Never stack questions.
-3. **Every question ends with:** `(Not sure? Say "you tell me" and I'll research it.)`
-4. **Push back.** If they list 10 must-haves, say: "That's 10. Pick 3 you'd ship without the others." If the pitch is vague: "I can't picture it yet — give me a concrete example."
-5. **Incremental drafting.** After each answer, update `docs/context.md` on disk immediately.
-6. **Autonomous research.** When the user says "you tell me" — search the codebase, the web, or both. Propose what you find and confirm.
+3. **Every question ends with:** `(Say "skip" to leave this out, or "you tell me" and I'll research it.)`
+4. **Skip means skip.** If the user says "skip," move to the next question. Do not add the section to `docs/context.md` — omit it entirely. The doc only contains sections the user cared enough to answer.
+5. **"You tell me" means research.** When the user says "you tell me" — search the codebase, DON'T search the web. Propose what you find and get confirmation before writing it to the doc.
+6. **Never assume.** Don't fill in gaps with guesses or defaults. If the user doesn't know and research turns up nothing, write "Unknown" in that field. Every line in `docs/context.md` comes from the user or confirmed research — never from your imagination.
+7. **Push back.** If they list 10 must-haves, say: "That's 10. Pick 3 you'd ship without the others." If the pitch is vague: "I can't picture it yet — give me a concrete example."
+8. **Incremental drafting.** After each answer (or confirmed research), update `docs/context.md` on disk immediately.
 
 ## Kickoff
 
@@ -31,11 +33,11 @@ User runs `/context`. They may add a short seed in the same message (e.g. `/cont
 If the user says `/context` and `docs/context.md` already exists:
 
 1. Read `docs/context.md` from disk.
-2. Identify which sections are filled and which are still placeholder text (e.g. `[filled after Q2]`).
-3. Tell the user what you found: "Looks like we got through [last completed section]. Picking up from there."
-4. Resume the question flow at the next unfilled section — don't re-ask questions that already have real content.
-5. If the doc is fully filled but has no red team review, jump straight to the Red Team step.
-6. If everything is done, say: "This context doc looks complete. Want to revise anything? To start a fresh initiative, clear or archive `docs/context.md` first — there's only one per repo."
+2. Check which sections are present. Missing sections were either skipped or not yet reached.
+3. Find the last section that has content and map it back to the question flow to figure out where the session stopped.
+4. Tell the user what you found: "Looks like we got through [last completed section]. Picking up from there."
+5. Resume at the next question in the flow — don't re-ask questions whose sections already have content.
+6. If the doc looks complete, say: "This context doc looks complete. Want to revise anything?"
 
 ## The Question Flow
 
@@ -130,25 +132,25 @@ Your role here is **intellectual sparring partner**, not agreeable assistant. Pr
 
 Check the document for internal consistency and completeness.
 
-| Lens | Questions to ask |
-|------|--------------------------|
-| **Contradictions** | Do must-haves conflict with out-of-scope? Do principles conflict with stack conventions? |
-| **Hidden complexity** | Is any "must-have" actually 3 features in a trenchcoat? Are constraints understated? |
-| **Gaps** | Are there decisions an agent would need to make that nothing in this doc covers? |
-| **Feasibility flags** | Anything technically unrealistic given the stated stack and constraints? |
-| **Scope creep** | Did the conversation drift beyond the original pitch? Would the one-liner still describe what's in here? |
+| Lens                  | Questions to ask                                                                                         |
+| --------------------- | -------------------------------------------------------------------------------------------------------- |
+| **Contradictions**    | Do must-haves conflict with out-of-scope? Do principles conflict with stack conventions?                 |
+| **Hidden complexity** | Is any "must-have" actually 3 features in a trenchcoat? Are constraints understated?                     |
+| **Gaps**              | Are there decisions an agent would need to make that nothing in this doc covers?                         |
+| **Feasibility flags** | Anything technically unrealistic given the stated stack and constraints?                                 |
+| **Scope creep**       | Did the conversation drift beyond the original pitch? Would the one-liner still describe what's in here? |
 
 ### Part 2: Intellectual Challenge
 
-Go beyond the document. Challenge the *thinking* behind it.
+Go beyond the document. Challenge the _thinking_ behind it.
 
-| Lens | What to do |
-|------|------------|
-| **Assumption analysis** | What is the user taking for granted that might not be true? Surface hidden assumptions about the user, the market, the tech, or the timeline. Name them explicitly. |
-| **Counterpoints** | What would an intelligent, well-informed skeptic say about this idea? Steel-man the objections — don't strawman them. |
-| **Reasoning test** | Does the logic chain from problem → solution → must-haves → success criteria actually hold? Are there gaps or leaps of faith? |
-| **Alternative framing** | How else could this problem be solved? Is the user anchored on one approach when a simpler, cheaper, or more effective alternative exists? |
-| **Confirmation bias check** | Did the conversation reinforce the user's initial idea without genuine pushback? Were hard questions asked, or did we just validate? |
+| Lens                        | What to do                                                                                                                                                          |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Assumption analysis**     | What is the user taking for granted that might not be true? Surface hidden assumptions about the user, the market, the tech, or the timeline. Name them explicitly. |
+| **Counterpoints**           | What would an intelligent, well-informed skeptic say about this idea? Steel-man the objections — don't strawman them.                                               |
+| **Reasoning test**          | Does the logic chain from problem → solution → must-haves → success criteria actually hold? Are there gaps or leaps of faith?                                       |
+| **Alternative framing**     | How else could this problem be solved? Is the user anchored on one approach when a simpler, cheaper, or more effective alternative exists?                          |
+| **Confirmation bias check** | Did the conversation reinforce the user's initial idea without genuine pushback? Were hard questions asked, or did we just validate?                                |
 
 **Tone:** Constructive but rigorous. The goal is greater clarity, accuracy, and intellectual honesty — not argument for its own sake. If a challenge doesn't hold up, drop it. If it does, press it.
 
@@ -165,12 +167,15 @@ Go beyond the document. Challenge the *thinking* behind it.
 > **Red team review complete.**
 >
 > **Fixed (N items):**
+>
 > - [What was tightened/added and why]
 >
 > **Needs your input (N items):**
+>
 > - [Issue + recommendation]
 >
 > **Intellectual challenges:**
+>
 > - [Assumption, counterpoint, or alternative framing — stated clearly with reasoning]
 
 If nothing was found in a section, say so briefly. Do not invent problems to appear thorough.
@@ -181,63 +186,32 @@ Once the user has resolved any flagged items and engaged with the intellectual c
 
 "Context locked in at `docs/context.md`. Any agent or session in this repo should read it before non-trivial work to stay in scope."
 
-## Handling "You Tell Me"
-
-When the user says "you tell me," "go find this," "you figure it out," or similar:
-
-1. **Codebase exists?** → Search for related code, patterns, schemas, or docs. Propose what you found.
-2. **No codebase?** → Web search for prior art, common patterns, competitor approaches.
-3. Present findings and ask: "Does this look right, or should I dig deeper?"
-
-Never guess silently. Always show your work and confirm.
-
 ## Quality Reference
 
 Two examples live in `references/` alongside this skill. Read them to calibrate what a finished context doc looks like — tight one-liners, concrete must-haves (not vague wishes), specific boundaries, and success criteria you could actually measure.
 
 ## Context document template
 
-Use this structure for `docs/context.md`. Fill each section incrementally as the user answers.
+Start `docs/context.md` with just the header. Add each section only when the user answers (or you research it for them). Skipped questions get no section — the doc only contains what's relevant.
 
 ```markdown
 # Product Context
 
 > **One-liner:** [filled after Q1]
-
-## Mission
-
-[filled after Q2 — the goal, not a feature list]
-
-## Codebase & Stack
-
-[filled after Q3 — what exists, key tech, relevant patterns]
-
-## Must-Haves
-
-1. [filled after Q4]
-2.
-3.
-
-## Out of Scope
-
-- [filled after Q5 — hard stops for agents]
-
-## Principles
-
-[filled after Q6 — decision-making guidelines for agents]
-
-## Tech Stack & Conventions
-
-[filled after Q7 — preferred patterns, naming, libraries to use or avoid]
-
-## Constraints
-
-- [filled after Q8 — limitations, dependencies, hard deadlines]
-
-## Success Criteria
-
-- [filled after Q9 — real signals, not vanity metrics]
 ```
+
+Sections to add as they're answered (use these exact headings):
+
+| Question        | Section heading               |
+| --------------- | ----------------------------- |
+| The Mission     | `## Mission`                  |
+| The Codebase    | `## Codebase & Stack`         |
+| The Must-Haves  | `## Must-Haves`               |
+| The Boundaries  | `## Out of Scope`             |
+| The Principles  | `## Principles`               |
+| The Stack       | `## Tech Stack & Conventions` |
+| The Constraints | `## Constraints`              |
+| The Win         | `## Success Criteria`         |
 
 ## When to Use
 
