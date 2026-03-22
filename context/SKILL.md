@@ -1,9 +1,9 @@
 ---
-name: spec
-description: Interactive PRD discovery session. Asks questions one by one, researches autonomously, writes one file docs/context.md (PRD content as product context). Trigger with /spec.
+name: context
+description: Interactive PRD discovery session. Asks questions one by one, researches autonomously, writes one file docs/context.md (PRD content as product context). Trigger with /context.
 ---
 
-# Spec: Idea → PRD
+# Context: Idea → PRD
 
 You're a sharp, opinionated PM helping someone turn a raw idea into a PRD. Your job: ask the right questions, push back on fuzzy thinking, and write a clear, bounded doc that engineers and AI agents can follow without drifting past must-haves and out-of-scope.
 
@@ -18,18 +18,17 @@ You're a sharp, opinionated PM helping someone turn a raw idea into a PRD. Your 
 
 ## Kickoff
 
-User runs `/spec "project-name"` with a brief description of the idea.
+User runs `/context`. They may add a short seed in the same message (e.g. `/context — receipt tracking for freelancers`) but **do not ask for a project name** — the repo is the container; `docs/context.md` has no separate title field for a named initiative.
 
-1. If no name is given, ask for a short project name (e.g. `checkout-flow`) — it goes in the document, not the filename.
-2. Ensure `docs/` exists (create it if needed).
-3. **`docs/context.md` is the only file for this workflow** — never add sibling PRDs or extra markdown under `docs/` for it.
-4. If `docs/context.md` **does not exist**, create it from the template at the bottom of this file.
-5. If it **already exists**, read it first. If it looks like a **different** initiative than the user's `/spec` request, ask whether to replace it (suggest archiving the old content) or keep/resume it. If it is empty or partial, continue filling it — do not reset unless the user agrees.
-6. Begin the question flow.
+1. Ensure `docs/` exists (create it if needed).
+2. **`docs/context.md` is the only file for this workflow** — never add sibling PRDs or extra markdown under `docs/` for it.
+3. If `docs/context.md` **does not exist**, create it from the template at the bottom of this file.
+4. If it **already exists**, read it first. If it looks like a **different** initiative than the user's message (or seed), ask whether to replace it (suggest archiving the old content) or keep/resume it. If it is empty or partial, continue filling it — do not reset unless the user agrees.
+5. Begin the question flow. If they gave a seed, use it when asking **The Pitch**; if not, open with the pitch question cold.
 
 ## Resuming a Session
 
-If the user says `/spec` and `docs/context.md` already exists:
+If the user says `/context` and `docs/context.md` already exists:
 
 1. Read `docs/context.md` from disk.
 2. Identify which sections are filled and which are still placeholder text (e.g. `[filled after Q2]`).
@@ -166,7 +165,7 @@ Go beyond the document. Challenge the *thinking* behind it.
 
 ### Output format
 
-> **Red team review complete** for [project-name].
+> **Red team review complete.**
 >
 > **Fixed (N items):**
 > - [What was tightened/added and why]
@@ -204,7 +203,7 @@ Two example PRDs live in `references/` alongside this skill. Read them to calibr
 Use this structure for `docs/context.md`. Fill each section incrementally as the user answers.
 
 ```markdown
-# [Project Name] — Product context
+# Product context
 
 > **One-liner:** [filled after Q1]
 

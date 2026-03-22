@@ -1,6 +1,8 @@
 #!/bin/bash
-# Install context skill (PRD discovery; trigger /spec) to ~/.cursor/skills/ and always-on rule to ~/.cursor/rules/
+# Installs this repo's context skill to ~/.cursor/skills/context/ and the always-on rule to ~/.cursor/rules/context.mdc
+# (writes docs/context.md — one product-context file per repo). Trigger: /context or @context
 # Run from anywhere: bash install.sh
+# If you used an older install targeting ~/.cursor/skills/spec and spec.mdc, remove those after verifying this one works.
 
 set -e
 
@@ -19,9 +21,9 @@ else
   exit 1
 fi
 
-TARGET="$HOME/.cursor/skills/spec"
+TARGET="$HOME/.cursor/skills/context"
 
-echo "Installing context skill (invoked as /spec)..."
+echo "Installing context skill..."
 echo "  From: $SKILL_ROOT"
 echo "  To:   $TARGET"
 
@@ -30,12 +32,12 @@ rm -rf "$TARGET"
 cp -R "$SKILL_ROOT" "$(dirname "$TARGET")"
 
 RULE_SRC="$SKILL_ROOT/cursor-rule.mdc"
-RULE_DEST="$HOME/.cursor/rules/spec.mdc"
+RULE_DEST="$HOME/.cursor/rules/context.mdc"
 if [[ -f "$RULE_SRC" ]]; then
   mkdir -p "$HOME/.cursor/rules"
   cp "$RULE_SRC" "$RULE_DEST"
   echo ""
-  echo "Installed always-on Cursor rule:"
+  echo "Installed always-on Cursor rule (honors docs/context.md per project):"
   echo "  $RULE_DEST"
 fi
 
@@ -44,5 +46,5 @@ echo "Installation complete!"
 echo ""
 echo "The skill is now available in Cursor. To use:"
 echo "  1. Restart Cursor (or reload the window)"
-echo "  2. In Agent chat, type /spec or @spec"
+echo "  2. In Agent chat, type /context or @context"
 echo ""

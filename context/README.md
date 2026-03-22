@@ -1,14 +1,14 @@
 # Context
 
-This folder holds a Cursor skill that turns a raw idea into a PRD so agents stay in the **right context**—what to build, what not to build, and where the truth lives: a **single** file, `docs/context.md`. Ask `/spec "project-name"` and it walks you through 9 focused questions — one at a time — to produce that document.
+This folder holds a Cursor skill that turns a raw idea into a PRD so agents stay in the **right context**—what to build, what not to build, and where the truth lives: a **single** file, `docs/context.md`. Run `/context` (optionally add a one-line seed in the same message) and it walks you through 9 focused questions — one at a time — to produce that document.
 
 Not sure about an answer? Say "you tell me" and the agent will research it for you.
 
-**Always-on rule:** `cursor-rule.mdc` is the source of truth. Installing with `install.sh` copies it to `~/.cursor/rules/spec.mdc` so agents read `docs/context.md` before non-trivial work in every project. In this repo, `.cursor/rules/spec.mdc` is a symlink to `context/cursor-rule.mdc`.
+**Always-on rule:** `cursor-rule.mdc` is the source of truth. Installing with `install.sh` copies it to `~/.cursor/rules/context.mdc` so agents read `docs/context.md` before non-trivial work in every project. In this repo, `.cursor/rules/context.mdc` can be a symlink to `context/cursor-rule.mdc`.
 
 **Demo:**
 
-![/spec demo](../assets/spec-demo.gif)
+![/context demo](../assets/spec-demo.gif)
 
 **Install:** Open a terminal in Cursor, paste this, hit Enter, then fully quit and reopen Cursor.
 
@@ -18,12 +18,14 @@ git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-skill && bash
 
 ---
 
-## Using `/spec`
+## Using `/context`
 
-### 1. Give it a name and a seed idea
+### 1. Start (optional seed)
 
 ```text
-/spec "expense-tracker" — a simple app for freelancers to snap receipts and track deductions
+/context
+
+/context — a simple app for freelancers to snap receipts and track deductions
 ```
 
 ### 2. Answer the questions (or don't)
@@ -32,7 +34,7 @@ The agent asks 9 questions, one per turn. You can answer, skip, or say "you tell
 
 ### 3. Resume if interrupted
 
-If a session dies mid-flow, just run `/spec` again. The agent reads `docs/context.md`, finds the last filled section, and picks up from there.
+If a session dies mid-flow, just run `/context` again. The agent reads `docs/context.md`, finds the last filled section, and picks up from there.
 
 ### 4. Review
 
