@@ -4,7 +4,7 @@ A skill for Cursor that helps you think before you build. Whether you're designi
 
 **Demo:**
 
-![/feature demo](demo.gif)
+![/feature demo](../assets/feature-demo.gif)
 
 **Install:** Open a terminal in Cursor, paste this, hit Enter, then fully quit and reopen Cursor.
 
