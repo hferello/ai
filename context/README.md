@@ -8,7 +8,7 @@ Not sure about an answer? Say "you tell me" and the agent will research it for y
 
 **Demo:**
 
-![/context demo](../assets/spec-demo.gif)
+![/context demo](../assets/context-demo.gif)
 
 **Install the skill** (once per machine): Open a terminal in Cursor, paste this, hit Enter, then fully quit and reopen Cursor.
 
