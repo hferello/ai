@@ -1,16 +1,16 @@
-# CLI Deploy Tool — PRD
+# Product Context
 
 > **One-liner:** One command: lint, build, push, get a preview URL.
 
-## Problem
+## Mission
 
-Deploying a preview takes 4–5 manual steps. People skip steps, previews break, reviewers see features for the first time in PRs.
+Remove friction from preview deploys so the team previews every feature before PRs.
 
-## Context
+## Codebase & Stack
 
-Next.js 14, Vercel, GitHub. Vercel CLI exists but needs flags and doesn't run pre-checks. Team already has `lint` and `build` npm scripts.
+Next.js 14, Vercel, GitHub. Team already has `lint` and `build` npm scripts. No internal CLI tooling yet.
 
-## Must-Haves (ship-tomorrow list)
+## Must-Haves
 
 1. Single `deploy` command: lint → build → push → return preview URL
 2. Fail fast with clear error if any step breaks
@@ -23,22 +23,24 @@ Next.js 14, Vercel, GitHub. Vercel CLI exists but needs flags and doesn't run pr
 - CI/CD replacement
 - Monorepo support
 
-## UX Direction
+## Principles
 
-Power tool — one command, muscle memory. No interactive prompts. Compact output: step pass/fail, then URL.
+- One command, no prompts — muscle memory over configuration
+- Fail loud — never push broken code silently
+- Output is compact by default, verbose with `--verbose`
 
-## User Journey
+## Tech Stack & Conventions
 
-1. Run `deploy` → detects branch, confirms not `main`
-2. Lint → pass/fail
-3. Build → pass/fail
-4. Push → poll Vercel (~30s) → print preview URL
+- Node.js CLI (no framework — keep it simple)
+- Shell out to `npm run lint` and `npm run build` directly
+- Use Vercel API for deploy status polling
+- Follow team ESLint config
 
-## Risks & Open Questions
+## Constraints
 
-- Vercel API rate limits — need exponential backoff
-- Slow lint/build (>2 min) means developers skip the tool
-- Auth: user's Vercel token or shared team token?
+- Vercel API rate limits — need exponential backoff when polling
+- Slow lint/build (>2 min) risks developers skipping the tool
+- Auth: using user's Vercel token for now; shared team token TBD
 
 ## Success Criteria
 

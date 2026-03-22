@@ -1,11 +1,11 @@
 ---
 name: context
-description: Interactive PRD discovery session. Asks questions one by one, researches autonomously, writes one file docs/context.md (PRD content as product context). Trigger with /context.
+description: Captures product context so AI agents stay aligned. Asks direct questions one by one, writes docs/context.md. Trigger with /context.
 ---
 
-# Context: Idea → PRD
+# Context: Product → Guardrails
 
-You're a sharp, opinionated PM helping someone turn a raw idea into a PRD. Your job: ask the right questions, push back on fuzzy thinking, and write a clear, bounded doc that engineers and AI agents can follow without drifting past must-haves and out-of-scope.
+You're capturing the product context that AI agents need to do good work. Your job: ask direct questions, push back on vague answers, and write a clear, bounded doc that agents can reference to stay within scope.
 
 ## Rules
 
@@ -41,77 +41,75 @@ If the user says `/context` and `docs/context.md` already exists:
 
 Ask in this order, one per turn. Update `docs/context.md` after each answer.
 
-### 1. The Pitch (PM hat)
+### 1. The Pitch
 
-> "Give me the one-liner — what are we building?"
+> "What's the product? Give me one sentence."
 
 If the answer runs longer than two sentences, push back: "Love the detail, but give me the version you'd text to a friend."
 
 → Update: **Overview**
 
-### 2. The Pain (PM hat)
+### 2. The Mission
 
-> "What's broken today? What are people doing right now that sucks?"
+> "What's the goal? What should this product achieve for its users?"
 
-If they describe a solution instead of a problem, redirect: "That's how you'd fix it — but what's the actual pain?"
+If they describe a feature instead of a goal, redirect: "That's something it does — but what's the outcome for the user?"
 
-→ Update: **Problem**
+→ Update: **Mission**
 
-### 3. The Landscape (Engineer hat)
+### 3. The Codebase
 
-This step is autonomous — not a question. Adapt to context:
+This step is autonomous — not a question. Scan the repo:
 
-- **Codebase exists** (look for `src/`, `app/`, `package.json`, config files, etc.): scan for related patterns, components, schemas, or APIs. Report what you found and ask: "Should we build on any of this, or start clean?"
-- **No codebase / empty project**: say "Looks like a blank slate — no existing code to build on." Then offer: "Want me to research how others have approached this?" If yes, do a web search for prior art.
+- **Codebase exists** (look for `src/`, `app/`, `package.json`, config files, etc.): scan for the stack, key patterns, schemas, or APIs. Report what you found and ask: "Anything I missed or got wrong?"
+- **No codebase / empty project**: say "No existing code yet." Then offer: "Want me to research common approaches for this?" If yes, do a web search.
 - **User says skip**: move on.
 
-→ Update: **Context**
+→ Update: **Codebase & Stack**
 
-### 4. The Must-Haves (PM hat)
+### 4. The Must-Haves
 
-> "If we had to ship this tomorrow and only 3 things could work — what are they?"
+> "What are the 3 most important things this product must do?"
 
-If they list more than 3: "That's [N]. Which 3 would you ship without the rest?" Hold the line.
+If they list more than 3: "That's [N]. Which 3 matter most?" Hold the line.
 
 → Update: **Must-Haves**
 
-### 5. The Anti-Scope (PM hat)
+### 5. The Boundaries
 
-> "What should this explicitly NOT do? What's a trap we should avoid building?"
+> "What's off-limits? What should agents never build or change?"
 
-These become hard boundaries during implementation. If the user says "I don't know," suggest common traps based on what you've heard so far.
+These become hard stops during implementation. If the user says "I don't know," suggest common traps based on what you've heard so far.
 
 → Update: **Out of Scope**
 
-### 6. The Feel (Designer hat)
+### 6. The Principles
 
-> "How should this feel to use? For example:"
-> - A wizard that holds your hand step by step
-> - A power tool — learn it once, then fly
-> - Invisible — it just works in the background
-> - Something else?
+> "Do you have any guiding principles for this product? How should agents make decisions when something isn't spelled out?"
 
-→ Update: **UX Direction**
+If they're unsure, offer examples: "For instance — 'always prefer simplicity over flexibility', 'never break backwards compatibility', 'accessibility is non-negotiable', 'ship fast, refine later.'"
 
-### 7. The Journey (Designer hat)
+→ Update: **Principles**
 
-> "Walk me through the happy path. The user opens it — then what happens, step by step?"
+### 7. The Stack
 
-This often surfaces requirements no other question catches. If they skip, that's fine.
+> "What's the tech stack? Any conventions or patterns agents should always follow?"
 
-→ Update: **User Journey**
+This is about preferences and rules that aren't obvious from the code — naming conventions, architectural patterns, libraries to prefer or avoid.
 
-### 8. The Risks (Engineer hat)
+→ Update: **Tech Stack & Conventions**
 
-> "What's the biggest risk? What could block us or go sideways?"
+### 8. The Constraints
 
-If they say "nothing," gently push: "Every project has one. Timeline? A dependency we don't control? Technical unknowns?"
+> "Any limitations agents should know about? Budget, timeline, technical constraints, third-party dependencies?"
 
-→ Update: **Risks & Open Questions**
+If they say "nothing," push: "Every product has at least one. A service we depend on? A hard deadline? A platform restriction?"
 
-### 9. The Win (PM hat)
+→ Update: **Constraints**
 
-> "How will we know this is actually working? Not vanity metrics — real signals."
+### 9. The Win
+
+> "How do we know this is working? What's a real signal, not a vanity metric?"
 
 → Update: **Success Criteria**
 
@@ -134,11 +132,10 @@ Check the document for internal consistency and completeness.
 
 | Lens | Questions to ask |
 |------|--------------------------|
-| **Contradictions** | Do must-haves conflict with out-of-scope? Does the journey imply features not in the must-haves? |
-| **Hidden complexity** | Is any "must-have" actually 3 features in a trenchcoat? Does the journey gloss over a hard step? |
-| **Missing unhappy paths** | What happens when things go wrong? Empty states, errors, permission denied, no network? |
-| **User blind spots** | Accessibility gaps? Does it assume a specific device, skill level, or context? |
-| **Feasibility flags** | Anything technically unrealistic? Dependencies on things that don't exist yet? |
+| **Contradictions** | Do must-haves conflict with out-of-scope? Do principles conflict with stack conventions? |
+| **Hidden complexity** | Is any "must-have" actually 3 features in a trenchcoat? Are constraints understated? |
+| **Gaps** | Are there decisions an agent would need to make that nothing in this doc covers? |
+| **Feasibility flags** | Anything technically unrealistic given the stated stack and constraints? |
 | **Scope creep** | Did the conversation drift beyond the original pitch? Would the one-liner still describe what's in here? |
 
 ### Part 2: Intellectual Challenge
@@ -196,26 +193,26 @@ Never guess silently. Always show your work and confirm.
 
 ## Quality Reference
 
-Two example PRDs live in `references/` alongside this skill. Read them to calibrate what a finished PRD should look like — tight one-liners, concrete must-haves (not vague wishes), specific out-of-scope boundaries, and success criteria you could actually measure.
+Two examples live in `references/` alongside this skill. Read them to calibrate what a finished context doc looks like — tight one-liners, concrete must-haves (not vague wishes), specific boundaries, and success criteria you could actually measure.
 
 ## Context document template
 
 Use this structure for `docs/context.md`. Fill each section incrementally as the user answers.
 
 ```markdown
-# Product context
+# Product Context
 
 > **One-liner:** [filled after Q1]
 
-## Problem
+## Mission
 
-[filled after Q2]
+[filled after Q2 — the goal, not a feature list]
 
-## Context
+## Codebase & Stack
 
-[filled after Q3 — what exists already, prior art, starting point]
+[filled after Q3 — what exists, key tech, relevant patterns]
 
-## Must-Haves (ship-tomorrow list)
+## Must-Haves
 
 1. [filled after Q4]
 2.
@@ -223,19 +220,19 @@ Use this structure for `docs/context.md`. Fill each section incrementally as the
 
 ## Out of Scope
 
-- [filled after Q5 — explicit "do not build" boundaries]
+- [filled after Q5 — hard stops for agents]
 
-## UX Direction
+## Principles
 
-[filled after Q6 — how it should feel]
+[filled after Q6 — decision-making guidelines for agents]
 
-## User Journey
+## Tech Stack & Conventions
 
-[filled after Q7 — step-by-step happy path]
+[filled after Q7 — preferred patterns, naming, libraries to use or avoid]
 
-## Risks & Open Questions
+## Constraints
 
-- [filled after Q8]
+- [filled after Q8 — limitations, dependencies, hard deadlines]
 
 ## Success Criteria
 
@@ -244,6 +241,6 @@ Use this structure for `docs/context.md`. Fill each section incrementally as the
 
 ## When to Use
 
-**Use for:** Starting a new product, feature, or project. Locking _what_ to build (and what not to build) before implementation — especially when AI agents will do the building and need a single source of truth to stay in scope. Works with or without an existing codebase.
+**Use for:** Any product where AI agents will do the building. Gives them a single source of truth — what the product is, what matters, and what's off-limits.
 
-**Skip for:** Bug fixes, refactors, or tasks where the requirements are already crystal clear.
+**Skip for:** Bug fixes, refactors, or tasks where the context is already obvious.

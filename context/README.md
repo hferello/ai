@@ -1,10 +1,10 @@
 # Context
 
-This folder holds a Cursor skill that turns a raw idea into a PRD so agents stay in the **right context**—what to build, what not to build, and where the truth lives: a **single** file, `docs/context.md`. Run `/context` (optionally add a one-line seed in the same message) and it walks you through 9 focused questions — one at a time — to produce that document.
+A Cursor skill that captures product context so AI agents stay aligned. Run `/context` and it walks you through 9 direct questions — one at a time — writing everything to a single file: `docs/context.md`.
 
 Not sure about an answer? Say "you tell me" and the agent will research it for you.
 
-**Always-on rule:** `cursor-rule.mdc` is the source of truth. Installing with `install.sh` copies it to `~/.cursor/rules/context.mdc` so agents read `docs/context.md` before non-trivial work in every project. In this repo, `.cursor/rules/context.mdc` can be a symlink to `context/cursor-rule.mdc`.
+**Always-on rule:** `cursor-rule.mdc` tells agents to read `docs/context.md` before non-trivial work. Installing with `install.sh` copies it to `~/.cursor/rules/context.mdc`.
 
 **Demo:**
 
@@ -30,7 +30,7 @@ git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-skill && bash
 
 ### 2. Answer the questions (or don't)
 
-The agent asks 9 questions, one per turn. You can answer, skip, or say "you tell me" to let the agent research it. After each answer `docs/context.md` is updated on disk — nothing is lost if the session breaks.
+The agent asks 9 questions — product, mission, must-haves, boundaries, principles, stack, constraints, and more. One per turn. You can answer, skip, or say "you tell me." After each answer `docs/context.md` is updated on disk.
 
 ### 3. Resume if interrupted
 
@@ -40,6 +40,6 @@ If a session dies mid-flow, just run `/context` again. The agent reads `docs/con
 
 After the last question, the agent reads back the full document and asks for final edits. There is only **one** context file per repo: `docs/context.md`.
 
-## Example shape
+## Examples
 
-Finished examples live in `references/` to show what tight content looks like — one consumer app, one developer tool. On disk they still map to the same `docs/context.md` structure.
+Finished examples live in `references/` to show what a tight context doc looks like.

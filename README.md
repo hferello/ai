@@ -4,7 +4,7 @@ A collection of AI-related tools and Cursor skills.
 
 ## Context (Cursor skill — `/context`)
 
-Turn a raw idea into a PRD so agents stay in the right **context** for what to build. Asks 9 focused questions — one at a time — and writes **one** file, `docs/context.md` (PRD content as product context). Say "you tell me" on any question and the agent researches it for you. Trigger with `/context`. An always-on Cursor rule (`context.mdc`) points agents at that file; install copies it to `~/.cursor/rules/`.
+Capture product context — mission, must-haves, boundaries, principles, stack, constraints — so AI agents stay aligned. Asks 9 direct questions, one at a time, and writes a single file: `docs/context.md`. Say "you tell me" on any question and the agent researches it for you. An always-on Cursor rule (`context.mdc`) tells agents to read that file before non-trivial work.
 
 **Install:**
 

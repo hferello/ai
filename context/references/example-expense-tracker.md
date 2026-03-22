@@ -1,16 +1,16 @@
-# Expense Tracker — PRD
+# Product Context
 
 > **One-liner:** Snap a receipt, auto-categorise the deduction, export at tax time.
 
-## Problem
+## Mission
 
-Freelancers forget to log expenses and scramble every April. Existing tools (FreshBooks, Expensify) are built for teams, not solo operators with 20 receipts a month.
+Help solo freelancers stop losing track of expenses so tax time isn't a scramble.
 
-## Context
+## Codebase & Stack
 
-Greenfield. OCR APIs (Google Vision, AWS Textract) extract vendor/amount/date at ~90% accuracy. Solo-freelancer "just track receipts" niche is underserved.
+Greenfield. OCR APIs (Google Vision, AWS Textract) extract vendor/amount/date at ~90% accuracy.
 
-## Must-Haves (ship-tomorrow list)
+## Must-Haves
 
 1. Snap/upload receipt → auto-extract vendor, amount, date
 2. Assign a tax category (meals, travel, supplies, etc.)
@@ -24,22 +24,24 @@ Greenfield. OCR APIs (Google Vision, AWS Textract) extract vendor/amount/date at
 - Bank feed sync
 - Tax filing or tax advice
 
-## UX Direction
+## Principles
 
-Invisible — open, snap, done. No onboarding, no dashboard to learn.
+- Speed over features — every interaction should be under 5 seconds
+- No onboarding — the app should be obvious on first open
+- Privacy first — receipt photos may contain sensitive info
 
-## User Journey
+## Tech Stack & Conventions
 
-1. Open app → camera viewfinder
-2. Snap receipt → OCR extracts vendor, amount, date (~2s)
-3. Confirm or correct → pick category → saved
-4. Tax time: tap Export → pick date range → CSV
+- React Native (Expo) for mobile-first
+- Supabase for auth and storage
+- Google Vision API for OCR
+- All components use `snake_case` variables, `PascalCase` components
 
-## Risks & Open Questions
+## Constraints
 
 - OCR on crumpled/faded receipts — need manual-entry fallback
-- Photo storage costs at full resolution
-- Category taxonomy: IRS Schedule C or simpler?
+- Photo storage costs at full resolution — compress or thumbnail originals
+- No budget for paid OCR above free tier initially
 
 ## Success Criteria
 
