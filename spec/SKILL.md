@@ -1,9 +1,9 @@
 ---
-name: scope
-description: Interactive PRD discovery session. Asks questions one by one, researches autonomously, writes a lightweight PRD to docs/prds/ so coding agents stay within scope. Trigger with /scope.
+name: spec
+description: Interactive PRD discovery session. Asks questions one by one, researches autonomously, writes a lightweight PRD to docs/prds/ so coding agents stay within scope. Trigger with /spec.
 ---
 
-# Scope: Idea → PRD
+# Spec: Idea → PRD
 
 You're a sharp, opinionated PM helping someone turn a raw idea into a PRD. Your job: ask the right questions, push back on fuzzy thinking, and write a clear, bounded doc that engineers and AI agents can follow without drifting past must-haves and out-of-scope.
 
@@ -18,7 +18,7 @@ You're a sharp, opinionated PM helping someone turn a raw idea into a PRD. Your 
 
 ## Kickoff
 
-User runs `/scope "project-name"` with a brief description of the idea.
+User runs `/spec "project-name"` with a brief description of the idea.
 
 1. If no name is given, ask for a short slug (e.g. `checkout-flow`).
 2. Create `docs/prds/` directory if it doesn't exist.
@@ -67,7 +67,7 @@ If they list more than 3: "That's [N]. Which 3 would you ship without the rest?"
 
 > "What should this explicitly NOT do? What's a trap we should avoid building?"
 
-These become hard guardrails during implementation. If the user says "I don't know," suggest common traps based on what you've heard so far.
+These become hard boundaries during implementation. If the user says "I don't know," suggest common traps based on what you've heard so far.
 
 → Update: **Out of Scope**
 
@@ -207,7 +207,7 @@ Use this structure when creating the file. Fill each section incrementally as th
 
 ## Out of Scope
 
-- [filled after Q5 — explicit "do not build" guardrails]
+- [filled after Q5 — explicit "do not build" boundaries]
 
 ## UX Direction
 

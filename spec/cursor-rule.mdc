@@ -1,0 +1,6 @@
+---
+description: docs/prds PRDs are the product spec; honor must-haves and out-of-scope.
+alwaysApply: true
+---
+
+If `docs/prds/*.md` exists: use the relevant PRD for non-trivial work; ship must-haves; don’t build out-of-scope without explicit OK; flag conflicts with the PRD. If none and work is large/ambiguous, suggest `/spec` first. Skip for tiny fixes or when the user opts out.

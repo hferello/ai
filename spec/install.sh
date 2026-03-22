@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install scope skill to ~/.cursor/skills/ (global, all projects)
+# Install spec skill to ~/.cursor/skills/ and always-on rule to ~/.cursor/rules/
 # Run from anywhere: bash install.sh
 
 set -e
@@ -15,13 +15,13 @@ if [[ -f "$SCRIPT_DIR/SKILL.md" ]]; then
 elif [[ -f "$SCRIPT_DIR/../SKILL.md" ]]; then
   SKILL_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 else
-  echo "Error: Could not find SKILL.md. Run this from the scope skill directory."
+  echo "Error: Could not find SKILL.md. Run this from the spec skill directory."
   exit 1
 fi
 
-TARGET="$HOME/.cursor/skills/scope"
+TARGET="$HOME/.cursor/skills/spec"
 
-echo "Installing scope skill..."
+echo "Installing spec skill..."
 echo "  From: $SKILL_ROOT"
 echo "  To:   $TARGET"
 
@@ -29,10 +29,20 @@ mkdir -p "$(dirname "$TARGET")"
 rm -rf "$TARGET"
 cp -R "$SKILL_ROOT" "$(dirname "$TARGET")"
 
+RULE_SRC="$SKILL_ROOT/cursor-rule.mdc"
+RULE_DEST="$HOME/.cursor/rules/spec.mdc"
+if [[ -f "$RULE_SRC" ]]; then
+  mkdir -p "$HOME/.cursor/rules"
+  cp "$RULE_SRC" "$RULE_DEST"
+  echo ""
+  echo "Installed always-on Cursor rule:"
+  echo "  $RULE_DEST"
+fi
+
 echo ""
 echo "Installation complete!"
 echo ""
 echo "The skill is now available in Cursor. To use:"
 echo "  1. Restart Cursor (or reload the window)"
-echo "  2. In Agent chat, type /scope or @scope"
+echo "  2. In Agent chat, type /spec or @spec"
 echo ""
