@@ -1,8 +1,9 @@
 #!/bin/bash
-# Installs this repo's context skill to ~/.cursor/skills/context/ and the always-on rule to ~/.cursor/rules/context.mdc
+# Installs this repo's context skill to ~/.cursor/skills/context/
 # (writes docs/context.md — one product-context file per repo). Trigger: /context or @context
+# The Cursor rule is per-project — use install-project-rule.sh in each repo (see README).
 # Run from anywhere: bash install.sh
-# If you used an older install targeting ~/.cursor/skills/spec and spec.mdc, remove those after verifying this one works.
+# If you used an older install targeting ~/.cursor/rules/context.mdc globally, remove that file after migrating to a project rule.
 
 set -e
 
@@ -31,20 +32,13 @@ mkdir -p "$(dirname "$TARGET")"
 rm -rf "$TARGET"
 cp -R "$SKILL_ROOT" "$(dirname "$TARGET")"
 
-RULE_SRC="$SKILL_ROOT/cursor-rule.mdc"
-RULE_DEST="$HOME/.cursor/rules/context.mdc"
-if [[ -f "$RULE_SRC" ]]; then
-  mkdir -p "$HOME/.cursor/rules"
-  cp "$RULE_SRC" "$RULE_DEST"
-  echo ""
-  echo "Installed always-on Cursor rule (honors docs/context.md per project):"
-  echo "  $RULE_DEST"
-fi
-
 echo ""
 echo "Installation complete!"
 echo ""
 echo "The skill is now available in Cursor. To use:"
 echo "  1. Restart Cursor (or reload the window)"
 echo "  2. In Agent chat, type /context or @context"
+echo ""
+echo "Per-project rule (recommended): install cursor-rule.mdc into each repo's .cursor/rules/"
+echo "  bash \"$SKILL_ROOT/install-project-rule.sh\" [path-to-project-root]"
 echo ""

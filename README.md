@@ -4,9 +4,9 @@ A collection of AI-related tools and Cursor skills.
 
 ## Context (Cursor skill — `/context`)
 
-Capture product context — mission, must-haves, boundaries, principles, stack, constraints — so AI agents stay aligned. Asks 9 direct questions, one at a time, and writes a single file: `docs/context.md`. Say "you tell me" on any question and the agent researches it for you. An always-on Cursor rule (`context.mdc`) tells agents to read that file before non-trivial work.
+Capture product context — mission, must-haves, boundaries, principles, stack, constraints — so AI agents stay aligned. Asks 9 direct questions, one at a time, and writes a single file: `docs/context.md`. Say "you tell me" on any question and the agent researches it for you. A **project** Cursor rule (`.cursor/rules/context.mdc`) tells agents to read that file before non-trivial work — install it per repo with `context/install-project-rule.sh` and commit it.
 
-**Install:**
+**Install skill:**
 
 ```bash
 git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-skill && bash /tmp/cursor-skill/context/install.sh && rm -rf /tmp/cursor-skill
