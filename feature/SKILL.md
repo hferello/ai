@@ -93,6 +93,48 @@ Once the user has answered (or skipped all), create the task folder and files:
 8. **Success Metrics** — How success is measured
 9. **Open Questions** — Remaining clarifications
 
+### 0.3 Critical Reassessment (after creating files)
+
+**Shift from creation mode to adversarial review mode.** Re-read the PRD, task plan, and findings with the explicit goal of finding problems — not confirming what you wrote is good.
+
+#### Core Review Categories (always check these)
+
+| Category | What to look for |
+|----------|-----------------|
+| **Requirements Consistency** | Do goals, user stories, acceptance criteria, and functional requirements align? Any contradictions? |
+| **Completeness Gaps** | Requirements implied by user stories but not listed? Missing error states? Unaddressed edge cases? |
+| **Scope Integrity** | Tasks that belong in non-goals? Scope creep beyond what was discussed? |
+| **Dependency Analysis** | Hidden dependencies between tasks? External dependencies not mentioned? Ordering issues in the task plan? |
+| **Security & Data** | Data validation gaps? Missing authorization considerations? Sensitive data handling? |
+
+#### Feature-Specific Categories (pick the ones relevant to the feature)
+
+- **UI features:** Accessibility gaps, unhappy paths (empty/loading/error states), responsive design
+- **API/Backend:** Performance implications (N+1 queries, rate limiting), error handling coverage, data migration
+- **Full-stack:** Client-server contract mismatches, caching invalidation, optimistic vs pessimistic updates
+
+#### How to execute
+
+1. **Re-read** all planning files (PRD, task plan, findings) looking for problems
+2. **Categorize** each issue as "obvious fix" or "judgment call"
+3. **Obvious fixes** — update the files directly (e.g., add missing edge case to PRD, add missing task to plan)
+4. **Judgment calls** — present to the user with context and a recommendation; wait for input before updating
+5. **Log** the reassessment summary in `progress.md`
+
+#### Output format
+
+Present findings to the user like this:
+
+> **Reassessment complete.** Reviewed PRD and task plan for [feature-name].
+>
+> **Fixed (N items):**
+> - [What was fixed and where]
+>
+> **Needs your input (N items):**
+> - [Issue, context, and recommendation]
+
+If no issues found, say so briefly and proceed. Do not invent problems to appear thorough.
+
 ## Quick Start (Alternative: Skip Phase 0)
 
 If the user prefers to create files first without discovery questions, they can run the init script directly:
@@ -141,7 +183,7 @@ Use only the groups that apply (e.g. backend-only feature → Backend + Tests). 
 | `<folder>/findings.md`      | Research, discoveries                                           | After ANY discovery                 |
 | `<folder>/progress.md`      | Session log, test results                                       | Throughout session                  |
 | `<folder>/documentation.md` | What was built, how it works                                    | During delivery or as you implement |
-| `<folder>/prd.md`           | Product requirements (goals, user stories, acceptance criteria) | Populated from Phase 0 answers      |
+| `<folder>/prd.md`           | Product requirements (goals, user stories, acceptance criteria) | Populated from Phase 0 answers; updated during reassessment (0.3) |
 
 ## Code Standards (When Implementing)
 
