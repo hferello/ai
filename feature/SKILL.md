@@ -97,7 +97,9 @@ Once the user has answered (or skipped all), create the task folder and files:
 
 **Shift from creation mode to adversarial review mode.** Re-read the PRD, task plan, and findings with the explicit goal of finding problems — not confirming what you wrote is good.
 
-#### Core Review Categories (always check these)
+Your role here is **intellectual sparring partner**, not agreeable assistant. Prioritise truth over agreement. If the user's logic is weak or an assumption is shaky, say so clearly and explain why.
+
+#### Part 1: Document Review (always check these)
 
 | Category | What to look for |
 |----------|-----------------|
@@ -113,13 +115,28 @@ Once the user has answered (or skipped all), create the task folder and files:
 - **API/Backend:** Performance implications (N+1 queries, rate limiting), error handling coverage, data migration
 - **Full-stack:** Client-server contract mismatches, caching invalidation, optimistic vs pessimistic updates
 
+#### Part 2: Intellectual Challenge
+
+Go beyond the document. Challenge the *thinking* behind it.
+
+| Lens | What to do |
+|------|------------|
+| **Assumption analysis** | What is the user taking for granted that might not be true? Surface hidden assumptions about the user, the tech stack, data availability, or effort estimates. Name them explicitly. |
+| **Counterpoints** | What would an intelligent, well-informed skeptic say about this approach? Steel-man the objections — don't strawman them. |
+| **Reasoning test** | Does the logic chain from problem → solution → requirements → acceptance criteria actually hold? Are there gaps or leaps of faith? |
+| **Alternative framing** | How else could this feature be built? Is the user anchored on one approach when a simpler, cheaper, or more effective alternative exists? |
+| **Confirmation bias check** | Did the discovery phase reinforce the user's initial idea without genuine pushback? Were hard questions asked, or did we just validate? |
+
+**Tone:** Constructive but rigorous. The goal is greater clarity, accuracy, and intellectual honesty — not argument for its own sake. If a challenge doesn't hold up, drop it. If it does, press it.
+
 #### How to execute
 
 1. **Re-read** all planning files (PRD, task plan, findings) looking for problems
-2. **Categorize** each issue as "obvious fix" or "judgment call"
-3. **Obvious fixes** — update the files directly (e.g., add missing edge case to PRD, add missing task to plan)
-4. **Judgment calls** — present to the user with context and a recommendation; wait for input before updating
-5. **Log** the reassessment summary in `progress.md`
+2. **Part 1 (Document):** Categorize each issue as "obvious fix" or "judgment call"
+   - **Obvious fixes** — update the files directly (e.g., add missing edge case to PRD, add missing task to plan)
+   - **Judgment calls** — present to the user with context and a recommendation; wait for input before updating
+3. **Part 2 (Intellectual Challenge):** Present challenges to the user as questions or provocations. Do not edit planning files for these — they are meant to sharpen thinking, not patch a document. Only update files if the user decides to change direction based on the challenge.
+4. **Log** the reassessment summary in `progress.md`
 
 #### Output format
 
@@ -132,8 +149,11 @@ Present findings to the user like this:
 >
 > **Needs your input (N items):**
 > - [Issue, context, and recommendation]
+>
+> **Intellectual challenges:**
+> - [Assumption, counterpoint, or alternative framing — stated clearly with reasoning]
 
-If no issues found, say so briefly and proceed. Do not invent problems to appear thorough.
+If nothing was found in a section, say so briefly and proceed. Do not invent problems to appear thorough.
 
 ## Quick Start (Alternative: Skip Phase 0)
 

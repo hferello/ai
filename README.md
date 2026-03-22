@@ -2,16 +2,16 @@
 
 A collection of AI-related tools and Cursor skills.
 
-## Startup (Cursor Skill)
+## Scope (Cursor Skill)
 
-Turn a raw idea into a buildable PRD. Asks 9 focused questions — one at a time — and writes a lightweight PRD to `docs/prds/`. Say "you tell me" on any question and the agent researches it for you. Trigger with `/startup`.
+Turn a raw idea into a PRD so agents stay within scope. Asks 9 focused questions — one at a time — and writes a lightweight PRD to `docs/prds/`. Say "you tell me" on any question and the agent researches it for you. Trigger with `/scope`.
 
 **Install:**
 ```bash
-git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-startup-skill && bash /tmp/cursor-startup-skill/startup/install.sh && rm -rf /tmp/cursor-startup-skill
+git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-scope-skill && bash /tmp/cursor-scope-skill/scope/install.sh && rm -rf /tmp/cursor-scope-skill
 ```
 
-See [startup/README.md](startup/README.md) for full documentation.
+See [scope/README.md](scope/README.md) for full documentation.
 
 ## Feature (Cursor Skill)
 
@@ -23,3 +23,14 @@ git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-feature-skill
 ```
 
 See [feature/README.md](feature/README.md) for full documentation.
+
+## Startup (Cursor Skill)
+
+Problem and market validation for early-stage ideas — phased reports in a flat `startup/` folder at the project root. Trigger with `/startup`.
+
+**Install:**
+```bash
+git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-startup-skill && bash /tmp/cursor-startup-skill/startup/install.sh && rm -rf /tmp/cursor-startup-skill
+```
+
+See [startup/README.md](startup/README.md) for full documentation.

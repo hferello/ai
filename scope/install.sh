@@ -1,6 +1,6 @@
 #!/bin/bash
-# Install startup skill to ~/.cursor/skills/ (global, all projects)
-# Run from the startup skill directory: bash install.sh
+# Install scope skill to ~/.cursor/skills/ (global, all projects)
+# Run from anywhere: bash install.sh
 
 set -e
 
@@ -15,13 +15,13 @@ if [[ -f "$SCRIPT_DIR/SKILL.md" ]]; then
 elif [[ -f "$SCRIPT_DIR/../SKILL.md" ]]; then
   SKILL_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 else
-  echo "Error: Could not find SKILL.md. Run this from the startup skill directory."
+  echo "Error: Could not find SKILL.md. Run this from the scope skill directory."
   exit 1
 fi
 
-TARGET="$HOME/.cursor/skills/startup"
+TARGET="$HOME/.cursor/skills/scope"
 
-echo "Installing startup skill..."
+echo "Installing scope skill..."
 echo "  From: $SKILL_ROOT"
 echo "  To:   $TARGET"
 
@@ -34,5 +34,5 @@ echo "Installation complete!"
 echo ""
 echo "The skill is now available in Cursor. To use:"
 echo "  1. Restart Cursor (or reload the window)"
-echo "  2. In Agent chat, type /startup or @startup"
+echo "  2. In Agent chat, type /scope or @scope"
 echo ""
