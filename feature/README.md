@@ -32,7 +32,13 @@ The agent kicks off with a round of clarifying questions (you can skip this if y
 
 ---
 
-### Eng notes:
+## Inspiration
+
+The workflow and “plan with living docs” idea for this skill take their cue from [planning-with-files](https://github.com/OthmanAdi/planning-with-files) (Othman Adi), which was used as the starting point for how `/feature` structures task plans, findings, and related files.
+
+---
+
+## Eng notes:
 
 - **From a local clone** (after `git pull`): `bash feature/update.sh --local` — installs from your working tree (no second clone).
 - **One-liner without saving the repo** (needs `curl`):
@@ -44,13 +50,5 @@ curl -fsSL https://raw.githubusercontent.com/hferello/ai/main/feature/update.sh 
 Override the repo with `FEATURE_SKILL_REPO` if you use a fork.
 
 On Windows: `.\feature\update.ps1` (fetch from GitHub) or `.\feature\update.ps1 -Local` after `git pull`.
-
----
-
-## Inspiration
-
-The workflow and “plan with living docs” idea for this skill take their cue from [planning-with-files](https://github.com/OthmanAdi/planning-with-files) (Othman Adi), which was used as the starting point for how `/feature` structures task plans, findings, and related files.
-
----
 
 For the full workflow, hooks, Windows install, or uninstall instructions, see [references/more.md](references/more.md).
