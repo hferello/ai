@@ -1,6 +1,6 @@
 # /feature
 
-A Cursor skill that helps you **think before you build**. Use it when you’re designing a feature, exploring a problem, or starting something that will take more than a quick edit. It asks a few good questions up front, then keeps everything in simple docs you can come back to: a plan, notes, progress, how it works, and a short Product Requirements Document.
+A Cursor skill that helps you **think before you build**. Use it when you’re designing a feature, exploring a problem, or starting something that will take more than a quick edit. It asks a few good questions up front, then keeps everything in simple docs you can come back to: a plan, notes, progress, how it works, and a short product requirements document (PRD).
 
 **Demo:**
 
@@ -32,7 +32,7 @@ The agent kicks off with a round of clarifying questions (you can skip this if y
 
 ---
 
-### Dev notes:
+### Eng notes:
 
 - **From a local clone** (after `git pull`): `bash feature/update.sh --local` — installs from your working tree (no second clone).
 - **One-liner without saving the repo** (needs `curl`):
