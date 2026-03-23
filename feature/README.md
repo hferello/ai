@@ -1,12 +1,12 @@
 # /feature
 
-A skill for Cursor that helps you think before you build. Whether you're designing a feature, researching a problem, or kicking off a multi-step project, `/feature` asks the right questions first and keeps your work organized in a small set of living docs — a task plan, findings, progress log, documentation, and a **PRD**.
+A Cursor skill that helps you **think before you build**. Use it when you’re designing a feature, exploring a problem, or starting something that will take more than a quick edit. It asks a few good questions up front, then keeps everything in simple docs you can come back to: a plan, notes, progress, how it works, and a short **PRD**.
 
 **Demo:**
 
 ![/feature demo](../assets/feature-demo.gif)
 
-**Install:** Open a terminal in Cursor, paste this, hit Enter, then fully quit and reopen Cursor.
+**Install/Update:** Open a terminal in Cursor, paste this, hit Enter, then fully quit and reopen Cursor.
 
 ```bash
 git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-feature-skill && bash /tmp/cursor-feature-skill/feature/install.sh && rm -rf /tmp/cursor-feature-skill
@@ -29,6 +29,21 @@ Lowercase, hyphens are fine. The name doesn't need to be perfect — the init sc
 ### 2. Answer a few questions, then go
 
 The agent kicks off with a round of clarifying questions (you can skip this if you already know what you want), then scaffolds `features/<your-task>/` with everything it needs to track the work: `task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, and `prd.md`. From there, you iterate.
+
+---
+
+Other notes:
+
+- **From a local clone** (after `git pull`): `bash feature/update.sh --local` — installs from your working tree (no second clone).
+- **One-liner without saving the repo** (needs `curl`):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/hferello/ai/main/feature/update.sh | bash
+```
+
+Override the repo with `FEATURE_SKILL_REPO` if you use a fork.
+
+On Windows: `.\feature\update.ps1` (fetch from GitHub) or `.\feature\update.ps1 -Local` after `git pull`.
 
 ---
 

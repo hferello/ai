@@ -24,6 +24,17 @@ fi
 
 TARGET="$HOME/.cursor/skills/feature"
 
+# Never install when source and target are the same path (e.g. running install.sh from ~/.cursor/skills/feature)
+if [[ -d "$TARGET" ]]; then
+  _src_abs="$(cd "$SKILL_ROOT" && pwd)"
+  _dst_abs="$(cd "$TARGET" && pwd)"
+  if [[ "$_src_abs" == "$_dst_abs" ]]; then
+    echo "Error: Install source cannot be the same as $TARGET."
+    echo "  Clone the repo to another folder, then run install.sh from there, or run update.sh without --local to fetch from GitHub."
+    exit 1
+  fi
+fi
+
 echo "Installing feature skill..."
 echo "  From: $SKILL_ROOT"
 echo "  To:   $TARGET"

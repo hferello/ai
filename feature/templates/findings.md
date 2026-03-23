@@ -1,4 +1,7 @@
 # Findings & Decisions
+
+> **HANDOFF — every agent, before you stop:** Capture discoveries here so the **next agent** (new chat/model) does not lose research. If you only update one file besides `task_plan.md`, prefer **`progress.md`** + **`findings.md`** so facts and decisions survive.
+
 <!-- 
   WHAT: Your knowledge base for the task. Stores everything you discover and decide.
   WHY: Context windows are limited. This file is your "external memory" - persistent and unlimited.

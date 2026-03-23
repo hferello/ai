@@ -32,6 +32,23 @@ Cursor does not support automatic hooks. You must **manually** follow these rule
 4. **After completing a task group:** Update group status in `task_plan.md` and log actions in `progress.md`.
 5. **After any error:** Log in `task_plan.md` and change your approach—never repeat the same failing action.
 
+### Agent handoff (new chat, different model, or “continue later”)
+
+**Switching agents is the same as `/clear` for memory:** the next agent does not see this conversation or past tool output. The **only** durable state is what you wrote under `features/<task>/`.
+
+**Do not end a turn** (or mark a phase “done”) until this **handoff checklist** is satisfied:
+
+| Step | File | What to write |
+|------|------|----------------|
+| 1 | `task_plan.md` | Current group **Status** (`pending` / `in_progress` / `complete`), checkboxes, any new **Decisions** |
+| 2 | `progress.md` | Session date, what you did, files touched, **what’s next** for the next agent |
+| 3 | `findings.md` | New facts, decisions, URLs, and anything from search/browser/view since last update (2-Action Rule still applies) |
+| 4 | `documentation.md` | If behavior, APIs, env vars, or user-facing flows changed—update **Overview / What Was Built / How It Works / Usage** |
+
+If you only have time for one file before stopping, prioritize **`progress.md`** (where we are + what’s next), then **`findings.md`** (facts that would be lost), then **`documentation.md`** (how to use what changed).
+
+**On the next agent’s first message** in this task: read all five files (`task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, `prd.md`) before writing code or plans.
+
 ## Where Files Go
 
 | Location              | What Goes There                                                                                                                                                  |
@@ -162,7 +179,7 @@ If the user prefers to create files first without discovery questions, they can 
 ### 1. Initialize (run from project root, optionally with a task name)
 
 ```bash
-# With a name: creates features/<task>/ with the four files
+# With a name: creates features/<task>/ with task_plan, findings, progress, documentation, prd
 ~/.cursor/skills/feature/scripts/init-session.sh audit-logging
 
 # Names are sanitized: "dark mode toggle" → features/dark-mode-toggle/
@@ -171,6 +188,8 @@ If the user prefers to create files first without discovery questions, they can 
 ~/.cursor/skills/feature/scripts/init-session.sh
 # → features/2025-03-19-task-1/, features/2025-03-19-task-2/, etc.
 ```
+
+The script **copies from** `templates/` next to the script and replaces `{{TASK_NAME}}` and `{{DATE}}`, so new task folders match the full templates (including HANDOFF reminders), not minimal stubs.
 
 ### 2. Fill in task_plan.md (in the task folder)
 
@@ -202,7 +221,7 @@ Use only the groups that apply (e.g. backend-only feature → Backend + Tests). 
 | `<folder>/task_plan.md`     | Task groups, progress, decisions                                 | After each task group               |
 | `<folder>/findings.md`      | Research, discoveries                                           | After ANY discovery                 |
 | `<folder>/progress.md`      | Session log, test results                                       | Throughout session                  |
-| `<folder>/documentation.md` | What was built, how it works                                    | During delivery or as you implement |
+| `<folder>/documentation.md` | What was built, how it works                                    | When behavior/API/usage changes; **before handoff** if you shipped user-visible or integrator-facing changes |
 | `<folder>/prd.md`           | Product requirements (goals, user stories, acceptance criteria) | Populated from Phase 0 answers; updated during reassessment (0.3) |
 
 ## Code Standards (When Implementing)
@@ -218,7 +237,9 @@ Use only the groups that apply (e.g. backend-only feature → Backend + Tests). 
 
 (Unchanged: Create plan first, 2-Action Rule, Read before decide, Update after act, Log errors, Never repeat failures, Continue after completion.)
 
-## Resuming After /clear
+## Resuming After /clear (or Switching Agents)
+
+Treat **new chat**, **different model**, and **`/clear`** the same: read disk first, assume zero chat memory.
 
 1. Read `<folder>/task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, and `prd.md` immediately.
 2. Optionally run: `python3 ~/.cursor/skills/feature/scripts/session-catchup.py "$(pwd)"`

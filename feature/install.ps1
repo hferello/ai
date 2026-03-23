@@ -17,6 +17,16 @@ if (Test-Path (Join-Path $ScriptDir "SKILL.md")) {
 
 $Target = Join-Path $env:USERPROFILE ".cursor\skills\feature"
 
+$SkillAbs = (Resolve-Path $SkillRoot).Path
+if (Test-Path $Target) {
+  $TargetAbs = (Resolve-Path $Target).Path
+  if ($SkillAbs -eq $TargetAbs) {
+    Write-Host "Error: Install source cannot be the same as $Target."
+    Write-Host "  Clone the repo to another folder, then run install.ps1 from there, or run update.ps1 without -Local to fetch from GitHub."
+    exit 1
+  }
+}
+
 Write-Host "Installing feature skill..."
 Write-Host "  From: $SkillRoot"
 Write-Host "  To:   $Target"

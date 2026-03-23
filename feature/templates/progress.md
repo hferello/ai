@@ -1,11 +1,14 @@
 # Progress Log
+
+> **HANDOFF — every agent, before you stop:** The next agent has **no access** to this chat. Update this file with: date, what you did, files changed, **exact next step**, and blockers. Also sync `task_plan.md` (group status), `findings.md` (facts since last write), and `documentation.md` (if behavior/API/usage changed).
+
 <!-- 
   WHAT: Your session log - a chronological record of what you did, when, and what happened.
   WHY: Answers "What have I done?" in the 5-Question Reboot Test. Helps you resume after breaks.
   WHEN: Update after completing each task group or encountering errors. More detailed than task_plan.md.
 -->
 
-## Session: [DATE]
+## Session: {{DATE}}
 <!-- 
   WHAT: The date of this work session.
   WHY: Helps track when work happened, useful for resuming after time gaps.

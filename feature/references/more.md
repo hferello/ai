@@ -1,6 +1,6 @@
 # Feature skill — extra detail
 
-Plain-language [README](../README.md) covers install. This page is for anything you need beyond that.
+Plain-language [README](../README.md) covers install and update. **Update** is the same operation as install: it overwrites `~/.cursor/skills/feature`. Use the README one-liner, or [`update.sh`](../update.sh) / [`update.ps1`](../update.ps1) (`--local` / `-Local` after `git pull` in your clone).
 
 ---
 

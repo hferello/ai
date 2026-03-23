@@ -30,9 +30,9 @@ From your project root, run with a **task name**:
 ./.cursor/skills/feature/scripts/init-session.sh audit-logging
 ```
 
-Creates `features/` if missing, then `features/audit-logging/` with the four files. Names are sanitized: `"dark mode toggle"` → `dark-mode-toggle/`
+Creates `features/` if missing, then `features/audit-logging/` by rendering the skill’s `templates/` (`task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, `prd.md`) with `{{TASK_NAME}}` and `{{DATE}}` filled in. Names are sanitized: `"dark mode toggle"` → `dark-mode-toggle/`
 
-Or manually: create `features/<task>/` and copy the templates into it.
+Or manually: create `features/<task>/` and copy those same template files, then replace the placeholders yourself.
 
 ### 1.2 Fill in `task_plan.md` (in the folder)
 
@@ -118,14 +118,18 @@ Example prompt:
 
 ---
 
-## Resuming After a Break
+## Resuming After a Break (or Switching Agents)
 
-**If you used `/clear` or started a new chat:**
+**If you used `/clear`, started a new chat, or switched to a different model/agent:** memory does not carry over. The next assistant only knows what is in `features/<task>/` and the repo.
+
+**Before the previous agent stopped,** they should have run the handoff checklist in the feature skill: sync `task_plan.md`, `progress.md`, `findings.md`, and `documentation.md` (when behavior changed).
+
+**When you resume:**
 
 1. Check if a task folder exists (e.g. `features/audit-logging/task_plan.md`).
 2. If it exists, tell the AI:
 
-   > I'm resuming a task. Read `features/audit-logging/task_plan.md`, `findings.md`, `progress.md`, and `documentation.md` first, then continue from where we left off.
+   > I'm resuming a task. Read `features/audit-logging/task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, and `prd.md` first, then continue from where we left off.
 
 3. Optional: run the catchup script to see what changed since the last planning update:
 
@@ -146,7 +150,8 @@ Example prompt:
 | Before a major decision | Re-read `task_plan.md` |
 | After an error | Log in `task_plan.md` + change approach |
 | After completing a phase | Update status in `task_plan.md` and `progress.md` |
-| Resuming after `/clear` | Tell AI to read all four files first |
+| Before stopping / switching agent / new chat | Handoff: `task_plan.md` + `progress.md` + `findings.md` + `documentation.md` if behavior changed (see feature skill) |
+| Resuming after `/clear` or agent switch | Tell AI to read `task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, `prd.md` first |
 
 ---
 

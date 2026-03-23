@@ -1,4 +1,4 @@
-# Task Plan: [Brief Description]
+# Task Plan: {{TASK_NAME}}
 
 ## Goal
 [One sentence describing the end state]

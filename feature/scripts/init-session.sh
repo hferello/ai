@@ -1,13 +1,17 @@
 #!/bin/bash
 # Initialize planning files for a new session
 # Run from project root: init-session.sh [task-name]
-# Creates features/ if missing, then features/<task>/ with task_plan.md, findings.md, progress.md, documentation.md
+# Creates features/ if missing, then features/<task>/ by copying and rendering templates/
+# (task_plan.md, findings.md, progress.md, documentation.md, prd.md).
 #
 # Example: init-session.sh audit-logging  → features/audit-logging/
 # Example: init-session.sh "dark mode toggle"  → features/dark-mode-toggle/
 # Example: init-session.sh  → features/2025-03-19-task-1/ (auto-increments per day)
 
 set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TEMPLATE_DIR="$SCRIPT_DIR/../templates"
 
 DATE=$(date +%Y-%m-%d)
 
@@ -39,9 +43,24 @@ fi
 # Full path: features/<task-name>/
 PLAN_DIR="$ROOT_DIR/$FOLDER_NAME"
 
+# Render templates/{{name}} → dest; substitutes {{TASK_NAME}} and {{DATE}}
+render_template() {
+  local template_basename="$1"
+  local dest_path="$2"
+  local src_path="$TEMPLATE_DIR/$template_basename"
+  if [ ! -f "$src_path" ]; then
+    echo "ERROR: Missing template file: $src_path" >&2
+    exit 1
+  fi
+  export TASK_NAME
+  export DATE
+  python3 -c 'import os, sys; from pathlib import Path; src, dst = sys.argv[1], sys.argv[2]; t = os.environ["TASK_NAME"]; d = os.environ["DATE"]; x = Path(src).read_text(encoding="utf-8"); Path(dst).write_text(x.replace("{{TASK_NAME}}", t).replace("{{DATE}}", d), encoding="utf-8")' "$src_path" "$dest_path"
+}
+
 echo "Initializing planning files for: $TASK_NAME"
 echo "Root folder: $ROOT_DIR/ (created if missing)"
 echo "Task folder: $PLAN_DIR/"
+echo "Templates: $TEMPLATE_DIR/"
 echo ""
 
 # Create root container if it doesn't exist, then task folder
@@ -49,146 +68,42 @@ mkdir -p "$PLAN_DIR"
 
 # Create task_plan.md if it doesn't exist
 if [ ! -f "$PLAN_DIR/task_plan.md" ]; then
-    cat > "$PLAN_DIR/task_plan.md" << EOF
-# Task Plan: $TASK_NAME
-
-## Goal
-[One sentence describing the end state]
-
-## Current Phase
-[Agent decides based on feature]
-
-## Phases / Task Groups
-
-[Agent adds phases or task groups as needed—e.g. Foundation, Backend, Frontend, Tests, or custom. Each with - [ ] tasks and Status: pending|in_progress|complete]
-
-## Decisions Made
-| Decision | Rationale |
-|----------|-----------|
-
-## Errors Encountered
-| Error | Resolution |
-|-------|------------|
-EOF
-    echo "Created $PLAN_DIR/task_plan.md"
+  render_template "task_plan.md" "$PLAN_DIR/task_plan.md"
+  echo "Created $PLAN_DIR/task_plan.md"
 else
-    echo "$PLAN_DIR/task_plan.md already exists, skipping"
+  echo "$PLAN_DIR/task_plan.md already exists, skipping"
 fi
 
 # Create findings.md if it doesn't exist
 if [ ! -f "$PLAN_DIR/findings.md" ]; then
-    cat > "$PLAN_DIR/findings.md" << 'EOF'
-# Findings & Decisions
-
-## Requirements
--
-
-## Research Findings
--
-
-## Technical Decisions
-| Decision | Rationale |
-|----------|-----------|
-
-## Issues Encountered
-| Issue | Resolution |
-|-------|------------|
-
-## Resources
--
-EOF
-    echo "Created $PLAN_DIR/findings.md"
+  render_template "findings.md" "$PLAN_DIR/findings.md"
+  echo "Created $PLAN_DIR/findings.md"
 else
-    echo "$PLAN_DIR/findings.md already exists, skipping"
+  echo "$PLAN_DIR/findings.md already exists, skipping"
 fi
 
 # Create documentation.md if it doesn't exist
 if [ ! -f "$PLAN_DIR/documentation.md" ]; then
-    cat > "$PLAN_DIR/documentation.md" << EOF
-# Documentation: $TASK_NAME
-
-## Overview
--
-
-## What Was Built
--
-
-## How It Works
--
-
-## Usage
--
-
-## Notes
--
-EOF
-    echo "Created $PLAN_DIR/documentation.md"
+  render_template "documentation.md" "$PLAN_DIR/documentation.md"
+  echo "Created $PLAN_DIR/documentation.md"
 else
-    echo "$PLAN_DIR/documentation.md already exists, skipping"
+  echo "$PLAN_DIR/documentation.md already exists, skipping"
 fi
 
 # Create progress.md if it doesn't exist
 if [ ! -f "$PLAN_DIR/progress.md" ]; then
-    cat > "$PLAN_DIR/progress.md" << EOF
-# Progress Log
-
-## Session: $DATE
-
-### Current Status
-- **Phase/Group:** [Agent decides]
-- **Started:** $DATE
-
-### Actions Taken
--
-
-### Test Results
-| Test | Expected | Actual | Status |
-|------|----------|--------|--------|
-
-### Errors
-| Error | Resolution |
-|-------|------------|
-EOF
-    echo "Created $PLAN_DIR/progress.md"
+  render_template "progress.md" "$PLAN_DIR/progress.md"
+  echo "Created $PLAN_DIR/progress.md"
 else
-    echo "$PLAN_DIR/progress.md already exists, skipping"
+  echo "$PLAN_DIR/progress.md already exists, skipping"
 fi
 
 # Create prd.md if it doesn't exist (Product Requirements Document)
 if [ ! -f "$PLAN_DIR/prd.md" ]; then
-    cat > "$PLAN_DIR/prd.md" << EOF
-# Product Requirements Document: $TASK_NAME
-
-## 1. Introduction/Overview
--
-
-## 2. Goals
--
-
-## 3. User Stories
--
-
-## 4. Functional Requirements
--
-
-## 5. Non-Goals (Out of Scope)
--
-
-## 6. Design Considerations (Optional)
--
-
-## 7. Technical Considerations (Optional)
--
-
-## 8. Success Metrics
--
-
-## 9. Open Questions
--
-EOF
-    echo "Created $PLAN_DIR/prd.md"
+  render_template "prd.md" "$PLAN_DIR/prd.md"
+  echo "Created $PLAN_DIR/prd.md"
 else
-    echo "$PLAN_DIR/prd.md already exists, skipping"
+  echo "$PLAN_DIR/prd.md already exists, skipping"
 fi
 
 echo ""
