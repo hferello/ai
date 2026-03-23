@@ -26,11 +26,11 @@ They should send **`/feature "task slug"`** and, in the **same message**, a deta
 
 Cursor does not support automatic hooks. You must **manually** follow these rules:
 
-1. **Before starting:** If a task folder exists (e.g. `features/audit-logging/task_plan.md`), read `task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, and `prd.md` first.
-2. **Before major decisions:** Re-read `task_plan.md` to refresh goals in your attention window.
+1. **Before starting:** If a task folder exists, read the **plan** (`task_plan.md` **or** `overview.md` plus the relevant `phase-*.md` files—see [Phased plan layout](#phased-plan-layout-instead-of-task_planmd)), then `findings.md`, `progress.md`, `documentation.md`, and `prd.md`.
+2. **Before major decisions:** Re-read the plan (`task_plan.md` or `overview.md` + active phase file) to refresh goals in your attention window.
 3. **After every 2 view/browser/search operations:** Update `findings.md` immediately (2-Action Rule).
-4. **After completing a task group:** Update group status in `task_plan.md` and log actions in `progress.md`.
-5. **After any error:** Log in `task_plan.md` and change your approach—never repeat the same failing action.
+4. **After completing a task group or phase:** Update status in `task_plan.md` **or** in `overview.md` and the finished `phase-*.md` file, and log actions in `progress.md`.
+5. **After any error:** Log in the plan (`task_plan.md` or `overview.md` / current `phase-*.md`) and change your approach—never repeat the same failing action.
 
 ### Agent handoff (new chat, different model, or “continue later”)
 
@@ -40,21 +40,38 @@ Cursor does not support automatic hooks. You must **manually** follow these rule
 
 | Step | File | What to write |
 |------|------|----------------|
-| 1 | `task_plan.md` | Current group **Status** (`pending` / `in_progress` / `complete`), checkboxes, any new **Decisions** |
+| 1 | `task_plan.md` **or** `overview.md` + `phase-*.md` | Same intent: current group/phase **Status** (`pending` / `in_progress` / `complete`), checkboxes, any new **Decisions** (see [Phased plan layout](#phased-plan-layout-instead-of-task_planmd)) |
 | 2 | `progress.md` | Session date, what you did, files touched, **what’s next** for the next agent |
 | 3 | `findings.md` | New facts, decisions, URLs, and anything from search/browser/view since last update (2-Action Rule still applies) |
 | 4 | `documentation.md` | If behavior, APIs, env vars, or user-facing flows changed—update **Overview / What Was Built / How It Works / Usage** |
 
 If you only have time for one file before stopping, prioritize **`progress.md`** (where we are + what’s next), then **`findings.md`** (facts that would be lost), then **`documentation.md`** (how to use what changed).
 
-**On the next agent’s first message** in this task: read all five files (`task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, `prd.md`) before writing code or plans.
+**On the next agent’s first message** in this task: read the plan (`task_plan.md` **or** `overview.md` and all `phase-*.md` files), `findings.md`, `progress.md`, `documentation.md`, and `prd.md` before writing code or plans.
 
 ## Where Files Go
 
 | Location              | What Goes There                                                                                                                                                  |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Skill directory       | Templates, scripts, reference docs                                                                                                                               |
-| **Your project root** | `features/` (created if missing) containing task folders (e.g. `audit-logging/`) with `task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, `prd.md` |
+| **Your project root** | `features/` (created if missing) containing task folders with `findings.md`, `progress.md`, `documentation.md`, `prd.md`, plus **either** `task_plan.md` **or** the phased files below |
+
+## Phased plan layout (instead of task_plan.md)
+
+When the agent decides the work should be **split into phases** as separate files, use this layout **instead of** `task_plan.md` (do not maintain both—one planning shape per task folder).
+
+**Remove `task_plan.md` when switching to phased layout:** If `task_plan.md` already exists (for example after `init-session.sh`), **delete it** when you create `overview.md` and `phase-*.md`, so humans are not faced with two parallel plans that say the same thing. **Exception:** keep `task_plan.md` only when it serves a **clear, non-overlapping** purpose (for example scratch notes or a checklist that you are **not** duplicating in `overview.md` / phase files). If you keep it for that reason, put a short note at the top of `task_plan.md` stating what it is for and that **execution status** lives in `overview.md` and the `phase-*.md` files.
+
+| File | Role |
+|------|------|
+| `overview.md` | Overall **goal**; a **table or list of every phase** with a short summary, **status** per phase (`pending` / `in_progress` / `complete`), and a link or filename to each phase doc; optional **global** decisions/errors. |
+| `phase-1-<kebab-slug>.md`, `phase-2-<kebab-slug>.md`, … | **Per-phase** detail: purpose, task checklists, status, phase-scoped decisions/errors. |
+
+**Naming:** `phase-<n>-<kebab-slug>.md` where `n` is the order (1, 2, …) and `<kebab-slug>` comes from the phase name, e.g. `phase-1-schema-and-migrations.md`, `phase-2-api-layer.md`.
+
+**Templates:** Copy from the skill’s `templates/overview.md` and `templates/phase.md` (render `{{TASK_NAME}}` / `{{DATE}}` for `overview.md` like other templates).
+
+**When to choose this:** Multi-phase work where a single file would be hard to navigate; the agent may still use a **single** `task_plan.md` when phases are few and fit comfortably in one document.
 
 ## Phase 0: Discovery Questions (BEFORE Creating Files)
 
@@ -92,7 +109,9 @@ Once the user has answered (or skipped all), create the task folder and files:
 
 1. **Determine task name:** Use the name the user provided, or run `init-session.sh` with no args to get an auto-generated name (e.g. `2025-03-19-task-1`).
 2. **Create** `features/<task>/` with:
-   - `task_plan.md` — populated with Goal, phases/task groups (agent decides which: Foundation, Backend, Frontend, Tests, or custom), Key Questions from answers
+   - **Plan (pick one):**
+     - **`task_plan.md`** — Goal, phases/task groups in one file (Foundation, Backend, Frontend, Tests, or custom), Key Questions from answers; **or**
+     - **`overview.md` + `phase-1-<slug>.md`, …** — [Phased layout](#phased-plan-layout-instead-of-task_planmd) when the agent chooses separate phase files; same content split across files. **Delete `task_plan.md`** if it exists (e.g. left over from init), unless it has a distinct non-overlapping purpose—see phased layout section.
    - `findings.md` — Requirements, Research Findings from answers
    - `progress.md` — Session log template
    - `documentation.md` — Overview, What Was Built from answers
@@ -191,7 +210,9 @@ If the user prefers to create files first without discovery questions, they can 
 
 The script **copies from** `templates/` next to the script and replaces `{{TASK_NAME}}` and `{{DATE}}`, so new task folders match the full templates (including HANDOFF reminders), not minimal stubs.
 
-### 2. Fill in task_plan.md (in the task folder)
+### 2. Fill in the plan (in the task folder)
+
+**Either** edit **`task_plan.md`** **or** create **`overview.md`** and **`phase-N-<slug>.md`** files ([phased layout](#phased-plan-layout-instead-of-task_planmd))—not both. If you use the phased layout and `task_plan.md` is already present, **delete it** unless it has a distinct purpose (see [Phased plan layout](#phased-plan-layout-instead-of-task_planmd)).
 
 - **Goal:** One sentence describing the end state
 - **Phases/task groups:** Agent decides based on feature (e.g. Foundation, Backend, Frontend, Tests, or custom)
@@ -208,17 +229,19 @@ The script **copies from** `templates/` next to the script and replaces `{{TASK_
 | **Frontend** | UI components, pages, client-side logic, styling |
 | **Tests** | Creating or running unit, integration, or e2e tests |
 
-Use only the groups that apply (e.g. backend-only feature → Backend + Tests). Each group has **Status:** (pending / in_progress / complete) and checkboxes for tasks.
+Use only the groups that apply (e.g. backend-only feature → Backend + Tests). Each group has **Status:** (pending / in_progress / complete) and checkboxes for tasks. If you use the phased file layout, each phase maps to one `phase-N-<slug>.md` and summaries live in `overview.md`.
 
 ### 3. Tell the user
 
-"I've created `features/audit-logging/task_plan.md`, `findings.md`, and `progress.md`. Read them first, then we'll work through the task groups."
+Point them at the plan you created, e.g. `features/audit-logging/task_plan.md` **or** `features/audit-logging/overview.md` and the `phase-*.md` files, plus `findings.md` and `progress.md`.
 
 ## File Purposes
 
 | File                        | Purpose                                                         | When to Update                      |
 | --------------------------- | --------------------------------------------------------------- | ----------------------------------- |
-| `<folder>/task_plan.md`     | Task groups, progress, decisions                                 | After each task group               |
+| `<folder>/task_plan.md`     | Task groups, progress, decisions (omit if using phased layout)   | After each task group               |
+| `<folder>/overview.md`      | Phase index, per-phase summary and status (phased layout only)   | After each phase or status change   |
+| `<folder>/phase-*.md`      | Per-phase tasks and detail (phased layout only)                   | While working that phase            |
 | `<folder>/findings.md`      | Research, discoveries                                           | After ANY discovery                 |
 | `<folder>/progress.md`      | Session log, test results                                       | Throughout session                  |
 | `<folder>/documentation.md` | What was built, how it works                                    | When behavior/API/usage changes; **before handoff** if you shipped user-visible or integrator-facing changes |
@@ -241,7 +264,7 @@ Use only the groups that apply (e.g. backend-only feature → Backend + Tests). 
 
 Treat **new chat**, **different model**, and **`/clear`** the same: read disk first, assume zero chat memory.
 
-1. Read `<folder>/task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, and `prd.md` immediately.
+1. Read the plan (`task_plan.md` **or** `overview.md` + `phase-*.md`), `findings.md`, `progress.md`, `documentation.md`, and `prd.md` immediately.
 2. Optionally run: `python3 ~/.cursor/skills/feature/scripts/session-catchup.py "$(pwd)"`
 3. If catchup shows unsynced context: run `git diff --stat`, read planning files, update them, then proceed.
 

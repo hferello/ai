@@ -28,7 +28,7 @@ Lowercase, hyphens are fine. The name doesn't need to be perfect — the init sc
 
 ### 2. Answer a few questions, then go
 
-The agent kicks off with a round of clarifying questions (you can skip this if you already know what you want), then scaffolds `features/<your-task>/` with everything it needs to track the work: `task_plan.md`, `findings.md`, `progress.md`, `documentation.md`, and `prd.md`. From there, you iterate.
+The agent kicks off with a round of clarifying questions (you can skip this if you already know what you want), then scaffolds `features/<your-task>/` with everything it needs to track the work: `findings.md`, `progress.md`, `documentation.md`, and `prd.md`, plus **either** a single `task_plan.md` **or** an `overview.md` with per-phase `phase-N-<slug>.md` files when the work is split into phases (if the agent picks the phased layout, **`task_plan.md` is removed**). From there, you iterate.
 
 ---
 

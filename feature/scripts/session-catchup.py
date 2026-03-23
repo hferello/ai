@@ -14,7 +14,21 @@ import os
 from pathlib import Path
 from typing import List, Dict, Optional, Tuple
 
-PLANNING_FILES = ['task_plan.md', 'progress.md', 'findings.md', 'documentation.md']
+PLANNING_FILES = [
+    'task_plan.md',
+    'overview.md',
+    'progress.md',
+    'findings.md',
+    'documentation.md',
+]
+
+
+def _is_planning_file_path(file_path: str) -> bool:
+    """True if path is a known planning doc or features/phase-N-slug.md."""
+    if any(file_path.endswith(name) for name in PLANNING_FILES):
+        return True
+    name = Path(file_path).name
+    return name.startswith('phase-') and name.endswith('.md')
 
 
 def get_cursor_project_dir(project_path: str) -> Path:
@@ -94,10 +108,9 @@ def find_last_planning_update(messages: List[Dict]) -> Tuple[int, Optional[str]]
 
                         if tool_name in ('Write', 'Edit'):
                             file_path = tool_input.get('file_path', '')
-                            for pf in PLANNING_FILES:
-                                if file_path.endswith(pf):
-                                    last_update_line = msg['_line_num']
-                                    last_update_file = pf
+                            if _is_planning_file_path(file_path):
+                                last_update_line = msg['_line_num']
+                                last_update_file = Path(file_path).name
 
     return last_update_line, last_update_file
 
@@ -170,9 +183,10 @@ def main():
 
     # Check if planning files exist (root, named folders, or features/<task>/)
     project = Path(project_path)
+    plan_names = ('task_plan.md', 'overview.md')
     has_root = any((project / f).exists() for f in PLANNING_FILES)
     has_folders = any(
-        (d / 'task_plan.md').exists()
+        any((d / name).exists() for name in plan_names)
         for d in project.iterdir()
         if d.is_dir() and not d.name.startswith('.')
     )
@@ -180,7 +194,10 @@ def main():
     pwf = project / 'features'
     has_pwf = (
         pwf.is_dir() and
-        any((d / 'task_plan.md').exists() for d in pwf.iterdir() if d.is_dir())
+        any(
+            any((d / name).exists() for name in plan_names)
+            for d in pwf.iterdir() if d.is_dir()
+        )
     )
     if not has_root and not has_folders and not has_pwf:
         return
@@ -242,7 +259,7 @@ def main():
 
     print("\n--- RECOMMENDED ---")
     print("1. Run: git diff --stat")
-    print("2. Read planning files (e.g. <folder>/task_plan.md, progress.md, findings.md)")
+    print("2. Read planning files (e.g. <folder>/task_plan.md or overview.md + phase-*.md, progress.md, findings.md)")
     print("3. Update planning files based on above context")
     print("4. Continue with task")
 

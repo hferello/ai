@@ -1,11 +1,11 @@
 # Progress Log
 
-> **HANDOFF — every agent, before you stop:** The next agent has **no access** to this chat. Update this file with: date, what you did, files changed, **exact next step**, and blockers. Also sync `task_plan.md` (group status), `findings.md` (facts since last write), and `documentation.md` (if behavior/API/usage changed).
+> **HANDOFF — every agent, before you stop:** The next agent has **no access** to this chat. Update this file with: date, what you did, files changed, **exact next step**, and blockers. Also sync the plan (`task_plan.md` **or** `overview.md` + `phase-*.md` for group/phase status), `findings.md` (facts since last write), and `documentation.md` (if behavior/API/usage changed).
 
 <!-- 
   WHAT: Your session log - a chronological record of what you did, when, and what happened.
   WHY: Answers "What have I done?" in the 5-Question Reboot Test. Helps you resume after breaks.
-  WHEN: Update after completing each task group or encountering errors. More detailed than task_plan.md.
+  WHEN: Update after completing each task group or encountering errors. More detailed than the task plan / overview.
 -->
 
 ## Session: {{DATE}}
@@ -16,7 +16,7 @@
 -->
 
 ### [Phase/Group 1]
-<!-- Agent adds sections to match task_plan.md phases -->
+<!-- Agent adds sections to match task_plan.md phases or overview.md phases -->
 - **Status:** in_progress
 - **Started:** [timestamp]
 - Actions taken:
@@ -47,7 +47,7 @@
 ## Error Log
 <!-- 
   WHAT: Detailed log of every error encountered, with timestamps and resolution attempts.
-  WHY: More detailed than task_plan.md's error table. Helps you learn from mistakes.
+  WHY: More detailed than the plan file's error table. Helps you learn from mistakes.
   WHEN: Add immediately when an error occurs, even if you fix it quickly.
   EXAMPLE:
     | 2026-01-15 10:35 | FileNotFoundError | 1 | Added file existence check |
@@ -65,9 +65,9 @@
   WHEN: Update periodically, especially when resuming after a break or context reset.
   
   THE 5 QUESTIONS:
-  1. Where am I? → Current task group in task_plan.md
+  1. Where am I? → Current task group or phase in `task_plan.md` or `overview.md`
   2. Where am I going? → Remaining task groups
-  3. What's the goal? → Goal statement in task_plan.md
+  3. What's the goal? → Goal statement in `task_plan.md` or `overview.md`
   4. What have I learned? → See findings.md
   5. What have I done? → See progress.md (this file)
 -->
