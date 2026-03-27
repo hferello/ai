@@ -1,6 +1,8 @@
 # Phase [N]: [Phase title]
 
 > File name: `phase-[N]-<kebab-slug>.md` (e.g. `phase-1-schema-and-migrations.md`). Linked from `overview.md`.
+>
+> **When this phase is done:** Run **Mandatory task: close out** in the `/feature` skill—update **this file** and **`overview.md`** (same status in both), then **`progress.md`** (and the rest per that checklist).
 
 ## Purpose
 [Why this phase exists; what must be true before the next phase]

@@ -1,5 +1,7 @@
 # Task Plan: {{TASK_NAME}}
 
+> **When you finish a task group:** Run the **Mandatory task: close out each task group or phase** in the `/feature` skill—update **this file** (status + checkboxes) and **`progress.md`** (and `findings.md` / `documentation.md` per that checklist).
+
 ## Goal
 [One sentence describing the end state]
 

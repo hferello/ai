@@ -29,14 +29,35 @@ Cursor does not support automatic hooks. You must **manually** follow these rule
 1. **Before starting:** If a task folder exists, read the **plan** (`task_plan.md` **or** `overview.md` plus the relevant `phase-*.md` files—see [Phased plan layout](#phased-plan-layout-instead-of-task_planmd)), then `findings.md`, `progress.md`, `documentation.md`, and `prd.md`.
 2. **Before major decisions:** Re-read the plan (`task_plan.md` or `overview.md` + active phase file) to refresh goals in your attention window.
 3. **After every 2 view/browser/search operations:** Update `findings.md` immediately (2-Action Rule).
-4. **After completing a task group or phase:** Update status in `task_plan.md` **or** in `overview.md` and the finished `phase-*.md` file, and log actions in `progress.md`.
+4. **After completing a task group or phase:** Run the **[Mandatory task: close out each task group or phase](#mandatory-task-close-out-each-task-group-or-phase)** checklist **in full** before treating that unit as done or ending your turn.
 5. **After any error:** Log in the plan (`task_plan.md` or `overview.md` / current `phase-*.md`) and change your approach—never repeat the same failing action.
+
+### Mandatory task: close out each task group or phase
+
+Implementation work for a **task group** or **phase** is **not finished** until the right planning files are updated. Run this checklist **every time** you complete a group or phase (including before you pause, hand off, or say you are done).
+
+**Single-file plan (`task_plan.md` only)**
+
+- [ ] **`task_plan.md`:** Mark finished tasks `[x]`; set this group’s **Status** to `complete` (and set the next group to `in_progress` if there is one); record new **Decisions** / **Errors** from this stretch.
+- [ ] **`progress.md`:** Session entry—what you did, files/paths touched, **exact next step** for the next session or agent.
+- [ ] **`findings.md`:** Anything new since the last write (facts, URLs, decisions).
+- [ ] **`documentation.md`:** Update **only if** behavior, APIs, env vars, or user-facing flows changed.
+
+**Phased layout (`overview.md` + `phase-*.md`)**
+
+- [ ] **`phase-N-<slug>.md` (the phase you finished):** Mark tasks `[x]`; set **Status** to `complete`.
+- [ ] **`overview.md`:** Update that phase’s **Status** in the table and **Current phase** if you are moving on—**must match** the phase file. Do **not** update only `overview.md` or only the phase file.
+- [ ] **`progress.md`:** Same as single-file plan.
+- [ ] **`findings.md`:** Same as single-file plan.
+- [ ] **`documentation.md`:** Same as single-file plan.
+
+**When the entire feature is complete:** mark every group/phase complete in the plan, and state completion in `progress.md`.
 
 ### Agent handoff (new chat, different model, or “continue later”)
 
 **Switching agents is the same as `/clear` for memory:** the next agent does not see this conversation or past tool output. The **only** durable state is what you wrote under `features/<task>/`.
 
-**Do not end a turn** (or mark a phase “done”) until this **handoff checklist** is satisfied:
+**Do not end a turn** (or mark a phase “done”) until you have run **[Mandatory task: close out](#mandatory-task-close-out-each-task-group-or-phase)** for that unit **and** this **handoff checklist** is satisfied:
 
 | Step | File | What to write |
 |------|------|----------------|
@@ -258,7 +279,7 @@ Point them at the plan you created, e.g. `features/audit-logging/task_plan.md` *
 
 ## Critical Rules
 
-(Unchanged: Create plan first, 2-Action Rule, Read before decide, Update after act, Log errors, Never repeat failures, Continue after completion.)
+Create plan first, 2-Action Rule, Read before decide, Update after act, Log errors, Never repeat failures, Continue after completion. **After each task group or phase:** always run [Mandatory task: close out](#mandatory-task-close-out-each-task-group-or-phase)—no exceptions for “small” finishes.
 
 ## Resuming After /clear (or Switching Agents)
 

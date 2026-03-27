@@ -1,5 +1,7 @@
 # Plan overview: {{TASK_NAME}}
 
+> **When you finish a phase:** Run the **Mandatory task: close out** in the `/feature` skill—update **this file’s phase table** and the matching **`phase-*.md`** so status stays in sync, then **`progress.md`** (and the rest per that checklist).
+
 ## Goal
 [One sentence describing the end state]
 
