@@ -1,6 +1,6 @@
 # Context
 
-A Cursor skill that captures product context so AI agents stay aligned. Run `/context` and it walks you through 9 direct questions — one at a time — writing everything to a single file: `docs/context.md`.
+A Cursor skill that captures product context so AI agents stay aligned. Run `/context` and it walks you through 8 direct questions — one at a time — writing everything to a single file: `docs/context.md`.
 
 Not sure about an answer? Say "you tell me" and the agent will research it for you.
 
@@ -40,7 +40,9 @@ That copies `cursor-rule.mdc` to `<project>/.cursor/rules/context.mdc`. Commit t
 
 ### 2. Answer the questions (or don't)
 
-The agent asks 9 questions — product, mission, must-haves, boundaries, principles, stack, constraints, and more. One per turn. You can answer, skip, or say "you tell me." After each answer `docs/context.md` is updated on disk.
+The agent asks 8 questions in this order: product, mission, principles, must-haves, constraints, boundaries, stack, and success criteria. One per turn. You can answer, skip, or say "you tell me." After each answer `docs/context.md` is updated on disk.
+
+If a codebase already exists, the agent uses it to ground the stack question and folds any confirmed details into `## Tech Stack & Conventions` only when they're useful.
 
 ### 3. Resume if interrupted
 

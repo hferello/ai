@@ -59,15 +59,13 @@ If they describe a feature instead of a goal, redirect: "That's something it doe
 
 → Update: **Mission**
 
-### 3. The Codebase
+### 3. The Principles
 
-This step is autonomous — not a question. Scan the repo:
+> "Do you have any guiding principles for this product? How should agents make decisions when something isn't spelled out?"
 
-- **Codebase exists** (look for `src/`, `app/`, `package.json`, config files, etc.): scan for the stack, key patterns, schemas, or APIs. Report what you found and ask: "Anything I missed or got wrong?"
-- **No codebase / empty project**: say "No existing code yet." Then offer: "Want me to research common approaches for this?" If yes, do a web search.
-- **User says skip**: move on.
+If they're unsure, offer examples: "For instance — 'always prefer simplicity over flexibility', 'never break backwards compatibility', 'accessibility is non-negotiable', 'ship fast, refine later.'"
 
-→ Update: **Codebase & Stack**
+→ Update: **Principles**
 
 ### 4. The Must-Haves
 
@@ -77,31 +75,7 @@ If they list more than 3: "That's [N]. Which 3 matter most?" Hold the line.
 
 → Update: **Must-Haves**
 
-### 5. The Boundaries
-
-> "What's off-limits? What should agents never build or change?"
-
-These become hard stops during implementation. If the user says "I don't know," suggest common traps based on what you've heard so far.
-
-→ Update: **Out of Scope**
-
-### 6. The Principles
-
-> "Do you have any guiding principles for this product? How should agents make decisions when something isn't spelled out?"
-
-If they're unsure, offer examples: "For instance — 'always prefer simplicity over flexibility', 'never break backwards compatibility', 'accessibility is non-negotiable', 'ship fast, refine later.'"
-
-→ Update: **Principles**
-
-### 7. The Stack
-
-> "What's the tech stack? Any conventions or patterns agents should always follow?"
-
-This is about preferences and rules that aren't obvious from the code — naming conventions, architectural patterns, libraries to prefer or avoid.
-
-→ Update: **Tech Stack & Conventions**
-
-### 8. The Constraints
+### 5. The Constraints
 
 > "Any limitations agents should know about? Budget, timeline, technical constraints, third-party dependencies?"
 
@@ -109,7 +83,23 @@ If they say "nothing," push: "Every product has at least one. A service we depen
 
 → Update: **Constraints**
 
-### 9. The Win
+### 6. The Boundaries
+
+> "What's off-limits? What should agents never build or change?"
+
+These become hard stops during implementation. If the user says "I don't know," suggest common traps based on what you've heard so far.
+
+→ Update: **Out of Scope**
+
+### 7. The Stack
+
+> "What's the tech stack? Any conventions, patterns, or existing architecture agents should always follow?"
+
+If a codebase exists, scan it before asking this. Use what you find to ground the question, then fold any confirmed details into this section only if they're useful for future agents. This is about preferences and rules that aren't obvious from the code — naming conventions, architectural patterns, libraries to prefer or avoid.
+
+→ Update: **Tech Stack & Conventions**
+
+### 8. The Win
 
 > "How do we know this is working? What's a real signal, not a vanity metric?"
 
@@ -205,12 +195,11 @@ Sections to add as they're answered (use these exact headings):
 | Question        | Section heading               |
 | --------------- | ----------------------------- |
 | The Mission     | `## Mission`                  |
-| The Codebase    | `## Codebase & Stack`         |
-| The Must-Haves  | `## Must-Haves`               |
-| The Boundaries  | `## Out of Scope`             |
 | The Principles  | `## Principles`               |
-| The Stack       | `## Tech Stack & Conventions` |
+| The Must-Haves  | `## Must-Haves`               |
 | The Constraints | `## Constraints`              |
+| The Boundaries  | `## Out of Scope`             |
+| The Stack       | `## Tech Stack & Conventions` |
 | The Win         | `## Success Criteria`         |
 
 ## When to Use
