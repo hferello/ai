@@ -1,16 +1,23 @@
 {
+  "version": 1,
   "hooks": {
-    "beforeShellExecution": {
-      "command": "skills/feature/hooks/planning-reminder.sh",
-      "args": []
-    },
-    "beforeMCPExecution": {
-      "command": "skills/feature/hooks/planning-reminder.sh",
-      "args": []
-    },
-    "stop": {
-      "command": "skills/feature/hooks/planning-check-complete.sh",
-      "args": []
-    }
+    "beforeShellExecution": [
+      {
+        "command": "skills/feature/hooks/planning-reminder.sh",
+        "args": []
+      }
+    ],
+    "beforeMCPExecution": [
+      {
+        "command": "skills/feature/hooks/planning-reminder.sh",
+        "args": []
+      }
+    ],
+    "stop": [
+      {
+        "command": "skills/feature/hooks/planning-check-complete.sh",
+        "args": []
+      }
+    ]
   }
 }

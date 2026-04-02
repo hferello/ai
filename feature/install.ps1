@@ -54,7 +54,13 @@ if ((Test-Path $CursorHooks) -and (Test-Path $HooksTemplate)) {
     $template.hooks.PSObject.Properties | ForEach-Object {
         if (-not $mergedHooks.ContainsKey($_.Name)) { $mergedHooks[$_.Name] = $_.Value }
     }
-    $output = @{ hooks = $mergedHooks }
+    $mergedVersion = 1
+    if ($null -ne $existing.PSObject.Properties['version'] -and $null -ne $existing.version) {
+        $mergedVersion = $existing.version
+    } elseif ($null -ne $template.PSObject.Properties['version'] -and $null -ne $template.version) {
+        $mergedVersion = $template.version
+    }
+    $output = [ordered]@{ version = $mergedVersion; hooks = $mergedHooks }
     $output | ConvertTo-Json -Depth 10 | Set-Content $CursorHooks -Encoding UTF8
     Write-Host "Hooks merged into $CursorHooks (existing hooks preserved)"
 }

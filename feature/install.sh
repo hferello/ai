@@ -58,6 +58,9 @@ with open(\"$CURSOR_HOOKS\") as f:
     existing = json.load(f)
 with open(\"$HOOKS_TEMPLATE\") as f:
     template = json.load(f)
+# Cursor requires numeric top-level version and hook values as arrays of scripts.
+if 'version' not in existing:
+    existing['version'] = template.get('version', 1)
 hooks = existing.get('hooks', {})
 for k, v in template.get('hooks', {}).items():
     if k not in hooks:
