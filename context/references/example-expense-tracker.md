@@ -1,7 +1,3 @@
-# Product Context
-
-> **One-liner:** Snap a receipt, auto-categorise the deduction, export at tax time.
-
 ## Mission
 
 Help solo freelancers stop losing track of expenses so tax time isn't a scramble.
