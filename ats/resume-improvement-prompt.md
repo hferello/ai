@@ -135,7 +135,6 @@ State the angle in plain English: "I'm positioning the candidate as [X] for this
 STEP 4 — REWRITTEN RESUME (full text)
 Output the complete rewritten resume in plain text, following the formatting rules above. Structure:
 
-```
 [FULL NAME]
 [City, State/Country] | [phone] | [email] | [linkedin.com/in/handle] | [optional: github.com/handle, portfolio URL]
 
@@ -172,7 +171,6 @@ CERTIFICATIONS (separate section if 2+)
 
 PROJECTS / PUBLICATIONS / VOLUNTEER (only if directly JD-relevant)
 - Same bulleted structure.
-```
 
 Length target: one strong page if <5 years experience, one strong page or two if 5-10 years, two pages if 10+ years. Federal/academic excepted.
 
