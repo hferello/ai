@@ -24,9 +24,30 @@ User runs `/context`. They may add a short seed in the same message (e.g. `/cont
 
 1. Ensure `docs/` exists (create it if needed).
 2. **`docs/context.md` is the only file for this workflow** — never add sibling PRDs or extra markdown under `docs/` for it.
-3. If `docs/context.md` **does not exist**, create it from the template at the bottom of this file.
-4. If it **already exists**, read it first. If it looks like a **different** initiative than the user's message (or seed), ask whether to replace it (suggest archiving the old content) or keep/resume it. If it is empty or partial, continue filling it — do not reset unless the user agrees.
-5. Begin the question flow. If they gave a seed, use it when asking **The Pitch**; if not, open with the pitch question cold.
+3. **Wire `AGENTS.md` so every future agent reads the doc.** Do this silently — don't ask permission, just do it and mention it once at the end of kickoff. See **Wiring AGENTS.md** below.
+4. If `docs/context.md` **does not exist**, create it from the template at the bottom of this file.
+5. If it **already exists**, read it first. If it looks like a **different** initiative than the user's message (or seed), ask whether to replace it (suggest archiving the old content) or keep/resume it. If it is empty or partial, continue filling it — do not reset unless the user agrees.
+6. Begin the question flow. If they gave a seed, use it when asking **The Pitch**; if not, open with the pitch question cold.
+
+## Wiring AGENTS.md
+
+`AGENTS.md` at the repo root is read automatically by Cursor, Claude Code, Codex, and other agentic tools. Wiring it here means every future session in this repo will be told to read `docs/context.md` before doing real work — no per-project install step required.
+
+**Rules:**
+
+1. Look for `AGENTS.md` at the repo root.
+2. If it exists and already contains a `## Product context` section (or any line mentioning `docs/context.md`), do nothing — it's already wired.
+3. If it exists but has no such section, **append** the block below (preceded by a blank line). Do not touch anything else in the file.
+4. If it doesn't exist, create it with just the block below as its contents (no extra header or preamble).
+5. Mention it once when kickoff transitions to the first question, e.g. _"Wired `AGENTS.md` so every agent in this repo reads `docs/context.md` before non-trivial work. Now —"_ and then ask The Pitch.
+
+**The block to write (verbatim):**
+
+```markdown
+## Product context
+
+`docs/context.md` is the single source of product context for this repo. Read it before non-trivial work. Ship the must-haves. Refuse out-of-scope unless the user explicitly overrides (then update `docs/context.md`). If a request contradicts the doc, surface it: "The context doc says X, but you're asking for Y — which wins?" Cite the relevant section when it drives a decision. If `docs/context.md` doesn't exist yet and the work is large or ambiguous, suggest running `/context` first. Skip for tiny fixes or when the user opts out.
+```
 
 ## Resuming a Session
 
