@@ -2,7 +2,8 @@
 name: arch-flow
 description: >-
    Drafts architecture documentation with ASCII box diagrams and pseudocode (no raw SQL or implementation syntax).
-   Use when the user asks for architecture diagrams, flow documentation, architecture-flow.md, or documents cron, API, or feature flows.
+   Optionally creates an editable FigJam diagram via the Figma plugin when requested.
+   Use when the user asks for architecture diagrams, flow documentation, arch-flow.md, FigJam architecture flows, or documents cron, API, or feature flows.
 ---
 
 # Arch flow documentation
@@ -11,10 +12,11 @@ description: >-
 
 When producing architecture or flow docs:
 
-1. **Output**: Create `architecture-flow.md` beside the feature (same directory as the code being documented) unless the user specifies another path.
+1. **Output**: Create `arch-flow.md` beside the feature (same directory as the code being documented) unless the user specifies another path.
 2. **Content**: Pseudocode for queries and control flow; ASCII boxes for flows per **Format rules** below.
 3. **Structure**: Choose sections from **Section structure** that fit the feature; use **Data flow step template** for per-step flows.
 4. **Before finishing**: Apply **Checklist before completing**.
+5. **Optional — FigJam diagram**: If the user asks for a visual diagram (or says "and create a FigJam diagram"), follow **Optional FigJam diagram** below after step 4.
 
 ## Installation (humans)
 
@@ -138,4 +140,39 @@ For each logical step in the flow:
 - [ ] ASCII box diagrams use ┌─┐│└┘┬┴├┤▼
 - [ ] Box alignment: every line in a box has same character count; │ align vertically; ┌┐└┘ share left/right columns
 - [ ] Sections match feature type (cron vs API vs generic)
-- [ ] `architecture-flow.md` exists at the chosen path with the full doc content
+- [ ] `arch-flow.md` exists at the chosen path with the full doc content
+- [ ] If FigJam was requested: diagram link added under **Visual diagram** in `arch-flow.md`
+
+## Optional FigJam diagram
+
+Turn the architecture flow into an editable FigJam board. **Optional** — only when the user explicitly asks (e.g. "create a FigJam diagram", "visual diagram in FigJam"). Do not block finishing the markdown doc on this step.
+
+### Prerequisites
+
+- Figma plugin enabled in Cursor (`generate_diagram` MCP tool must be available).
+- If the tool is missing, finish the markdown doc and tell the user to enable the Figma plugin, then re-run with the existing `arch-flow.md`.
+
+### Pick the reference file
+
+Read the matching reference **before** writing Mermaid:
+
+| What you are diagramming | Read |
+| ------------------------ | ---- |
+| Step-by-step data flow, error paths, early exits | [references/figjam-flowchart.md](references/figjam-flowchart.md) |
+| Services, routes, datastores, queues, external APIs | [references/figjam-architecture.md](references/figjam-architecture.md) |
+
+### Workflow
+
+1. Finish `arch-flow.md` first — the markdown is the source of truth.
+2. Read the reference file from the table above.
+3. Translate the relevant section(s) into Mermaid. Node labels must match the ASCII boxes and pseudocode in the doc.
+4. Call `generate_diagram` with `name` and `mermaidSyntax`. For architecture diagrams, also pass `useArchitectureLayoutCode: "FIGMA_DIAGRAM_2026"`. Do **not** call `create_new_file` first.
+5. Add a **Visual diagram** section to `arch-flow.md`:
+
+```markdown
+## Visual diagram
+
+Editable FigJam version of this flow: [Open in FigJam](https://figma.com/board/...)
+```
+
+6. Share the link in chat. On iterations, reuse the same file via `fileKey` from the FigJam URL.

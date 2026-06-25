@@ -36,7 +36,11 @@ Full docs: [feature/README.md](../feature/README.md)
 
 ### /architecture-flow
 
-Writes architecture notes with simple diagrams and plain language instead of raw code. Useful when you want to see how the pieces fit before building.
+Writes architecture notes with simple diagrams and plain language instead of raw code. Useful when you want to see how the pieces fit before building. Optionally creates an editable FigJam diagram when you ask and the Figma plugin is enabled.
+
+```bash
+git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-arch-flow && bash /tmp/cursor-arch-flow/arch-flow/install.sh && rm -rf /tmp/cursor-arch-flow
+```
 
 Full docs: [arch-flow/README.md](../arch-flow/README.md)
 
@@ -48,9 +52,15 @@ Skills the wider community rates highly, picked for designers. You set each one 
 
 ### designer-skills
 
-A community collection of agentic skills made for designers. It covers the whole flow: research, design systems, UI, interaction, and delivery. This is the closest match to how a designer actually works, rather than a developer tool bent to fit.
+A community collection of agentic skills made for designers, with 97 skills and 30 commands across nine plugins. It covers the whole flow: research, design systems, UI, interaction, and delivery. This is the closest match to how a designer actually works, rather than a developer tool bent to fit.
 
-Browse the collection and copy the skills you want into your `~/.cursor/skills` folder. See the repo for setup.
+Built for Claude Code and Gemini CLI. In Claude Code, add the marketplace, then type `/plugin` and pick the collections you want from the Discover tab:
+
+```text
+/plugin marketplace add Owl-Listener/designer-skills
+```
+
+For most designers, start with `design-research`, `ux-strategy`, `ui-design`, and `design-ops`.
 
 Source: [github.com/Owl-Listener/designer-skills](https://github.com/Owl-Listener/designer-skills)
 
@@ -85,13 +95,22 @@ Source: [github.com/obra/superpowers](https://github.com/obra/superpowers)
 
 ### agent-skills
 
-A large, well-kept set of production-grade engineering skills for AI agents, maintained by Addy Osmani. Useful to pull from as your project grows past the design stage. See the repo for setup.
+A large, well-kept set of production-grade engineering skills for AI agents, maintained by Addy Osmani. Useful to pull from as your project grows past the design stage.
+
+In Cursor, copy any `SKILL.md` from the repo into your `.cursor/rules/` folder. In Claude Code, use the marketplace:
+
+```text
+/plugin marketplace add addyosmani/agent-skills
+/plugin install agent-skills@addy-agent-skills
+```
 
 Source: [github.com/addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)
 
 ### andrej-karpathy-skills
 
-A single file you drop in to improve how the agent behaves, based on Andrej Karpathy's notes on where AI models go wrong when coding. A quick win for steadier, more predictable output.
+A set of guidelines that improve how the agent behaves, based on Andrej Karpathy's notes on where AI models go wrong when coding. A quick win for steadier, more predictable output.
+
+It ships a ready-made Cursor rule. Copy `.cursor/rules/karpathy-guidelines.mdc` from the repo into your own project's `.cursor/rules/` folder.
 
 Source: [github.com/multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
 
@@ -99,17 +118,24 @@ Source: [github.com/multica-ai/andrej-karpathy-skills](https://github.com/multic
 
 Makes the agent think like a lazy senior developer, where the best code is the code you never wrote. It pushes back on over-building and keeps things simple, which is exactly what you want when shipping.
 
+In Cursor, copy the rule from the repo's `.cursor/rules/` folder into your project. In Claude Code, use the marketplace:
+
+```text
+/plugin marketplace add DietrichGebert/ponytail
+/plugin install ponytail@ponytail
+```
+
 Source: [github.com/DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
 
 ### Cursor cookbook
 
-Official recipes and patterns from the Cursor team. A good reference when you want to see the intended way to do something rather than guess.
+Official examples from the Cursor team: hooks, cloud agents, and SDK projects. This is a reference repo, not a skill to install. Browse it and copy the pieces you need when you want to see the intended way to do something.
 
 Source: [github.com/cursor/cookbook](https://github.com/cursor/cookbook)
 
 ### awesome-nanobanana-pro
 
-A curated list of prompts for Nano Banana Pro image generation. Handy when you need quick visual assets or mockup imagery for a design.
+A big, curated list of prompts for Nano Banana Pro image generation. This is a prompt library, not a skill to install. Browse it and copy the prompts you need for assets or mockup imagery.
 
 Source: [github.com/ZeroLu/awesome-nanobanana-pro](https://github.com/ZeroLu/awesome-nanobanana-pro)
 
