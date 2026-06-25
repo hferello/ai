@@ -1,6 +1,6 @@
 #!/bin/bash
 # Installs this repo's arch-flow skill to ~/.cursor/skills/arch-flow/
-# Trigger: /architecture-flow or @arch-flow
+# Trigger: /arch-flow or @arch-flow
 # Run from anywhere: bash install.sh
 
 set -e
@@ -35,7 +35,7 @@ echo "Installation complete!"
 echo ""
 echo "The skill is now available in Cursor. To use:"
 echo "  1. Restart Cursor (or reload the window)"
-echo "  2. In Agent chat, type /architecture-flow or @arch-flow"
+echo "  2. In Agent chat, type /arch-flow or @arch-flow"
 echo ""
 echo "Optional FigJam diagrams require the Figma plugin in Cursor."
 echo ""

@@ -34,7 +34,7 @@ git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-feature-skill
 
 Full docs: [feature/README.md](../feature/README.md)
 
-### /architecture-flow
+### /arch-flow
 
 Writes architecture notes with simple diagrams and plain language instead of raw code. Useful when you want to see how the pieces fit before building. Optionally creates an editable FigJam diagram when you ask and the Figma plugin is enabled.
 
