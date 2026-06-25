@@ -2,6 +2,10 @@
 
 Helps Cursor write architecture notes with simple diagrams and plain language (not raw code). Optionally creates an editable FigJam diagram when you ask for one and the Figma plugin is enabled.
 
+**Demo:**
+
+![/architecture-flow demo](../assets/arch-flow-demo.gif)
+
 **Install:** In Cursor, open **Terminal → New Terminal**, paste the line below, press Enter, then **fully quit and reopen Cursor**.
 
 ```bash
