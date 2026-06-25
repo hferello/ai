@@ -2,12 +2,12 @@
 
 Skills are targeted prompts for a specific type of work. A skill for planning a feature. A skill for reviewing quality. A skill for writing a spec. They prime the agent before it starts, the way a brief primes a team before a project kicks off.
 
-You install a skill once and call it by name with a slash, like `/feature`. Plugins and MCP servers work the same way: set them up once, then the agent uses them when the task calls for it.
+You install a skill once and call it by name with a slash, like `/feature`. Plugins work the same way: set them up once, then the agent uses them when the task calls for it.
 
 This page lists the ones worth your time as a designer. They are split into three groups:
 
 1. **Built in this repo.** Skills you can install right now.
-2. **Recommended skills and plugins.** Popular, well-regarded tools from the wider community.
+2. **Recommended skills and plugins.** Community skills with strong reviews, picked for designers.
 3. **Copy-paste prompts.** Short prompts for design reviews that do not need a plugin.
 
 ---
@@ -44,11 +44,36 @@ Full docs: [arch-flow/README.md](../arch-flow/README.md)
 
 ## 2. Recommended skills and plugins
 
-These are made by other teams and have strong reviews from designers and developers. Each one is set up once.
+Skills the wider community rates highly, picked for designers. You set each one up once.
 
-### Superpowers (planning and brainstorming)
+### designer-skills
 
-A popular plugin that makes the agent think before it codes. Describe an idea and it asks clarifying questions, offers a few approaches, then breaks the work into small tasks. Great for the "brief" stage and for planning.
+A community collection of agentic skills made for designers. It covers the whole flow: research, design systems, UI, interaction, and delivery. This is the closest match to how a designer actually works, rather than a developer tool bent to fit.
+
+Browse the collection and copy the skills you want into your `~/.cursor/skills` folder. See the repo for setup.
+
+Source: [github.com/Owl-Listener/designer-skills](https://github.com/Owl-Listener/designer-skills)
+
+### UI UX Pro Max
+
+A skill that gives the agent real design intelligence for building professional UI and UX across platforms. Reach for it when you want output that looks considered, not generic.
+
+Install in your terminal, then call it in chat:
+
+```bash
+sudo npm install -g uipro-cli
+uipro init --ai cursor
+```
+
+```text
+/ui-ux-pro-max Build a landing page for my SaaS product
+```
+
+Source: [github.com/nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)
+
+### Superpowers
+
+Makes the agent think before it codes. It asks questions, offers a few approaches, then breaks the work into small tasks. Great for the brief and planning stage.
 
 Install in Cursor's agent chat:
 
@@ -58,56 +83,35 @@ Install in Cursor's agent chat:
 
 Source: [github.com/obra/superpowers](https://github.com/obra/superpowers)
 
-### Figma MCP (design to code)
+### agent-skills
 
-Figma's official server. It lets the agent read your Figma file directly, so it builds from real components, variables, and layout instead of guessing from a screenshot. This is the best path from a design to faithful code.
+A large, well-kept set of production-grade engineering skills for AI agents, maintained by Addy Osmani. Useful to pull from as your project grows past the design stage. See the repo for setup.
 
-Install in Cursor's agent chat:
+Source: [github.com/addyosmani/agent-skills](https://github.com/addyosmani/agent-skills)
 
-```text
-/add-plugin figma
-```
+### andrej-karpathy-skills
 
-More: [Figma MCP server guide](https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server)
+A single file you drop in to improve how the agent behaves, based on Andrej Karpathy's notes on where AI models go wrong when coding. A quick win for steadier, more predictable output.
 
-### shadcn MCP (build and refine UI)
+Source: [github.com/multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
 
-The official server from shadcn/ui. The agent can browse and install real components from the registry with plain language, like "add a dialog and a card". Keeps your UI consistent and saves you wiring components by hand.
+### ponytail
 
-Set up in your project terminal:
+Makes the agent think like a lazy senior developer, where the best code is the code you never wrote. It pushes back on over-building and keeps things simple, which is exactly what you want when shipping.
 
-```bash
-npx shadcn@latest mcp init --client cursor
-```
+Source: [github.com/DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
 
-More: [ui.shadcn.com/docs/mcp](https://ui.shadcn.com/docs/mcp)
+### Cursor cookbook
 
-### axe MCP (accessibility audits)
+Official recipes and patterns from the Cursor team. A good reference when you want to see the intended way to do something rather than guess.
 
-Deque's official accessibility server. The agent scans a page against WCAG and gets code-level fixes. Deque is the team behind the axe engine that most accessibility tools are built on. Note: this one needs a paid Axe DevTools subscription.
+Source: [github.com/cursor/cookbook](https://github.com/cursor/cookbook)
 
-Source: [github.com/dequelabs/axe-mcp-server-public](https://github.com/dequelabs/axe-mcp-server-public)
+### awesome-nanobanana-pro
 
-Free alternative built on the same axe-core engine: [github.com/Duds/accessibility-mcp](https://github.com/Duds/accessibility-mcp)
+A curated list of prompts for Nano Banana Pro image generation. Handy when you need quick visual assets or mockup imagery for a design.
 
-### Chrome DevTools MCP (responsive and performance checks)
-
-Google's official server. It lets the agent open your page in a real Chrome browser, resize it, and inspect layout and performance. Use it to check how a design holds up across screen sizes and to catch slow pages.
-
-Add this to your MCP config:
-
-```json
-{
-  "mcpServers": {
-    "chrome-devtools": {
-      "command": "npx",
-      "args": ["chrome-devtools-mcp@latest"]
-    }
-  }
-}
-```
-
-Source: [github.com/ChromeDevTools/chrome-devtools-mcp](https://github.com/ChromeDevTools/chrome-devtools-mcp)
+Source: [github.com/ZeroLu/awesome-nanobanana-pro](https://github.com/ZeroLu/awesome-nanobanana-pro)
 
 ---
 
@@ -154,8 +158,8 @@ Suggest a better version for each, and keep the tone calm and plain.
 
 - Starting a project? Run `/context`.
 - Planning a feature? Run `/feature` or use Superpowers.
-- Building from a design? Use the Figma MCP.
-- Building UI? Use the shadcn MCP.
-- Reviewing the result? Use the copy-paste prompts, plus axe MCP and Chrome DevTools MCP for the deeper checks.
+- Want steadier behaviour from the agent? Add ponytail or the Karpathy skills.
+- Designing UI? Use UI UX Pro Max or the designer-skills collection.
+- Reviewing the result? Use the copy-paste prompts below.
 
 You do not need all of these on day one. Add them as the work calls for them.
