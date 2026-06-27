@@ -16,7 +16,7 @@ This page lists the ones worth your time as a designer. They are split into thre
 
 ### /context
 
-Builds your product context file. It asks you eight plain questions, one at a time, then writes `docs/context.md`. This is the Structure layer from [structure.md](structure.md). Best run once at the start of a project.
+Builds your product context file. It asks you eight plain questions, one at a time, then writes `docs/context.md`. This is the Data layer — see [data/software.md](data/software.md) for a filled example. Best run once at the start of a project.
 
 ```bash
 git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-skill && bash /tmp/cursor-skill/context/install.sh && rm -rf /tmp/cursor-skill

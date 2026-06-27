@@ -1,21 +1,14 @@
-# Structure
+# Data example: Software
 
-Structure is the document you write before the first line of code. It tells the agent what you are building and why, so it builds to your intent instead of guessing.
+**TidyList** — a todo list for small teams.
 
-There are two parts:
+Files: `docs/context.md` · `tasks/prd-shared-lists.md`
 
-1. **A context file** for the whole product. Mission, principles, tech stack, constraints. You write this once.
-2. **A PRD (product requirements document)** for each feature. One short doc per feature, written just before you build it.
-
-Below is a filled example for a small SaaS todo list app called **TidyList**. Read it, then copy the shape for your own project.
-
-You do not have to write these by hand. The `/context` skill builds the context file by asking you questions, and the `/feature` skill builds a feature plan the same way. See [skills.md](skills.md).
+Skills that help produce these files: `/context` and `/feature`. See [skills.md](../skills.md).
 
 ---
 
-## Part 1: The context file
-
-This lives at `docs/context.md`. It is the single source of truth for the product. Every agent reads it before doing real work.
+## Context file
 
 ```markdown
 # Product Context
@@ -69,9 +62,7 @@ Help small teams capture and finish shared tasks without arguing over who owns w
 
 ---
 
-## Part 2: A PRD for one feature
-
-You write one of these per feature, just before you build it. This example is for the shared-list feature from the must-haves above. It lives at `tasks/prd-shared-lists.md`.
+## Work brief: Shared lists (PRD)
 
 ```markdown
 # Product Requirements Document: Shared lists
@@ -131,13 +122,3 @@ Let a list owner invite a teammate so both people can view and edit the same tod
 - Should an invite expire if it is not accepted within seven days?
 - What happens to a member's tasks when they are removed from a list?
 ```
-
----
-
-## How to use this
-
-1. Write `docs/context.md` first, once, for the whole product. Run `/context` to make it easy.
-2. For each feature, write a short PRD before you build. Run `/feature` to make it easy.
-3. Point the agent at the right file and ask it to build: `@tasks/prd-shared-lists.md can you build this please?`
-
-Keep both files short. A page each is plenty. The goal is shared intent, not a contract.

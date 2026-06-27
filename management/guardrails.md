@@ -4,7 +4,7 @@ Guardrails are constraints that keep the agent on course. They tell it what is o
 
 AI does not drift because it is bad. It drifts because no one told it what staying on course looks like. Guardrails are how you say it once and have it apply every time.
 
-Below is a filled example for the **TidyList** todo app from [structure.md](structure.md). Copy the shape for your own project.
+Below is a filled example for a software project. For the Data layer shape and other domains (generic, business, everyday, resume), see [data.md](data.md).
 
 ## Where guardrails live
 

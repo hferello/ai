@@ -2,9 +2,9 @@
 
 A collection of AI-related tools and Cursor skills.
 
-## Managing AI agents: Structure, Guardrails, Skills
+## Managing AI agents: Data, Guardrails, Skills
 
-Worked examples of the three layers that keep an AI agent on course: a context file and PRD (Structure), an `AGENTS.md` of constraints (Guardrails), and targeted prompts and tools (Skills). Built around a small SaaS todo list so you can copy the shape for your own project.
+Worked examples of the three layers that keep an AI agent on course: a context file and work brief (Data), constraints that prevent drift (Guardrails), and targeted prompts and tools (Skills). Data examples cover generic, software, business, everyday, and resume writing.
 
 See [management/README.md](management/README.md).
 
