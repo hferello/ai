@@ -1,0 +1,19 @@
+{
+  "name": "hferello-ai",
+  "owner": {
+    "name": "hferello",
+    "url": "https://github.com/hferello"
+  },
+  "plugins": [
+    {
+      "name": "context",
+      "source": "./plugins/context",
+      "description": "Capture product context in docs/context.md and wire AGENTS.md for future sessions."
+    },
+    {
+      "name": "feature",
+      "source": "./plugins/feature",
+      "description": "Feature design workflow with persistent planning docs and Claude hook reminders."
+    }
+  ]
+}

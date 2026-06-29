@@ -1,0 +1,14 @@
+{
+  "name": "context",
+  "version": "1.0.0",
+  "description": "Capture product context (mission, must-haves, boundaries, principles, stack, constraints) so AI agents stay aligned. Asks 8 direct questions one at a time and writes docs/context.md, then wires AGENTS.md so every agent reads it. Trigger with /context.",
+  "skills": "./skills",
+  "author": {
+    "name": "hferello",
+    "url": "https://github.com/hferello"
+  },
+  "homepage": "https://github.com/hferello/ai/tree/main/context",
+  "repository": "https://github.com/hferello/ai",
+  "license": "GPL-3.0",
+  "keywords": ["context", "product", "planning", "guardrails", "agents", "prd"]
+}

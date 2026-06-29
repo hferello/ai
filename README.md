@@ -31,3 +31,29 @@ git clone --depth 1 https://github.com/hferello/ai.git /tmp/cursor-feature-skill
 ```
 
 See [feature/README.md](feature/README.md) for full documentation.
+
+## Claude Code Plugins (Marketplace)
+
+This repo also ships Claude Code plugins for the same two workflows:
+
+- `context` plugin -> `/context`
+- `feature` plugin -> `/feature`
+
+### Install in Claude Code
+
+1. Add this repo as a marketplace:
+
+```text
+/plugin marketplace add https://github.com/hferello/ai
+```
+
+2. Install either or both plugins:
+
+```text
+/plugin install context@hferello-ai
+/plugin install feature@hferello-ai
+```
+
+The marketplace definition lives at `.claude-plugin/marketplace.json`.
+
+For plugin packaging details (generated files vs curated files), see [plugins/README.md](plugins/README.md).
