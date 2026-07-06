@@ -4,7 +4,7 @@ A collection of ready-to-use AI prompts for communication, personal branding, an
 
 ## How to use these
 
-Most prompts are self-contained. Open the file, copy the whole thing (including the instructions at the top), and paste it into your AI assistant as-is — don't fill anything in yourself first. The assistant will ask you questions one at a time, then use your answers to write the final message. Prompts that need variables filled in first (like the landing page prompt) say so explicitly.
+Most prompts are self-contained. Open the file, copy the whole thing (including the instructions at the top), and paste it into your AI assistant as-is; don't fill anything in yourself first. The assistant will ask you questions one at a time, then use your answers to write the final message. Prompts that need variables filled in first (like the landing page prompt) say so explicitly.
 
 ## Workplace & interpersonal communication
 
@@ -18,7 +18,7 @@ Most prompts are self-contained. Open the file, copy the whole thing (including 
 | [`communicating-change-prompt.md`](./communicating-change-prompt.md) | Announce a change to a team or group | Minimize ambiguity, shrink the change, point to realistic positives |
 | [`stakeholder-update-template-prompt.md`](./stakeholder-update-template-prompt.md) | Send a project update stakeholders will actually read, plus a reusable template for next time | Status + 2–3 sentence overview, accomplishments, risks, open door for feedback |
 | [`asking-good-questions-prompt.md`](./asking-good-questions-prompt.md) | Prepare sharp questions for a problem-solving conversation | Research / Experience / Imaginative / Decisional question types |
-| [`data-storytelling-prompt.md`](./data-storytelling-prompt.md) | Turn data or analysis into a compelling narrative | The 4 C's (Context, Characters, Conflict, Conclusion — conclusion first) |
+| [`data-storytelling-prompt.md`](./data-storytelling-prompt.md) | Turn data or analysis into a compelling narrative | The 4 C's: Context, Characters, Conflict, and Conclusion (conclusion first) |
 | [`make-it-stick-prompt.md`](./make-it-stick-prompt.md) | Make a message more memorable | Alliteration, chiasmus, concrete examples, metaphor, repetition/rhythm |
 
 ## Practice & in-person moments
@@ -40,8 +40,8 @@ Most prompts are self-contained. Open the file, copy the whole thing (including 
 
 | Prompt | Use it when you need to... | Notes |
 |---|---|---|
-| [`linkedin-post-prompt.md`](./linkedin-post-prompt.md) | Generate LinkedIn posts that are built to earn comments and saves, not just likes | Detailed ruleset on hooks, formatting, and content mix — needs background info about your work filled in |
-| [`expose-prompt.md`](./expose-prompt.md) | Get an honest verdict on whether a product has a clear point of view | 30-second test: Style / Coherence / Problem — a lead-magnet prompt to DM out |
+| [`linkedin-post-prompt.md`](./linkedin-post-prompt.md) | Generate LinkedIn posts that are built to earn comments and saves, not just likes | Detailed ruleset on hooks, formatting, and content mix; needs background info about your work filled in |
+| [`expose-prompt.md`](./expose-prompt.md) | Get an honest verdict on whether a product has a clear point of view | 30-second test: Style / Coherence / Problem, a lead-magnet prompt to DM out |
 
 ## Site building
 
