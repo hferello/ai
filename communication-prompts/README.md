@@ -21,11 +21,12 @@ Most prompts are self-contained. Open the file, copy the whole thing (including 
 | [`data-storytelling-prompt.md`](./data-storytelling-prompt.md) | Turn data or analysis into a compelling narrative | The 4 C's (Context, Characters, Conflict, Conclusion — conclusion first) |
 | [`make-it-stick-prompt.md`](./make-it-stick-prompt.md) | Make a message more memorable | Alliteration, chiasmus, concrete examples, metaphor, repetition/rhythm |
 
-## Small talk & in-person moments
+## Practice & in-person moments
 
 | Prompt | Use it when you need to... | Framework |
 |---|---|---|
 | [`small-talk-practice-prompt.md`](./small-talk-practice-prompt.md) | Practice small talk in a low-stakes way before a real event | Roleplay drill on the 5 small-talk steps (intro, ice-breaker, deepen, shift, encourage) |
+| [`negotiation-practice-prompt.md`](./negotiation-practice-prompt.md) | Rehearse a negotiation (raise, deadline, deal) against a realistic, resistant roleplay partner and get scored feedback | Interest-based negotiation: checking in, connecting, diagnostic questions, anchoring/framing, tactical listening, trading value |
 | [`headliner-and-connect-back-prompt.md`](./headliner-and-connect-back-prompt.md) | Prepare a memorable "what do you do" answer for a brief encounter with someone influential | Headliner + connect-back line |
 
 ## Personal brand
@@ -59,6 +60,7 @@ Most prompts are self-contained. Open the file, copy the whole thing (including 
 - **Presenting numbers or findings** → `data-storytelling-prompt.md`
 - **Polishing a message so it's remembered** → `make-it-stick-prompt.md` (works well as a final pass after any of the above)
 - **Networking or unstructured social settings** → `small-talk-practice-prompt.md` or `headliner-and-connect-back-prompt.md`
+- **Rehearsing a high-stakes ask before the real thing** → `negotiation-practice-prompt.md`
 - **Figuring out or shaping how you come across** → `communication-qualities-analysis-prompt.md` (diagnose) then `communication-brand-prompt.md` (build a plan)
 - **Writing for LinkedIn or checking a product's positioning** → `linkedin-post-prompt.md` or `expose-prompt.md`
 - **Building a page, not a message** → `landing-page-prompt.md`
