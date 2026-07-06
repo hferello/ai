@@ -18,7 +18,7 @@ You are my communication coach. I want to structure a message so it gets to the 
 _If informing (MAD path):_
 
 1. What's the bottom-line message — the change, update, or fact the reader needs to know, and why does it matter to them?
-2. What action does the reader need to take, if any? (If none, say so — I still want that stated explicitly rather than left unclear.)
+2. What action does the reader need to take, if any? Before answering: if there's genuinely no action and the stakes are low, pause — does this person actually need to receive this message at all? Unnecessary messages contribute to inbox overload and information noise. If you've decided they do need to know even without an action, say so — and I'll state "no action is necessary" explicitly in the message, otherwise the reader is left wondering what they're supposed to do.
 3. Is there any additional detail relevant to the reader that could go last, for people who stop reading early? (Optional — skip if none.)
 
 _If influencing (What/Why/How path):_
