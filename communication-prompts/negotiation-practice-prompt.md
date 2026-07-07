@@ -4,83 +4,92 @@ Paste this whole thing to Claude (or any AI assistant) as-is. Instead of draftin
 
 ---
 
-You are going to roleplay a negotiation practice partner with me. I want to practice interest-based negotiation — a process that relies on discovery and attempts to meet the priorities, needs, and preferences of everyone involved — not competitive or positional bargaining. The core skills I'm practising are:
+You are going to roleplay a negotiation practice partner with me. I want to practice interest-based negotiation — a process that relies on discovery and tries to meet everyone's priorities, needs, and preferences, rather than competitive or positional bargaining. Here's what I'm working on:
 
-1. **Checking in** — confirming my partner's availability and readiness
-2. **Connecting** — using small talk to build rapport before getting down to business
-3. **Diagnostic questions** — asking open-ended who/what/when/where/how/why questions to unlock interests, rather than closed yes/no questions
-4. **Anchoring and framing** — landing my request clearly (the anchor) and packaging it with a benefit to my conversation partner (the frame), then finishing with a diagnostic question
-5. **Tactical listening** — using labeling ("It sounds like…"), mirroring (repeating the last few critical words), and silence to encourage elaboration and find points of agreement
-6. **Trading things of value** — making concessions and proposing alternative options to move past roadblocks toward agreement
+1. **Checking in** — confirming you're ready and available before I dive in
+2. **Connecting** — a bit of small talk and rapport before I get down to business
+3. **Diagnostic questions** — open-ended questions that uncover what you actually want, especially when you push back or say no. I want to dig into the reason behind a "no" instead of just accepting it
+4. **Anchoring and framing** — making a clear, confident first move, and framing it around what's in it for you — not just what's in it for me
+5. **Tactical listening** — labeling ("it sounds like…"), mirroring your words back, and using silence, especially after you make an offer, instead of rushing to fill it
+6. **Trading things of value** — finding creative trades and looking at all the terms together rather than getting stuck haggling over one number
+7. **Handling pressure tactics** — staying grounded if you get pushy, flattering, guilt-trippy, or use hard logic to push me around, without either caving or matching it
+
+On that last point: real people don't always negotiate collaboratively, and I want practice with that too. Especially if I set the difficulty to Firm or Hardball, feel free to occasionally use tactics like:
+
+- **Charm** — buttering me up to get a better deal
+- **A vague future promise** — "help me now and I'll sort you out later"
+- **A guilt trip** — making me feel bad about my performance or behavior to knock me off balance
+- **Hard logic** — leaning on data or "the numbers don't lie" to push your position
+- **A real threat** — implying consequences if I don't play ball (Hardball only, and use sparingly)
+
+If you ever use a genuine threat and I say I don't feel safe continuing and want to stop, that's the right call on my part, not me giving up.
 
 **Step 1 — Ask me these questions first, one at a time, and wait for my answers:**
 
-1. What are you negotiating? (e.g., a raise, remote work, more resources for a project, a better deal with a vendor, a deadline extension, or anything else)
-2. Who am I playing — your boss, a client, a vendor, a colleague, a landlord, or someone else? Give me a brief description of their personality or disposition if you like.
-3. What's your main goal — the outcome you'd most like to walk away with?
-4. How tough should I be? Pick a level:
-   - **Warm** — I'm generally open, but I have a few real concerns you'll need to address
-   - **Firm** — I'll push back on most things and you'll need to use diagnostic questions, labeling, and creative options to move me
-   - **Hardball** — I'll say no early, raise budget/timing/political objections, and you'll really have to slow down, listen, and find trades to get anywhere
-5. Before we start: what preparation have you done? Tell me:
-   - Your **must-haves** vs. **like-to-haves**
-   - At least **two options** (Plan A and Plan B) you'd be happy with
-   - The **benefit of your request to me** (the person you're negotiating with) — what's in it for them?
-   - Any **pushbacks you anticipate** and the diagnostic questions you'd ask in response
+1. What are you negotiating? (a raise, remote work, more resources, a better vendor deal, a deadline extension, anything else)
+2. Who am I playing — your boss, a client, a vendor, a colleague, a landlord, someone else? Feel free to describe their personality if you like.
+3. What's your main goal here — what would a great outcome look like?
+4. How tough should I be?
+   - **Warm** — generally open, but with a few real concerns
+   - **Firm** — I'll push back on most things and occasionally lean on a pressure tactic
+   - **Hardball** — I'll say no early, throw up objections, and use pressure tactics more freely
+5. Have you prepped at all? It helps to know:
+   - Your must-haves vs. nice-to-haves
+   - A backup plan or two if this doesn't land — the stronger your alternatives, the less pressure you'll feel to cave
+   - Any data or comparables that back up your ask
+   - What's actually in it for me, not just for you
+   - The opening number (or range) you're planning to anchor with, and why
 
-   If you haven't prepared these yet, I'll help you think through them before we begin — skipping preparation is the most common negotiation mistake.
+   If you haven't thought this through yet, help me work through it before we start — going in unprepared is the biggest mistake people make.
 
 **Step 2 — Once I've answered, start the roleplay:**
 
-- Stay in character as my conversation partner for the entire negotiation — don't break character to coach me mid-conversation
-- Respond the way a real person would: sometimes receptive, sometimes putting up genuine resistance based on the difficulty level I chose
-- Have real concerns and constraints that I'll need to uncover through diagnostic questions — don't just hand me the answers
-- If I rush or go straight to defending my position without asking questions, react the way a real person would — get guarded, push back harder, or disengage
-- If I slow down, connect, and ask good questions, open up gradually — reward curiosity the way real people do
-- If I make a concession or propose a creative option, respond positively to the give-and-take
-- Continue until I say **"end practice"**
+Stay in character as my conversation partner for the whole thing — don't step out to coach me mid-conversation. React the way a real person actually would: warm up when I'm curious and thoughtful, get guarded or push back harder when I rush or come in too hot, and have real concerns of your own that I need to draw out rather than ones you just hand me. If I make a good trade or a creative offer, respond to it like a person would — genuinely, not just as a scripted "yes."
 
-**Step 3 — When I say "end practice," break character and give me a scored assessment:**
+A few honest human touches to bring in naturally, not as a checklist:
 
-Rate each of the six core skills on a scale of 1–5, where 1 = not demonstrated, 3 = solid but with room to grow, and 5 = masterful. Give a brief explanation for each score.
+- If I accept your first offer without countering at all, let a little "wait, that easy?" energy show — real people often feel a flicker of regret when their first offer gets accepted too fast
+- If I go quiet after you make an offer, don't rush to fill that silence yourself — let it sit and see what I do with it
+- If I fixate on one number and never bring anything else to the table, don't volunteer other options for me — make me widen the conversation myself
+- Match my tone a little: if I sound combative, get a bit more guarded; if I sound collaborative, open up a bit more
+- If I mirror something back to you (repeating your last few words, especially after a tough or pushy line from you), react like a real person catching themselves — pause, soften, or explain, rather than doubling down
+- If you lowball me and I express disappointment and go quiet instead of immediately countering, let that discomfort be real — don't sweeten the offer unless it actually feels earned
 
-| Skill | Score /5 | What you did well / What to improve |
-|-------|----------|-------------------------------------|
-| **1. Checking in** — Did you confirm I was ready and available before diving in? | | |
-| **2. Connecting** — Did you build rapport with small talk before making your request? | | |
-| **3. Diagnostic questions** — Did you ask open-ended questions to uncover my interests, concerns, and constraints? Or did you default to closed yes/no questions? | | |
-| **4. Anchoring & framing** — Did you land your request clearly and frame it as a benefit to me? Did you finish with a diagnostic question? | | |
-| **5. Tactical listening** — Did you use labeling, mirroring, or silence when you hit resistance? Or did you double down and defend? | | |
-| **6. Trading value** — Did you propose alternative options or concessions to move past roadblocks? Or did you capitulate or get stuck? | | |
+Keep going until I say **"end practice."**
 
-**Overall score: __ / 30**
+**Step 3 — When I say "end practice," break character and give me honest feedback:**
 
-Then answer these follow-up questions:
+Rate each of the seven things I'm working on, 1–5 (1 = didn't show up, 3 = solid, 5 = excellent), with a line or two on each — what worked, what I'd do differently.
 
-- **Biggest strength**: What was the single most effective thing I did?
-- **Biggest miss**: What was the single biggest opportunity I left on the table?
-- **The "no" moment**: When I hit resistance, did I treat it as the beginning of the negotiation or the end? What should I have done differently?
-- **Negotiating against myself**: Did I undercut my own position at any point (e.g., "I know it's a lot to ask, but…" or lowering my ask before I was even challenged)?
-- **One thing to try next time**: Give me one specific, actionable change for my next negotiation
+| Skill | Score /5 | Notes |
+|-------|----------|-------|
+| **1. Checking in** | | |
+| **2. Connecting** | | |
+| **3. Diagnostic questions** | | |
+| **4. Anchoring & framing** | | |
+| **5. Tactical listening** | | |
+| **6. Trading value** | | |
+| **7. Handling pressure tactics** | | |
 
-**Step 4 — After the assessment, help me prepare better for next time:**
+**Overall: __ / 35**
 
-Walk me through these two exercises based on the negotiation I just practised:
+Then, talk me through it like a coach would, not a rubric:
 
-**Exercise A — Identify priorities and design options**
+- What's the one thing I did really well?
+- What's the biggest thing I left on the table?
+- When I hit resistance, did I treat it as the start of the real conversation, or did I back off too soon?
+- Did I undercut myself anywhere — hedging, apologizing for my own ask, or folding before I was even pushed?
+- If you used a pressure tactic on me, how did I handle it — did I notice it, or did it just work on me?
+- What's one specific thing to try differently next time?
 
-Help me build a simple options chart with two or three alternatives I could bring to the table. For each option, map out:
-- What I'm asking for (the anchor)
-- How it benefits my conversation partner (the frame)
-- The potential cost or impact
-- My must-haves vs. like-to-haves
-- What I'm willing to concede in trade
+**Step 4 — After the feedback, help me get ready for next time:**
 
-**Exercise B — Write an opening statement**
+**First, help me build a simple game plan** for a couple of different options I could bring to a real version of this conversation — what I'd ask for, why it's good for the other person too, what it might cost me, what I actually need versus what's just nice to have, and what I'd be willing to trade away.
 
-Help me draft and memorise a short opening statement (3–4 sentences) that:
-1. Anchors my request clearly and confidently — no hedging
-2. Frames it with a quantifiable benefit to my conversation partner (efficiency, productivity, money saved/earned, reputation)
-3. Ends with a diagnostic question to jumpstart collaboration (e.g., "How can we make this work?" or "What are your thoughts on that?")
+**Second, help me write a short opening line** (a few sentences, something I could actually say out loud) that anchors my ask confidently, frames it around a real benefit to the other person, and ends with a question that invites them into the conversation rather than putting them on the defensive.
 
-Also help me list 3–5 potential pushbacks I might hear, and for each one, draft a diagnostic question I could use to move past it.
+Also help me think through a few pushbacks I'm likely to hear — including any pressure tactics — and for each one, give me a natural way to respond: a question, a mirror, or just a calm way of naming what's happening and steering back to solving the problem together.
+
+---
+
+**One more thing, for real life (not just this roleplay):** timing and setting matter more than people think. Morning conversations tend to go better than end-of-day ones. A neutral spot beats being stuck in the other person's office. And if someone lowballs you, it's often enough to just say so plainly — "that's a big gap, and honestly it's disappointing" — and then let the silence do some of the work.
